@@ -1,64 +1,82 @@
-# LLM Study Notes
+# johnny-is-confused
 
-> Careful, visual, pedagogical study notes on the internals of modern large
-> language models. Written for someone who knows Python and neural networks
-> but wants to understand _why_ each piece exists, not just _what_ it does.
+> Hi — I'm Johnny, and I'm frequently confused. This repo is where I write
+> down what I'm trying to figure out. Mostly machine learning and AI, but
+> occasionally other stuff. Writing slowly helps me think.
 
-**→ Read online: <https://spearsheep.github.io/johnny-is-confused/>**
+**→ <https://spearsheep.github.io/johnny-is-confused/>**
 
-Each note walks through one model's architecture component-by-component with
-diagrams, annotated reference code, and a worked example of a sentence flowing
-through the model end-to-end.
+Nothing in here claims to be authoritative. It's more of a public notebook
+than a textbook. If something helps you too, great; if you find a mistake,
+please tell me — I'd rather be right than look right.
 
-## Notes in this repo
+## What's in here
 
-| Model | Year | Status |
-| --- | --- | --- |
-| [Llama 3 (Meta)](docs/notes/llama3.md) | 2024 | Published |
-| Mistral 7B | 2023 | Planned |
-| DeepSeek V2 | 2024 | Planned |
-| Qwen 2 | 2024 | Planned |
+### Study notes
+Careful, diagram-heavy write-ups of ML/AI things I've actually sat down and
+worked through. Each note aims to explain something to a version of me who
+hasn't learned it yet.
 
-## What's in each note
+Published so far:
+- [**Llama 3** (Meta, 2024)](docs/notes/llama3.md) — architecture walkthrough
+  of the reference implementation. RoPE, GQA, SwiGLU, KV cache, plus a
+  concrete sentence traced layer-by-layer. ~5,000 words.
 
-1. **TL;DR** — one paragraph, zero jargon
-2. **Mental-model diagram** — the whole forward pass in one picture
-3. **Hyperparameters with intuition** — what each knob actually controls
-4. **Architecture walkthrough** — every component in data-flow order, with
-   annotated code from the reference implementation
-5. **A concrete forward pass** — one real sentence, traced through the model
-6. **Training vs inference** — what changes
-7. **Zoom-out comparisons** — vs. the 2017 Transformer, vs. the prior
-   generation, vs. a contemporary competitor
-8. **Glossary + further reading**
+Working on / want to get to:
+- LLMs: Mistral (sliding-window attention), DeepSeek V2 (MLA, MoE), Qwen, Gemma
+- Computer vision: ViT, DINOv2, SAM
+- Recommendation / retrieval: two-tower models, dense vs sparse retrieval
+- Whatever confuses me next.
 
-## Local setup (for contributors)
+### Blog
+Shorter, less-structured pieces. Sometimes about what I'm studying,
+sometimes about life. None posted yet.
+
+### Other resources
+- A [prompt template](docs/notes/study-notes-prompt.md) for generating
+  study notes like these with Claude Code. Distilled from real iterations
+  — if it looks opinionated, that's why.
+
+## Local setup
+
+For me, mostly, but the site builds the same way on any machine:
 
 ```bash
 pip install -r requirements.txt
-mkdocs serve           # preview at http://127.0.0.1:8000
-mkdocs build           # build static site into ./site/
+mkdocs serve   # live preview at http://127.0.0.1:8000
+mkdocs build   # static site into ./site/
 ```
 
-The Markdown sources live under [`docs/`](docs/). Images and diagrams under
-[`docs/assets/`](docs/assets/). Every push to `main` automatically rebuilds
-and deploys the site via GitHub Actions
-([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)).
+Every push to `main` auto-deploys via
+[GitHub Actions](.github/workflows/deploy.yml).
 
-## Contributing
+## Layout
 
-Found an error, a confusion, or a cleaner explanation? Please open an issue
-or a pull request. I'd rather be right than save face.
+```
+docs/
+  index.md              landing page
+  notes/                long-form study notes
+  blog/                 shorter posts
+  assets/notes/         diagrams, plots, images (per note)
+mkdocs.yml              site config
+requirements.txt        MkDocs deps
+```
+
+The `llama3-ref/` directory in my local workspace holds upstream
+Meta-llama source code that I read while writing the Llama 3 note. It's
+gitignored — the notes link to the official upstream repo instead.
+
+## Found an error?
+
+Please [open an issue](https://github.com/spearsheep/johnny-is-confused/issues)
+or a pull request. I'd rather fix it than save face.
 
 ## License
 
-The written text, diagrams, and code snippets authored by me in this repo are
-released under [**Creative Commons BY-NC 4.0**](https://creativecommons.org/licenses/by-nc/4.0/)
-— you're welcome to read, share, and learn from them; commercial use
-(including reselling the notes as a paid product) requires permission.
-
-Code from the reference implementations I reference (Llama 3, etc.) is owned
-by their respective authors under their own licenses; I include only short
-annotated snippets for teaching purposes. The full upstream code is **not**
-redistributed in this repo — follow the links in each note to the original
-repos.
+Writing and diagrams here are licensed under
+[Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/):
+read them, share them, learn from them. Commercial reuse — including
+reselling the notes as a paid product — needs my permission. Short code
+snippets from third-party projects (like Meta's llama3) are quoted for
+teaching purposes; the full upstream sources remain with their original
+authors and licenses.

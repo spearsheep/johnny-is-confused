@@ -4,74 +4,67 @@ hide:
   - toc
 ---
 
-# LLM Study Notes
+# johnny is confused
+
+*and writes down what he's trying to figure out.*
+
+Hi — I'm Johnny. I study machine learning and AI for fun, get confused a lot,
+and have found that the only way I actually understand something is to write
+it out slowly, from first principles, with diagrams. This site is where those
+write-ups live.
+
+Notes here are **thoughtful where I can manage it and confused where I
+can't**. Nothing here claims to be authoritative — I'm not an expert, I'm
+just a person working through this stuff in public. If you find mistakes or
+better ways to explain things, please tell me.
+
+## What's here
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch:{ .lg .middle } __Careful notes on modern LLM internals__
+-   :material-notebook-outline:{ .lg .middle } __Study notes__
 
     ---
 
-    Walkthroughs of open-weight large language models, written for someone who
-    knows Python and neural networks but wants to understand **why** each piece
-    exists — not just what it does.
+    Careful walkthroughs of papers, repos, and ideas in ML and AI. Currently
+    mostly LLMs; computer vision and recommendation systems are on the way.
 
--   :material-image-outline:{ .lg .middle } __Visual and grounded__
+    [:octicons-arrow-right-24: Browse notes](notes/index.md)
 
-    ---
-
-    Every architectural trick (RoPE, GQA, SwiGLU, KV cache, …) comes with
-    diagrams, a worked numerical example, and code from the reference
-    implementation — annotated line-by-line.
-
--   :material-book-open-page-variant:{ .lg .middle } __Teach, don't summarize__
+-   :material-pencil-outline:{ .lg .middle } __Blog__
 
     ---
 
-    If you could get the same thing from the paper's abstract or the model
-    card, I haven't done my job. The goal is intuition that sticks.
+    Shorter, less structured pieces — sometimes about what I'm studying,
+    sometimes about life, sometimes just thinking out loud.
 
--   :material-update:{ .lg .middle } __A living collection__
-
-    ---
-
-    One note today, more coming. Each model gets its own deep dive.
+    [:octicons-arrow-right-24: Read the blog](blog/index.md)
 
 </div>
 
-## Available notes
+## Latest
 
-- [**Llama 3** (Meta, 2024)](notes/llama3.md) — full architecture walkthrough of the
-  reference implementation, including RoPE, Grouped-Query Attention, SwiGLU,
-  the KV cache, and a concrete worked example of a sentence flowing through
-  the model.
+**[Llama 3 (Meta, 2024)](notes/llama3.md)** — a walk through the reference
+implementation: RoPE, Grouped-Query Attention, SwiGLU, KV cache, and a real
+sentence traced through the whole model. Probably the thing I'm proudest of
+so far. ~5,000 words, lots of pictures.
 
-## Coming soon
+## In progress
 
-- Mistral 7B — sliding-window attention
-- DeepSeek V2 — Multi-head Latent Attention (MLA) and mixture-of-experts
-- Qwen 2 — how a pragmatic Chinese-first model differs
+Notes I'm working on or want to get to:
 
-## What each note contains
+- Mistral — sliding-window attention
+- DeepSeek V2 — multi-head latent attention, MoE routing
+- Vision transformers (ViT, DINOv2, SAM)
+- Recommendation systems — two-tower models, retrieval at scale
+- Whatever confuses me next
 
-Each model note follows the same skeleton so you can compare apples to apples:
+## A note on tone
 
-1. **TL;DR** — one paragraph, zero jargon.
-2. **Mental-model diagram** — end-to-end forward pass in one picture.
-3. **Key hyperparameters** — with intuition for what each knob controls.
-4. **Architecture walkthrough** — component by component, data-flow order.
-5. **Forward pass, narrated** — a concrete sentence traced through the model.
-6. **Training vs inference** — what changes between them.
-7. **Zoom-out comparisons** — vs. the 2017 Transformer, vs. an older model in
-   the same family, vs. one contemporary competitor.
-8. **What's actually novel** — and what isn't.
-9. **Glossary + further reading.**
-
-## About
-
-Written by Jun Yu Chen while learning this stuff. If you spot an error, a
-confusion, or a better intuition, please open an issue — I'd rather get it
-right than save face.
+I write carefully because I want to *understand* things, not because I think
+I'm good at any of this. If a sentence sounds confident, it's because I
+checked it twice; if it sounds unsure, it's because I'm unsure and saying so
+is more useful than pretending. That's the whole vibe.
 
 <small>Built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
-Source Markdown on [GitHub](https://github.com/spearsheep/johnny-is-confused).</small>
+Source on [GitHub](https://github.com/spearsheep/johnny-is-confused).</small>

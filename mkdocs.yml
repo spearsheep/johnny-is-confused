@@ -1,6 +1,6 @@
-site_name: LLM Study Notes
-site_description: Careful, pedagogical study notes on modern LLM architectures — RoPE, GQA, SwiGLU, KV cache, and more.
-site_author: Jun Yu Chen
+site_name: Johnny is Confused
+site_description: Notes and blog posts on machine learning, AI, and whatever else I'm trying to figure out. Not authoritative — just writing it out until I understand it.
+site_author: Johnny (Jun Yu Chen)
 # TODO: update these two once you create the GitHub repo and enable Pages.
 site_url: https://spearsheep.github.io/johnny-is-confused/
 repo_name: spearsheep/johnny-is-confused
@@ -58,9 +58,12 @@ theme:
 nav:
   - Home: index.md
   - Notes:
-    - Llama 3 (Meta, 2024): notes/llama3.md
+    - notes/index.md
+    - "Llama 3 (Meta, 2024)": notes/llama3.md
+  - Blog:
+    - blog/index.md
   - Resources:
-    - Study-notes prompt: notes/study-notes-prompt.md
+    - "Study-notes prompt": notes/study-notes-prompt.md
 
 markdown_extensions:
   # Sane defaults
@@ -112,5 +115,5 @@ extra:
   generator: false  # hide "Made with Material for MkDocs" if you prefer clean footer
 
 copyright: >
-  Copyright &copy; 2026 Jun Yu Chen —
-  <a href="#__consent">Change cookie settings</a>
+  Written by Johnny (Jun Yu Chen) — read freely, share freely,
+  please don't resell without asking.
