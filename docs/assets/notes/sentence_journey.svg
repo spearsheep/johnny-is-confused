@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <defs>
+    <linearGradient id="gBOS" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e0e0e0"/><stop offset="1" stop-color="#c0c0c0"/></linearGradient>
+    <linearGradient id="gThe" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cce5ff"/><stop offset="1" stop-color="#99ccff"/></linearGradient>
+    <linearGradient id="gCat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd580"/><stop offset="1" stop-color="#ffb84d"/></linearGradient>
+    <linearGradient id="gSat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c3e6cb"/><stop offset="1" stop-color="#85d08a"/></linearGradient>
+    <linearGradient id="gOn" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f5c6cb"/><stop offset="1" stop-color="#e78890"/></linearGradient>
+    <marker id="arrGold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#d4a02a"/></marker>
+  </defs>
+  <rect width="800" height="420" fill="white"/>
+  <text x="400" y="22" text-anchor="middle" font-size="15" font-weight="bold">Semantic content of each token's vector across selected layers</text>
+  <text x="120" y="55" text-anchor="middle" font-size="12" font-weight="bold">&lt;BOS&gt;</text>
+  <text x="250" y="55" text-anchor="middle" font-size="12" font-weight="bold">"The"</text>
+  <text x="380" y="55" text-anchor="middle" font-size="12" font-weight="bold">" cat"</text>
+  <text x="510" y="55" text-anchor="middle" font-size="12" font-weight="bold">" sat"</text>
+  <text x="640" y="55" text-anchor="middle" font-size="12" font-weight="bold">" on"</text>
+  <text x="30" y="95" font-size="11" font-weight="bold">After embedding:</text>
+  <rect x="80" y="70" width="80" height="40" fill="url(#gBOS)" stroke="#888"/><text x="120" y="94" text-anchor="middle" font-size="9">generic BOS</text>
+  <rect x="210" y="70" width="80" height="40" fill="url(#gThe)" stroke="#4a90e2"/><text x="250" y="90" text-anchor="middle" font-size="9">generic</text><text x="250" y="102" text-anchor="middle" font-size="9">article</text>
+  <rect x="340" y="70" width="80" height="40" fill="url(#gCat)" stroke="#d48806"/><text x="380" y="90" text-anchor="middle" font-size="9">generic cat</text><text x="380" y="102" text-anchor="middle" font-size="9">(any sense)</text>
+  <rect x="470" y="70" width="80" height="40" fill="url(#gSat)" stroke="#52a052"/><text x="510" y="90" text-anchor="middle" font-size="9">generic sit</text><text x="510" y="102" text-anchor="middle" font-size="9">(past tense)</text>
+  <rect x="600" y="70" width="80" height="40" fill="url(#gOn)" stroke="#cc3844"/><text x="640" y="90" text-anchor="middle" font-size="9">generic "on"</text><text x="640" y="102" text-anchor="middle" font-size="9">(preposition)</text>
+  <text x="30" y="165" font-size="11" font-weight="bold">Early layers (≈1-3):</text>
+  <rect x="80" y="140" width="80" height="40" fill="url(#gBOS)" stroke="#888"/><text x="120" y="164" text-anchor="middle" font-size="9">start marker</text>
+  <rect x="210" y="140" width="80" height="40" fill="url(#gThe)" stroke="#4a90e2"/><text x="250" y="160" text-anchor="middle" font-size="9">definite article</text><text x="250" y="172" text-anchor="middle" font-size="9">+ next is noun</text>
+  <rect x="340" y="140" width="80" height="40" fill="url(#gCat)" stroke="#d48806"/><text x="380" y="160" text-anchor="middle" font-size="9">"cat" as subject</text><text x="380" y="172" text-anchor="middle" font-size="9">of the sentence</text>
+  <rect x="470" y="140" width="80" height="40" fill="url(#gSat)" stroke="#52a052"/><text x="510" y="160" text-anchor="middle" font-size="9">"sat", verb after</text><text x="510" y="172" text-anchor="middle" font-size="9">animate noun</text>
+  <rect x="600" y="140" width="80" height="40" fill="url(#gOn)" stroke="#cc3844"/><text x="640" y="160" text-anchor="middle" font-size="9">preposition,</text><text x="640" y="172" text-anchor="middle" font-size="9">expects object</text>
+  <text x="30" y="235" font-size="11" font-weight="bold">Middle layers (≈10-20):</text>
+  <rect x="80" y="210" width="80" height="40" fill="url(#gBOS)" stroke="#888"/><text x="120" y="234" text-anchor="middle" font-size="9">sentence start</text>
+  <rect x="210" y="210" width="80" height="40" fill="url(#gThe)" stroke="#4a90e2"/><text x="250" y="230" text-anchor="middle" font-size="9">introduces a</text><text x="250" y="242" text-anchor="middle" font-size="9">specific animal</text>
+  <rect x="340" y="210" width="80" height="40" fill="url(#gCat)" stroke="#d48806"/><text x="380" y="230" text-anchor="middle" font-size="9">specific cat,</text><text x="380" y="242" text-anchor="middle" font-size="9">doer of "sat"</text>
+  <rect x="470" y="210" width="80" height="40" fill="url(#gSat)" stroke="#52a052"/><text x="510" y="230" text-anchor="middle" font-size="9">cat's action,</text><text x="510" y="242" text-anchor="middle" font-size="9">expects surface</text>
+  <rect x="600" y="210" width="80" height="40" fill="url(#gOn)" stroke="#cc3844"/><text x="640" y="230" text-anchor="middle" font-size="9">surface coming,</text><text x="640" y="242" text-anchor="middle" font-size="9">e.g. mat/chair</text>
+  <text x="30" y="305" font-size="11" font-weight="bold">Late layers (≈28-32):</text>
+  <rect x="80" y="280" width="80" height="40" fill="url(#gBOS)" stroke="#888"/><text x="120" y="304" text-anchor="middle" font-size="9">—</text>
+  <rect x="210" y="280" width="80" height="40" fill="url(#gThe)" stroke="#4a90e2"/><text x="250" y="304" text-anchor="middle" font-size="9">—</text>
+  <rect x="340" y="280" width="80" height="40" fill="url(#gCat)" stroke="#d48806"/><text x="380" y="304" text-anchor="middle" font-size="9">—</text>
+  <rect x="470" y="280" width="80" height="40" fill="url(#gSat)" stroke="#52a052"/><text x="510" y="304" text-anchor="middle" font-size="9">—</text>
+  <rect x="600" y="280" width="80" height="40" fill="url(#gOn)" stroke="#cc3844" stroke-width="2"/><text x="640" y="296" text-anchor="middle" font-size="9" font-weight="bold">ready to emit:</text><text x="640" y="308" text-anchor="middle" font-size="9" font-weight="bold">"the", "a", "my"</text><text x="640" y="320" text-anchor="middle" font-size="9">(determiner expected)</text>
+  <path d="M 250 115 Q 300 130 340 140" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="3 2"/>
+  <path d="M 380 115 Q 440 130 470 140" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="3 2"/>
+  <path d="M 510 115 Q 575 130 600 140" fill="none" stroke="#888" stroke-width="1" stroke-dasharray="3 2"/>
+  <rect x="550" y="350" width="220" height="50" fill="#fff4d6" stroke="#d4a02a" stroke-width="2"/>
+  <text x="660" y="370" text-anchor="middle" font-size="11" font-weight="bold">LM head on " on" vector →</text>
+  <text x="660" y="388" text-anchor="middle" font-size="10">logits over 128,256 tokens</text>
+  <path d="M 640 322 L 640 349" stroke="#d4a02a" stroke-width="2" marker-end="url(#arrGold)"/>
+  <text x="30" y="385" font-size="11" fill="#555">Dashed arrows = one example of attention flow: info moves</text>
+  <text x="30" y="400" font-size="11" fill="#555">rightward (causal) as later tokens read earlier ones.</text>
+</svg>

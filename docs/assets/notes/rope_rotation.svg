@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <defs>
+    <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#1f77b4"/></marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#2ca02c"/></marker>
+    <marker id="arrO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ff7f0e"/></marker>
+    <marker id="arrGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#888"/></marker>
+  </defs>
+  <rect width="720" height="440" fill="white"/>
+  <text x="360" y="26" text-anchor="middle" font-size="15" font-weight="bold">Rotating one (x, y) pair by position m</text>
+  <text x="360" y="46" text-anchor="middle" font-size="11" fill="#666">All three vectors have the same length — only the angle changes with m.</text>
+  <line x1="60" y1="230" x2="660" y2="230" stroke="#444" stroke-width="1" marker-end="url(#arrGray)"/>
+  <line x1="360" y1="410" x2="360" y2="80" stroke="#444" stroke-width="1" marker-end="url(#arrGray)"/>
+  <text x="665" y="234" font-size="12" fill="#555">x</text>
+  <text x="368" y="80" font-size="12" fill="#555">y</text>
+  <circle cx="360" cy="230" r="130" fill="none" stroke="#bbb" stroke-dasharray="4 3"/>
+  <circle cx="360" cy="230" r="3" fill="#333"/>
+  <line x1="360" y1="230" x2="490" y2="230" stroke="#1f77b4" stroke-width="2.5" marker-end="url(#arrB)"/>
+  <text x="502" y="224" font-size="12" fill="#1f77b4" font-weight="bold">m = 0</text>
+  <text x="502" y="242" font-size="11" fill="#1f77b4">(1, 0)</text>
+  <line x1="360" y1="230" x2="430.2" y2="120.6" stroke="#2ca02c" stroke-width="2.5" marker-end="url(#arrG)"/>
+  <path d="M 410 230 A 50 50 0 0 1 387 188" fill="none" stroke="#2ca02c" stroke-width="1.5"/>
+  <text x="406" y="212" font-size="12" fill="#2ca02c" font-weight="bold">θ₀</text>
+  <text x="445" y="104" font-size="12" fill="#2ca02c" font-weight="bold">m = 1,  angle = θ₀</text>
+  <text x="445" y="122" font-size="11" fill="#2ca02c">(cos 1, sin 1) ≈ (0.54, 0.84)</text>
+  <line x1="360" y1="230" x2="396.9" y2="354.6" stroke="#ff7f0e" stroke-width="2.5" marker-end="url(#arrO)"/>
+  <text x="412" y="372" font-size="12" fill="#ff7f0e" font-weight="bold">m = 5,  angle = 5θ₀</text>
+  <text x="412" y="390" font-size="11" fill="#ff7f0e">(cos 5, sin 5) ≈ (0.28, −0.96)</text>
+  <text x="360" y="428" text-anchor="middle" font-size="10" fill="#888">Faster-rotating pairs (smaller k) sweep through large angles as m grows — slower pairs barely move.</text>
+</svg>
