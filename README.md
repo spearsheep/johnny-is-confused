@@ -35,7 +35,7 @@ through the model end-to-end.
 ## Local setup (for contributors)
 
 ```bash
-pip install mkdocs-material pymdown-extensions
+pip install -r requirements.txt
 mkdocs serve           # preview at http://127.0.0.1:8000
 mkdocs build           # build static site into ./site/
 ```
