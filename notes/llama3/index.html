@@ -1,0 +1,2243 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Careful, pedagogical study notes on modern LLM architectures — RoPE, GQA, SwiGLU, KV cache, and more.">
+      
+      
+        <meta name="author" content="Jun Yu Chen">
+      
+      
+        <link rel="canonical" href="https://spearsheep.github.io/johnny-is-confused/notes/llama3/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../study-notes-prompt/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Llama 3 (Meta, 2024) - LLM Study Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llama-3-a-study-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LLM Study Notes" class="md-header__button md-logo" aria-label="LLM Study Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LLM Study Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Llama 3 (Meta, 2024)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/spearsheep/johnny-is-confused" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spearsheep/johnny-is-confused
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../study-notes-prompt/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LLM Study Notes" class="md-nav__button md-logo" aria-label="LLM Study Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LLM Study Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/spearsheep/johnny-is-confused" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    spearsheep/johnny-is-confused
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Llama 3 (Meta, 2024)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Llama 3 (Meta, 2024)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-tldr-zoom-out-1-paragraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. TL;DR (zoom-out, 1 paragraph)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-30-second-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The 30-second mental model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-key-hyperparameters-with-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key hyperparameters (with intuition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-architecture-walk-through-zoom-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Architecture walk-through (zoom-in)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Architecture walk-through (zoom-in)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tokenizer-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Tokenizer &amp; embeddings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-positional-encoding-rotary-position-embeddings-rope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Positional encoding: Rotary Position Embeddings (RoPE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-normalization-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Normalization: RMSNorm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-attention-grouped-query-attention-gqa-with-kv-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Attention: Grouped-Query Attention (GQA) with KV cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-feed-forward-network-swiglu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Feed-forward network: SwiGLU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-the-transformerblock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 The TransformerBlock
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-lm-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 LM head
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-the-causal-mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 The causal mask
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. A concrete forward pass: feeding "The cat sat on" into the model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. A concrete forward pass: feeding &#34;The cat sat on&#34; into the model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-tokenize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Tokenize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-embed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Embed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-the-journey-through-32-blocks-illustrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — The journey through 32 blocks (illustrated)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-final-norm-lm-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Final norm + LM head
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Sample
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-next-token-kv-cache-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — Next token (KV cache in action)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-training-vs-inference-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Training vs inference differences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-zoom-out-how-this-compares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Zoom-out: how this compares
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Zoom-out: how this compares">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs-the-original-transformer-vaswani-et-al-2017" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vs. the original Transformer (Vaswani et al., 2017)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-llama-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vs. Llama 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-contemporaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vs. contemporaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-the-spotlight-whats-actually-novel-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. The spotlight: what's actually novel here
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../study-notes-prompt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Study-notes prompt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-tldr-zoom-out-1-paragraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. TL;DR (zoom-out, 1 paragraph)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-30-second-mental-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The 30-second mental model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-key-hyperparameters-with-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key hyperparameters (with intuition)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-architecture-walk-through-zoom-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Architecture walk-through (zoom-in)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Architecture walk-through (zoom-in)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tokenizer-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Tokenizer &amp; embeddings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-positional-encoding-rotary-position-embeddings-rope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Positional encoding: Rotary Position Embeddings (RoPE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-normalization-rmsnorm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Normalization: RMSNorm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-attention-grouped-query-attention-gqa-with-kv-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Attention: Grouped-Query Attention (GQA) with KV cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-feed-forward-network-swiglu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Feed-forward network: SwiGLU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-the-transformerblock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 The TransformerBlock
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-lm-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 LM head
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-the-causal-mask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 The causal mask
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. A concrete forward pass: feeding "The cat sat on" into the model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. A concrete forward pass: feeding &#34;The cat sat on&#34; into the model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-tokenize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Tokenize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-embed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Embed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-the-journey-through-32-blocks-illustrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — The journey through 32 blocks (illustrated)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-final-norm-lm-head" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Final norm + LM head
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Sample
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-next-token-kv-cache-in-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — Next token (KV cache in action)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-training-vs-inference-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Training vs inference differences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-zoom-out-how-this-compares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Zoom-out: how this compares
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Zoom-out: how this compares">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs-the-original-transformer-vaswani-et-al-2017" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vs. the original Transformer (Vaswani et al., 2017)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-llama-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vs. Llama 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-contemporaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vs. contemporaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-the-spotlight-whats-actually-novel-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. The spotlight: what's actually novel here
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Glossary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-where-to-go-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Where to go next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/spearsheep/johnny-is-confused/edit/main/docs/notes/llama3.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="llama-3-a-study-guide">Llama 3 — A Study Guide<a class="headerlink" href="#llama-3-a-study-guide" title="Anchor link to this section">&para;</a></h1>
+<blockquote>
+<p>Notes generated from the reference implementation at <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py">llama/model.py</a>, <a href="https://github.com/meta-llama/llama3/blob/main/llama/generation.py">llama/generation.py</a>, and <a href="https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py">llama/tokenizer.py</a>.</p>
+<p><strong>Rendering:</strong> math is written with Unicode symbols inside fenced code blocks, so it renders in every Markdown viewer (VS Code built-in preview, GitHub, Typora, Obsidian, etc.) with no KaTeX extension required. Diagrams are inline SVG and render the same way.</p>
+</blockquote>
+<hr />
+<h2 id="1-tldr-zoom-out-1-paragraph">1. TL;DR (zoom-out, 1 paragraph)<a class="headerlink" href="#1-tldr-zoom-out-1-paragraph" title="Anchor link to this section">&para;</a></h2>
+<p>Llama 3 is Meta's 2024 open-weights large language model — a <strong>decoder-only transformer</strong> that reads a sequence of text tokens and predicts the next token, one at a time. It comes in 8B and 70B parameter sizes and has a context window of 8,192 tokens. Architecturally it is the same family as GPT and Llama 2: stacked transformer blocks, each with self-attention and a feed-forward network. What makes it notable is not a new architectural idea but a collection of well-tuned "modernizations" over the 2017 Transformer: <strong>RMSNorm</strong> instead of LayerNorm (cheaper, no bias), <strong>RoPE</strong> instead of learned positional embeddings (better at extrapolating to longer sequences), <strong>SwiGLU</strong> instead of ReLU MLPs (better quality per FLOP), and <strong>Grouped-Query Attention (GQA)</strong> so the key/value cache stays small during inference. Compared to Llama 2 the architecture is almost identical — the real jumps are a 4× bigger vocabulary (128K, tiktoken-based), a 2× longer context (8K vs 4K), a much larger RoPE base frequency (500,000 vs 10,000) so long contexts don't alias, and dramatically more training data (~15T tokens).</p>
+<hr />
+<h2 id="2-the-30-second-mental-model">2. The 30-second mental model<a class="headerlink" href="#2-the-30-second-mental-model" title="Anchor link to this section">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+    A["Input token IDs&lt;br/&gt;(B, T)"] --&gt; B["VocabParallelEmbedding&lt;br/&gt;(B, T, 4096)"]
+    B --&gt; C["TransformerBlock 1"]
+    C --&gt; D["..."]
+    D --&gt; E["TransformerBlock 32"]
+    E --&gt; F["RMSNorm"]
+    F --&gt; G["Output Linear&lt;br/&gt;(LM head)"]
+    G --&gt; H["Logits&lt;br/&gt;(B, T, 128256)"]</code></pre>
+<p>Inside <strong>each TransformerBlock</strong> (pre-norm residual structure):</p>
+<pre class="mermaid"><code>flowchart LR
+    X["x (B,T,4096)"] --&gt; N1["RMSNorm"]
+    N1 --&gt; ATT["Attention&lt;br/&gt;(GQA + RoPE + KV cache)"]
+    ATT --&gt; ADD1(("+"))
+    X --&gt; ADD1
+    ADD1 --&gt; N2["RMSNorm"]
+    N2 --&gt; FFN["SwiGLU FFN"]
+    FFN --&gt; ADD2(("+"))
+    ADD1 --&gt; ADD2
+    ADD2 --&gt; Y["x' (B,T,4096)"]</code></pre>
+<p>That diagram is the whole model. The rest of the notes expand every box.</p>
+<hr />
+<h2 id="3-key-hyperparameters-with-intuition">3. Key hyperparameters (with intuition)<a class="headerlink" href="#3-key-hyperparameters-with-intuition" title="Anchor link to this section">&para;</a></h2>
+<p>These are the defaults in <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L20-L32">llama/model.py:20-32</a> overlaid with the <strong>real</strong> 8B parameters which the inference code pulls from <code>params.json</code> on disk.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value (8B)</th>
+<th>What it means</th>
+<th>Why this value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim</code></td>
+<td>4096</td>
+<td>Width of the residual stream — every token is represented as a 4096-dim vector that gets read from and written to by each block.</td>
+<td>Wider ⇒ more capacity per token. 4096 is the standard "medium" width.</td>
+</tr>
+<tr>
+<td><code>n_layers</code></td>
+<td>32</td>
+<td>Depth: how many transformer blocks are stacked. Depth gives the model its reasoning hops.</td>
+<td>Deeper ⇒ more serial compute / more reasoning depth. 32 is the Llama-8B-class standard.</td>
+</tr>
+<tr>
+<td><code>n_heads</code></td>
+<td>32</td>
+<td>Number of query attention heads.</td>
+<td><code>head_dim = dim / n_heads = 128</code>. 128 is a sweet spot for GPU tensor cores.</td>
+</tr>
+<tr>
+<td><code>n_kv_heads</code></td>
+<td>8</td>
+<td>Number of <strong>shared</strong> key/value heads (GQA). 32 query heads are split into 8 groups of 4, each group sharing one K and one V.</td>
+<td>Shrinks the KV cache by 4× at inference for nearly-free quality loss.</td>
+</tr>
+<tr>
+<td><code>vocab_size</code></td>
+<td>128,256</td>
+<td>Size of the token vocabulary. See §4.1 for what "128K" really means.</td>
+<td>4× bigger than Llama 2's 32K — ~15% fewer tokens for the same text.</td>
+</tr>
+<tr>
+<td><code>multiple_of</code></td>
+<td>1024</td>
+<td>Rounds the FFN hidden dim to a multiple of this for hardware-friendly shapes.</td>
+<td>Bigger multiples ⇒ nicer tensor cores; cost is a slightly bigger FFN.</td>
+</tr>
+<tr>
+<td><code>ffn_dim_multiplier</code></td>
+<td>1.3</td>
+<td>Extra scale factor on the FFN hidden dim.</td>
+<td>Pushes FFN hidden dim to ≈ <code>3.47·dim</code>, which Llama 3 found better.</td>
+</tr>
+<tr>
+<td><code>norm_eps</code></td>
+<td>1e-5</td>
+<td>Stability epsilon inside RMSNorm.</td>
+<td>Prevents division-by-zero when activations are near zero.</td>
+</tr>
+<tr>
+<td><code>rope_theta</code></td>
+<td>500,000</td>
+<td>Base frequency for Rotary Position Embeddings.</td>
+<td>Llama 2 used 10,000. Bigger base ⇒ slower-rotating sinusoids ⇒ better support for long positions.</td>
+</tr>
+<tr>
+<td><code>max_batch_size</code></td>
+<td>32</td>
+<td>Pre-allocates the KV cache of this batch size.</td>
+<td>Static cache sizing — trades memory for avoiding reallocations.</td>
+</tr>
+<tr>
+<td><code>max_seq_len</code></td>
+<td>up to 8192</td>
+<td>Max context length. Asserted in <code>Llama.build</code>.</td>
+<td>Defines cache length and RoPE table length.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-architecture-walk-through-zoom-in">4. Architecture walk-through (zoom-in)<a class="headerlink" href="#4-architecture-walk-through-zoom-in" title="Anchor link to this section">&para;</a></h2>
+<h3 id="41-tokenizer-embeddings">4.1 Tokenizer &amp; embeddings<a class="headerlink" href="#41-tokenizer-embeddings" title="Anchor link to this section">&para;</a></h3>
+<p><strong>What it is.</strong> A function <code>text → list[int]</code>, plus a lookup table <code>int → vector</code>.</p>
+<p><strong>Why it exists.</strong> Neural nets only eat numbers. We need a reversible way to chop text into integer IDs, and a trainable table that turns each ID into a 4096-dim vector ("word embedding").</p>
+<h4 id="vocab-size-is-128256-arent-there-way-more-words-than-that">🤔 "Vocab size is 128,256 — aren't there way more words than that?"<a class="headerlink" href="#vocab-size-is-128256-arent-there-way-more-words-than-that" title="Anchor link to this section">&para;</a></h4>
+<p>This is the right question to ask, and the answer is: <strong>tokens are not words</strong>.</p>
+<p>Tokens are <strong>sub-word pieces</strong> learned by an algorithm called <strong>BPE (Byte Pair Encoding)</strong>. BPE starts from raw bytes (256 of them) and iteratively merges the most frequent adjacent pair into a new token. Common whole words become single tokens; rare words get split into a handful of pieces; completely novel strings fall back to individual bytes. So 128,256 tokens can represent <strong>any</strong> UTF-8 text, including languages and emojis the tokenizer has never seen — they just take more tokens.</p>
+<p>Concretely (using the Llama 3 tokenizer):</p>
+<table>
+<thead>
+<tr>
+<th>Text</th>
+<th>Tokens (approx.)</th>
+<th># tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>" cat"</code></td>
+<td><code>[" cat"]</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>" hippopotamus"</code></td>
+<td><code>[" hippo", "pot", "amus"]</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>" antidisestablishmentarianism"</code></td>
+<td><code>[" anti", "dis", "establish", "ment", "arian", "ism"]</code></td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>" 你好"</code> (Chinese "hello")</td>
+<td>multi-byte fallback tokens</td>
+<td>2–3</td>
+</tr>
+<tr>
+<td><code>" 🚀"</code></td>
+<td>4 byte-level tokens</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Analogy.</strong> English has millions of possible word forms, but only 26 letters. BPE is somewhere between those two extremes — a vocabulary of "word fragments" you can compose to write anything. 128K is large enough that the ~20,000 most common English words tend to be single tokens, while rare/technical/multi-lingual strings get decomposed.</p>
+<p><strong>Why 128K and not 50K or 500K?</strong> Bigger vocab → shorter token sequences → less compute per sentence → effectively longer context. But also → a bigger embedding table (128K × 4096 = ~525M params just for embeddings) and a bigger LM head. Llama 3 picked 128K as the sweet spot. Llama 2 used 32K. GPT-4 uses ~100K.</p>
+<h4 id="the-regex-and-special-tokens">The regex and special tokens<a class="headerlink" href="#the-regex-and-special-tokens" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># llama/tokenizer.py:47 — the regex that defines &quot;raw chunks&quot; before BPE merging.</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Breaks text into contractions, words, short number runs, punctuation, whitespace.</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">pat_str</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?i:&#39;s|&#39;t|&#39;re|&#39;ve|&#39;m|&#39;ll|&#39;d)|[^\r\n\p</span><span class="si">{L}</span><span class="s2">\p</span><span class="si">{N}</span><span class="s2">]?\p</span><span class="si">{L}</span><span class="s2">+|\p</span><span class="si">{N}</span><span class="s2">{1,3}| ?[^\s\p</span><span class="si">{L}</span><span class="s2">\p</span><span class="si">{N}</span><span class="s2">]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Special tokens occupy the top 256 slots of the vocab:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">special_tokens</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">&quot;&lt;|begin_of_text|&gt;&quot;</span><span class="p">,</span>     <span class="c1"># BOS: start of any input</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;&lt;|end_of_text|&gt;&quot;</span><span class="p">,</span>       <span class="c1"># EOS: end of raw-text completion</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">&quot;&lt;|start_header_id|&gt;&quot;</span><span class="p">,</span>   <span class="c1"># Wraps the role marker in chat format</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s2">&quot;&lt;|end_header_id|&gt;&quot;</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">&quot;&lt;|eot_id|&gt;&quot;</span><span class="p">,</span>            <span class="c1"># &quot;End of turn&quot; — separates chat messages</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="c1"># ... + ~250 reserved slots for future use</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">]</span>
+</span></code></pre></div>
+<h4 id="the-embedding-lookup">The embedding lookup<a class="headerlink" href="#the-embedding-lookup" title="Anchor link to this section">&para;</a></h4>
+<p><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L280">llama/model.py:280</a>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tok_embeddings</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>   <span class="c1"># tokens: (B, T) int   →   h: (B, T, 4096)</span>
+</span></code></pre></div>
+<p><code>VocabParallelEmbedding</code> is a big lookup matrix of shape <code>(128256, 4096)</code>, sharded across GPUs — functionally identical to <code>nn.Embedding</code>. <strong>Each row is a 4096-dim vector, and there are 128,256 rows.</strong> Token ID <em>i</em> just grabs row <em>i</em>.</p>
+<p>Positions are <strong>not</strong> encoded here. They're injected later by RoPE, inside attention.</p>
+<hr />
+<h3 id="42-positional-encoding-rotary-position-embeddings-rope">4.2 Positional encoding: Rotary Position Embeddings (RoPE)<a class="headerlink" href="#42-positional-encoding-rotary-position-embeddings-rope" title="Anchor link to this section">&para;</a></h3>
+<p><strong>What it is.</strong> A way to inject token position information by <strong>rotating</strong> query and key vectors in 2D subspaces.</p>
+<p><strong>Why it exists.</strong> Self-attention is permutation-invariant — without position info, "dog bites man" and "man bites dog" are identical. RoPE encodes position so that (a) no extra parameters are added, (b) attention naturally encodes <strong>relative</strong> position (similarity between positions <em>i</em> and <em>j</em> depends only on <code>i − j</code>), &copy; it extrapolates well to longer contexts than seen during training.</p>
+<h4 id="the-math">The math<a class="headerlink" href="#the-math" title="Anchor link to this section">&para;</a></h4>
+<p>Take one query vector <strong>q</strong> (a d-dim vector) at position <strong>m</strong>. Group its d dimensions into d/2 pairs: (q₀, q₁), (q₂, q₃), …. Each pair is treated as a 2D vector and <strong>rotated</strong> by an angle that depends on both the position m and which pair we're rotating.</p>
+<p>For pair k (indices 2k and 2k+1), the rotation angle is m·θₖ, where:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>θₖ = θ_base ^ (−2k/d),     for k = 0, 1, …, d/2 − 1
+</span></code></pre></div>
+<p>In Llama 3, θ_base = 500,000 and d = 128 (head_dim), so θ₀ = 1 (fastest rotation) down to θ₆₃ ≈ 1/500,000 (slowest).</p>
+<p>The 2D rotation for pair k at position m:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>⎛ q&#39;₂ₖ   ⎞   ⎛ cos(m·θₖ)   −sin(m·θₖ) ⎞ ⎛ q₂ₖ   ⎞
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>⎜        ⎟ = ⎜                        ⎟ ⎜       ⎟
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>⎝ q&#39;₂ₖ₊₁ ⎠   ⎝ sin(m·θₖ)    cos(m·θₖ) ⎠ ⎝ q₂ₖ₊₁ ⎠
+</span></code></pre></div>
+<p>The key property that makes RoPE work:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>⟨ R_m · q ,  R_n · k ⟩   =   ⟨ q ,  R_(n−m) · k ⟩
+</span></code></pre></div>
+<p>Translation: the dot product between a rotated query at position m and a rotated key at position n depends <strong>only on the difference n − m</strong> — not on their absolute positions. That's what "relative position" means here.</p>
+<h4 id="visual-rotating-one-pair">Visual: rotating one pair<a class="headerlink" href="#visual-rotating-one-pair" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="RoPE: rotating one (x, y) pair by position m. Three unit-length vectors at positions m=0, m=1, and m=5 are shown on a 2D plane; only their angle changes with m." src="../../assets/notes/rope_rotation.svg" /></p>
+<p>The vector's <strong>length never changes</strong> — rotation only moves it around the unit circle. What changes is its <em>angle</em>, and that angle encodes position.</p>
+<h4 id="worked-numerical-example">Worked numerical example<a class="headerlink" href="#worked-numerical-example" title="Anchor link to this section">&para;</a></h4>
+<p>Let's use a tiny head_dim d = 4 (just 2 pairs) and θ_base = 10,000 for readability.</p>
+<p>Frequencies:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>θ₀ = 10000^(−0/4) = 1
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>θ₁ = 10000^(−2/4) = 10000^(−0.5) = 0.01
+</span></code></pre></div>
+<p>Take a query vector q = [1, 0, 1, 0]. Let's rotate it at <strong>position m = 2</strong>:</p>
+<ul>
+<li><strong>Pair 0</strong> (q₀, q₁) = (1, 0). Angle = 2 · 1 = 2 rad.<br />
+New pair = (cos 2, sin 2) = (−0.416, 0.909).</li>
+<li><strong>Pair 1</strong> (q₂, q₃) = (1, 0). Angle = 2 · 0.01 = 0.02 rad.<br />
+New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
+</ul>
+<p>So R₂·q ≈ [−0.416, 0.909, 0.9998, 0.020].</p>
+<p>At <strong>position m = 5</strong> the same q becomes:</p>
+<ul>
+<li>Pair 0: angle = 5 rad → (cos 5, sin 5) = (0.284, −0.959)</li>
+<li>Pair 1: angle = 0.05 rad → (0.9988, 0.050)</li>
+</ul>
+<p>So R₅·q ≈ [0.284, −0.959, 0.9988, 0.050].</p>
+<p>Notice:</p>
+<ol>
+<li>The <strong>low-frequency pair</strong> (pair 1, small θ₁) barely moves — it barely changes between positions 2 and 5. It tracks "far-scale" position.</li>
+<li>The <strong>high-frequency pair</strong> (pair 0, θ₀ = 1) whipped almost halfway around the circle. It tracks "near-scale" position.</li>
+<li>Different pairs = different clock hands at different speeds. Together they give a unique "position fingerprint" for each m.</li>
+</ol>
+<p>Now the punchline. Say a key k = [1, 0, 1, 0] sits at position n = 3 (so n − m = 3 − 2 = 1). You can verify by computing the dot product ⟨R₂·q, R₃·k⟩ that it equals ⟨q, R₁·k⟩ — attention only cares about <strong>relative offset</strong>, not absolute indices.</p>
+<blockquote>
+<p>⚠️ <strong>Confusion point:</strong> RoPE is applied only to <strong>Q and K</strong>, never to V. The point is to make ⟨qᵢ, kⱼ⟩ encode i − j. Values don't participate in the positional inner product, so rotating them would just add noise.</p>
+</blockquote>
+<h4 id="why-is-this-better-than-the-original-2017-position-encoding">Why is this better than the original (2017) position encoding?<a class="headerlink" href="#why-is-this-better-than-the-original-2017-position-encoding" title="Anchor link to this section">&para;</a></h4>
+<p>The 2017 Transformer used <strong>sinusoidal absolute</strong> position encoding: a fixed (non-learned) vector per position, <em>added</em> to the token embedding at the input layer. GPT-2 used learned absolute embeddings — same idea, but the position vectors are trainable. RoPE beats both on four axes:</p>
+<p><strong>1. Relative by construction, not by accident.</strong> Sinusoidal gives the model two <em>absolute</em> positions (pos_i and pos_j) and trusts attention to figure out "distance = j − i" on its own. RoPE bakes relative position in by identity:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>⟨ R_m · q ,  R_n · k ⟩   =   ⟨ q ,  R_(n−m) · k ⟩
+</span></code></pre></div>
+<p>Attention only ever looks at relative offsets, which is what it actually cares about — "how far back is that token?" is almost always more useful than "what's my absolute index?"</p>
+<p><strong>2. Injected at every layer, not just the first.</strong> Sinusoidal/learned-absolute is added <em>once</em> at the input embedding. After 32 blocks of residual adds, norms, and SwiGLU nonlinearities, that position signal gets progressively blurred — late layers are working with a mushy echo of it. RoPE is applied <em>inside attention</em> every single layer, so position info is fresh each time Q meets K.</p>
+<p><strong>3. Doesn't contaminate values.</strong> Sinusoidal mixes position into the entire residual stream, so values V carry a position signal mixed in with their content. RoPE only rotates Q and K. Values stay pure <em>content</em> — the thing that actually gets passed along stays uncoupled from "where it came from."</p>
+<p><strong>4. Extrapolates to longer contexts.</strong> Sinusoidal's theoretical extrapolation to unseen positions is mediocre in practice; learned absolute embeddings don't extrapolate <em>at all</em> (position 8193 has literally no vector). RoPE degrades gracefully past training length, and with cheap tweaks — like Llama 3's jump from θ_base = 10,000 to 500,000, or tricks like YaRN and NTK-aware scaling — context can be extended far beyond the training window with little or no retraining.</p>
+<p><strong>One-sentence version:</strong> sinusoidal says "here is <em>where</em> you are"; RoPE says "here is <em>how far apart</em> you and this other token are" — which is the actual question attention is asking.</p>
+<h4 id="the-code">The code<a class="headerlink" href="#the-code" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># llama/model.py:49-54 — precompute complex exponentials once.</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">precompute_freqs_cis</span><span class="p">(</span><span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10000.0</span><span class="p">):</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="c1"># freqs[k] = 1 / theta^(2k/dim)  for k = 0, 2, ..., dim-2</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">freqs</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">theta</span> <span class="o">**</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[:</span> <span class="p">(</span><span class="n">dim</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)]</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="o">/</span> <span class="n">dim</span><span class="p">))</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">freqs</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>   <span class="c1"># positions 0..end-1</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">freqs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">freqs</span><span class="p">)</span>                        <span class="c1"># (end, dim/2) — angle per (pos, pair)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="c1"># torch.polar(1, angle) = e^(i·angle) — a pure rotation on the unit circle.</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">freqs_cis</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">freqs</span><span class="p">),</span> <span class="n">freqs</span><span class="p">)</span>   <span class="c1"># complex64, (end, dim/2)</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="k">return</span> <span class="n">freqs_cis</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># llama/model.py:65-75 — apply rotation to q and k.</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_rotary_emb</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">):</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="c1"># Reinterpret the last dim as pairs: (..., d) → (..., d/2, 2) → view as complex.</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="n">xq_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_complex</span><span class="p">(</span><span class="n">xq</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">xq</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    <span class="n">xk_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_complex</span><span class="p">(</span><span class="n">xk</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">xk</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="n">freqs_cis</span> <span class="o">=</span> <span class="n">reshape_for_broadcast</span><span class="p">(</span><span class="n">freqs_cis</span><span class="p">,</span> <span class="n">xq_</span><span class="p">)</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    <span class="c1"># Complex multiply = rotate each pair by its position-dependent angle.</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="n">xq_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_real</span><span class="p">(</span><span class="n">xq_</span> <span class="o">*</span> <span class="n">freqs_cis</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>    <span class="n">xk_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_real</span><span class="p">(</span><span class="n">xk_</span> <span class="o">*</span> <span class="n">freqs_cis</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    <span class="k">return</span> <span class="n">xq_out</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">xq</span><span class="p">),</span> <span class="n">xk_out</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">xk</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The trick is representing each pair as a complex number x + iy, then using complex multiplication — because (x + iy) · e^(iφ) is literally the rotation of (x, y) by angle φ. Elegant.</p>
+<hr />
+<h3 id="43-normalization-rmsnorm">4.3 Normalization: RMSNorm<a class="headerlink" href="#43-normalization-rmsnorm" title="Anchor link to this section">&para;</a></h3>
+<p><strong>What it is.</strong> A simpler, cheaper variant of LayerNorm.</p>
+<p><strong>Why it exists.</strong> LayerNorm subtracts the mean, divides by std, and has a learnable bias. Empirically, the mean-subtraction and bias add little; removing them makes the op ~20% faster and doesn't hurt quality.</p>
+<p><strong>The math:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>                     x
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>RMSNorm(x)  =  ────────────────────────  ⊙  γ
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>                √( (1/d) Σᵢ xᵢ²  +  ε )
+</span></code></pre></div>
+<p>Compare with LayerNorm:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>                    x − μ
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>LayerNorm(x)  =  ─────────────  ⊙  γ  +  β
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>                  √(σ² + ε)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>     where   μ  = (1/d) Σᵢ xᵢ
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>             σ² = (1/d) Σᵢ (xᵢ − μ)²
+</span></code></pre></div>
+<p>RMSNorm drops μ (the mean subtraction) and β (the bias). That's the whole difference.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># llama/model.py:35-46</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">RMSNorm</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">):</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span>   <span class="c1"># learnable per-dim scale γ</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="c1"># rsqrt(mean(x²) + ε)  — reciprocal of RMS. No mean subtraction.</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">rsqrt</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>        <span class="c1"># Upcast to fp32 for numerical stability of the squaring, then back.</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_norm</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">float</span><span class="p">())</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>        <span class="k">return</span> <span class="n">output</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span>
+</span></code></pre></div>
+<p><strong>Pre-norm vs post-norm.</strong> Llama 3 is <strong>pre-norm</strong>: the norm is applied to the <em>input</em> of each sublayer, not to the residual sum. See <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L246-L247">llama/model.py:246-247</a>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">h</span>   <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attention_norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># normed input → attn → residual add</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ffn_norm</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>           <span class="c1"># normed input → ffn → residual add</span>
+</span></code></pre></div>
+<p>Pre-norm trains more stably at depth — the residual "highway" is never touched by norms, so gradients flow cleanly end-to-end.</p>
+<hr />
+<h3 id="44-attention-grouped-query-attention-gqa-with-kv-cache">4.4 Attention: Grouped-Query Attention (GQA) with KV cache<a class="headerlink" href="#44-attention-grouped-query-attention-gqa-with-kv-cache" title="Anchor link to this section">&para;</a></h3>
+<p><strong>What it is.</strong> The mechanism by which each token mixes information from previous tokens.</p>
+<p><strong>Why it exists.</strong> Each token produces three vectors: a <strong>query</strong> (what am I looking for?), a <strong>key</strong> (what do I offer?), and a <strong>value</strong> (what should be passed along if matched?). The attention output is a weighted average of values, where weights come from query-key similarity.</p>
+<h4 id="the-math_1">The math<a class="headerlink" href="#the-math_1" title="Anchor link to this section">&para;</a></h4>
+<p>Standard scaled dot-product attention:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>                               ⎛  Q · Kᵀ  ⎞
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Attention(Q, K, V)  =  softmax ⎜ ──────── ⎟ · V
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>                               ⎝   √dₖ    ⎠
+</span></code></pre></div>
+<p>Where Q ∈ ℝ^(T × dₖ), K ∈ ℝ^(T × dₖ), V ∈ ℝ^(T × d_v). The √dₖ division keeps the softmax from saturating when dₖ is large (variance of a dot product of dₖ iid terms grows with dₖ).</p>
+<p>For multi-head, this is repeated h times in parallel with different projections, then concatenated. In GQA, the <strong>queries</strong> still have h heads, but the <strong>keys and values</strong> have h_kv &lt; h heads, and each KV head is shared across a group of h / h_kv query heads.</p>
+<h4 id="why-does-gqa-work-doesnt-it-lose-detail">Why does GQA work? Doesn't it lose detail?<a class="headerlink" href="#why-does-gqa-work-doesnt-it-lose-detail" title="Anchor link to this section">&para;</a></h4>
+<p>Good instinct to worry — at first glance, 4 query heads looking at 1 shared key/value locker <em>should</em> be worse than 4 private lockers. The reason it isn't, in practice:</p>
+<ol>
+<li><strong>In vanilla MHA, many heads learn redundant K/V patterns.</strong> The GQA paper (Ainslie et al., 2023) showed that when you look at what each K and V head actually learns across a trained transformer, there's substantial duplication. You're paying to store nearly-identical information four times.</li>
+<li><strong>Queries carry the diversity, keys/values carry the content.</strong> The 4 queries in a group still ask 4 <em>different</em> questions. They just reference the same evidence. Think: 4 students reading the same textbook but with different homework prompts. They extract different answers because their questions differ.</li>
+<li><strong>Empirically small quality drop.</strong> Going from MHA → GQA-8 (32 Q, 8 KV) on Llama-sized models costs ~0.1–0.3 perplexity points. Going further to MQA (32 Q, 1 KV) costs ~1 ppl — that's the knee. GQA sits at the knee.</li>
+<li><strong>The savings are huge.</strong> The KV cache is <strong>the dominant memory cost</strong> of long-context inference. 4× reduction = 4× longer contexts, or 4× bigger batches, at (roughly) the same quality.</li>
+</ol>
+<h4 id="gqa-structure-visualized">GQA structure, visualized<a class="headerlink" href="#gqa-structure-visualized" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="GQA structure in Llama 3 8B: 32 query heads arranged in 8 groups of 4, each group sharing one KV head (drawn below)." src="../../assets/notes/gqa_structure.svg" /></p>
+<h4 id="the-kv-cache-how-and-why">The KV cache — how and why<a class="headerlink" href="#the-kv-cache-how-and-why" title="Anchor link to this section">&para;</a></h4>
+<p><strong>The problem it solves.</strong> During autoregressive generation, the model produces one token at a time. Naively, at step t the model runs a full forward pass on tokens [0, 1, …, t]. But the Q/K/V projections for tokens 0 through t−1 were <strong>already computed in the previous step</strong> — they are deterministic functions of those input tokens. Recomputing them is waste.</p>
+<p><strong>The insight.</strong> Store Kⱼ and Vⱼ for all past tokens. At step t, compute only Qₜ, Kₜ, Vₜ for the newest token, append Kₜ and Vₜ to the cache, and do attention between Qₜ and the full cached K[0..t], V[0..t].</p>
+<p><strong>What's NOT cached: queries.</strong> Q at step t is only used once — for computing attention scores at step t — and then discarded. Storing it would just waste memory. (The one exception is the prefill pass, where we compute many tokens at once; their Qs are used once then discarded.)</p>
+<p><strong>Cache size</strong> for Llama 3 8B at max context, in bf16:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cache_bytes  =  2  ×  n_layers  ×  n_kv_heads  ×  d_head  ×  T  ×  bytes_per_elem
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>             =  2  ×    32      ×      8       ×   128    × 8192 ×       2
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>             ≈  1.07 GB per sequence
+</span></code></pre></div>
+<p>With MHA (n_kv = 32) that would have been ~4.3 GB. This is the concrete, operational win of GQA.</p>
+<h4 id="visual-cache-evolution-across-three-timesteps">Visual: cache evolution across three timesteps<a class="headerlink" href="#visual-cache-evolution-across-three-timesteps" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="KV cache evolution across three decode steps: filled slots hold cached K,V pairs; each step writes the new token's K,V into the next slot and reads the whole prefix for attention." src="../../assets/notes/kv_cache.svg" /></p>
+<h4 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># llama/model.py:90-144 — Attention constructor (abbreviated)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Attention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>   <span class="c1"># 8 for Llama 3 8B</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_local_heads</span>    <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>    <span class="o">//</span> <span class="n">mp_size</span>  <span class="c1"># 32 Q heads</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">//</span> <span class="n">mp_size</span>  <span class="c1"># 8  KV heads</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_rep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_heads</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span>   <span class="c1"># 4</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dim</span> <span class="o">//</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>                   <span class="c1"># 128</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wq</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wk</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wv</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wo</span> <span class="o">=</span> <span class="n">RowParallelLinear</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">n_heads</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        <span class="c1"># Pre-allocated static KV cache. Shape: (max_batch, max_seqlen, n_kv_heads, head_dim)</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">args</span><span class="o">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">max_seq_len</span><span class="p">,</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>                                    <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">))</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="forward">Forward<a class="headerlink" href="#forward" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># llama/model.py:146-190</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>                  <span class="c1"># x: (B, T_new, 4096) — T_new=1 when decoding</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">xq</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">xv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wq</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">wk</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">wv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">xq</span> <span class="o">=</span> <span class="n">xq</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_heads</span><span class="p">,</span>    <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>   <span class="c1"># (B, T_new, 32, 128)</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="n">xk</span> <span class="o">=</span> <span class="n">xk</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>   <span class="c1"># (B, T_new,  8, 128)</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">xv</span> <span class="o">=</span> <span class="n">xv</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>   <span class="c1"># (B, T_new,  8, 128)</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="n">xq</span><span class="p">,</span> <span class="n">xk</span> <span class="o">=</span> <span class="n">apply_rotary_emb</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="o">=</span><span class="n">freqs_cis</span><span class="p">)</span>             <span class="c1"># RoPE on Q and K only</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="c1"># WRITE: store new K/V into the cache at positions [start_pos, start_pos+seqlen)</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="n">start_pos</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span> <span class="o">=</span> <span class="n">xk</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">cache_v</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="n">start_pos</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span> <span class="o">=</span> <span class="n">xv</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="c1"># READ: everything from position 0 through the end of the new tokens</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="n">keys</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span>   <span class="c1"># (B, T_total, 8, 128)</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_v</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    <span class="c1"># GQA expansion: copy each of 8 KV heads 4 times → 32 heads to align with Q.</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>    <span class="c1"># Pure memory view, no new computation.</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>    <span class="n">keys</span>   <span class="o">=</span> <span class="n">repeat_kv</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span>   <span class="bp">self</span><span class="o">.</span><span class="n">n_rep</span><span class="p">)</span>   <span class="c1"># (B, T_total, 32, 128)</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>    <span class="n">values</span> <span class="o">=</span> <span class="n">repeat_kv</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_rep</span><span class="p">)</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>    <span class="c1"># Standard attention from here on.</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>    <span class="n">xq</span>    <span class="o">=</span> <span class="n">xq</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                <span class="c1"># (B, 32, T_new,   128)</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>    <span class="n">keys</span>  <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>              <span class="c1"># (B, 32, T_total, 128)</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>    <span class="n">values</span><span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>    <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span> <span class="n">keys</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span> <span class="o">+</span> <span class="n">mask</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>    <span class="n">scores</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">xq</span><span class="p">)</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>    <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>    <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wo</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></code></pre></div>
+<hr />
+<h3 id="45-feed-forward-network-swiglu">4.5 Feed-forward network: SwiGLU<a class="headerlink" href="#45-feed-forward-network-swiglu" title="Anchor link to this section">&para;</a></h3>
+<p><strong>What it is.</strong> A two-layer MLP with a gating mechanism.</p>
+<p><strong>Why it exists.</strong> The classic transformer FFN is <code>Linear → ReLU → Linear</code> — a simple per-token nonlinearity that lets tokens do point-wise computation after mixing via attention. SwiGLU replaces this with a gated variant that empirically gives better loss per parameter.</p>
+<h4 id="the-math_2">The math<a class="headerlink" href="#the-math_2" title="Anchor link to this section">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>                              x
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>SiLU(x)  =  x · σ(x)  =  ─────────────
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>                          1 + e^(−x)
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>SwiGLU(x)  =  W₂ · (  SiLU(W₁·x)   ⊙   (W₃·x)  )
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>              └down┘  └── gate ──┘       └ up ┘
+</span></code></pre></div>
+<p>Three learnable projections, not two: W₁ (the "gate" projection, goes through SiLU), W₃ (the "up" projection, no activation), and W₂ (the "down" projection, back to model dim). The SwiGLU operator is the elementwise product of the first two.</p>
+<h4 id="range-and-extreme-scenarios-a-deeper-look-at-silu">Range and extreme scenarios (a deeper look at SiLU)<a class="headerlink" href="#range-and-extreme-scenarios-a-deeper-look-at-silu" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="SiLU activation plotted from x = −6 to 6, with ReLU and y = x drawn as reference. The curve is smooth everywhere, approaches y = x for large positive x, approaches 0 from below for large negative x, and dips to a global minimum of about −0.278 near x = −1.28." src="../../assets/notes/silu_plot.svg" /></p>
+<p>Three things to read off the plot:</p>
+<ul>
+<li><strong>Linear on the right</strong>, so for large positive x, SiLU behaves like the identity (compare with the dashed <code>y = x</code>).</li>
+<li><strong>Not bounded below at 0 like ReLU.</strong> SiLU dips slightly negative, with a global minimum at roughly <code>(−1.28, −0.278)</code> marked in red. This is the "negative gate" that SwiGLU can exploit.</li>
+<li><strong>Smoothly approaches 0 on the left</strong>, slowly — at <code>x = −10</code>, SiLU is still about <code>−4.5 × 10⁻⁴</code>. Not zero, just vanishingly small. Crucially, no kink at <code>x = 0</code> (unlike ReLU), which helps gradient flow during optimization.</li>
+</ul>
+<p><strong>SwiGLU range.</strong> SiLU(W₁·x) ⊙ (W₃·x) is <strong>unbounded in both directions</strong> and not monotonic. Think of W₁·x as the "soft gate" (call it a) and W₃·x as the "signal" (call it b):</p>
+<table>
+<thead>
+<tr>
+<th>Gate value a = W₁·x</th>
+<th>SiLU(a) behavior</th>
+<th>Net effect on output channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a ≫ 0 (large positive)</td>
+<td>SiLU ≈ a</td>
+<td>Gate wide open, output ≈ a · b — grows as product</td>
+</tr>
+<tr>
+<td>a ≈ 0</td>
+<td>SiLU ≈ 0</td>
+<td>Gate nearly closed, output ≈ 0</td>
+</tr>
+<tr>
+<td>a ≈ −1.28 (SiLU minimum)</td>
+<td>SiLU ≈ −0.28</td>
+<td>Small NEGATIVE gate — unusual, sign-flips the signal with small magnitude</td>
+</tr>
+<tr>
+<td>a ≪ 0 (large negative)</td>
+<td>SiLU → 0</td>
+<td>Gate closed, output ≈ 0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Extreme scenario 1 — everything gates off.</strong> If every W₁·x coordinate is deeply negative for some token, SiLU pushes them all toward zero, SwiGLU output ≈ 0, and the FFN is effectively a no-op for that token. It passes through via the residual connection only.</p>
+<p><strong>Extreme scenario 2 — everything gates fully open.</strong> If W₁·x and W₃·x are both huge positive, SwiGLU output ≈ (W₁·x) ⊙ (W₃·x) — which grows <strong>quadratically</strong> in input magnitude. This is why the preceding RMSNorm matters: it keeps input magnitudes bounded so SwiGLU doesn't blow up. In bf16, unchecked growth here would overflow.</p>
+<p><strong>Extreme scenario 3 — the "negative gate" quirk.</strong> Unlike ReLU-based gates, SwiGLU's gate can be mildly negative. This means SwiGLU can actively <em>invert</em> a signal channel, not just pass or block it. Whether this extra expressivity is "useful" or "cute" is debated; empirically it doesn't hurt, and it makes the function smooth, which helps optimization.</p>
+<h4 id="the-code_1">The code<a class="headerlink" href="#the-code_1" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># llama/model.py:193-219</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">FeedForward</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">multiple_of</span><span class="p">,</span> <span class="n">ffn_dim_multiplier</span><span class="p">):</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>        <span class="c1"># Vanilla transformer would use hidden = 4·dim. SwiGLU has two parallel up-projections,</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>        <span class="c1"># so we shrink hidden by 2/3 to keep the total parameter budget the same.</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>        <span class="n">hidden_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">hidden_dim</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>        <span class="k">if</span> <span class="n">ffn_dim_multiplier</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>            <span class="n">hidden_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ffn_dim_multiplier</span> <span class="o">*</span> <span class="n">hidden_dim</span><span class="p">)</span>   <span class="c1"># Llama 3: ×1.3</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>        <span class="n">hidden_dim</span> <span class="o">=</span> <span class="n">multiple_of</span> <span class="o">*</span> <span class="p">((</span><span class="n">hidden_dim</span> <span class="o">+</span> <span class="n">multiple_of</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">multiple_of</span><span class="p">)</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w1</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># gate projection</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w2</span> <span class="o">=</span> <span class="n">RowParallelLinear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>      <span class="c1"># down projection</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w3</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># up projection</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>        <span class="c1"># SwiGLU: elementwise product of (SiLU-activated gate) and (up projection).</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w2</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">silu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">w3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>        <span class="c1">#        └── down ──┘ └── gate ──┘   └── up ──┘</span>
+</span></code></pre></div>
+<p>Shapes: <code>x: (B, T, 4096)</code> → <code>w1(x), w3(x): (B, T, 14336)</code> → elementwise product: <code>(B, T, 14336)</code> → <code>w2(·): (B, T, 4096)</code>.</p>
+<hr />
+<h3 id="46-the-transformerblock">4.6 The TransformerBlock<a class="headerlink" href="#46-the-transformerblock" title="Anchor link to this section">&para;</a></h3>
+<p>Attention + FFN together, with pre-norm residuals:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># llama/model.py:239-248</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="c1"># Attention sub-block: norm → attention → add to residual.</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">h</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attention_norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span class="c1"># FFN sub-block: norm → swiglu → add to residual.</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ffn_norm</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="k">return</span> <span class="n">out</span>
+</span></code></pre></div>
+<p>Two sublayers, two residual adds, two RMSNorms. This block is repeated 32 times for Llama 3 8B.</p>
+<h3 id="47-lm-head">4.7 LM head<a class="headerlink" href="#47-lm-head" title="Anchor link to this section">&para;</a></h3>
+<p><strong>What it is.</strong> A final projection from the 4096-dim residual stream onto the 128,256-dim vocabulary logit space.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># llama/model.py:266-269</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="bp">self</span><span class="o">.</span><span class="n">norm</span>   <span class="o">=</span> <span class="n">RMSNorm</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">norm_eps</span><span class="p">)</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span></code></pre></div>
+<blockquote>
+<p>⚠️ <strong>No weight tying.</strong> Some transformers share weights between the token embedding and the output projection. Llama 3 does <strong>not</strong> — <code>tok_embeddings</code> and <code>output</code> are two separate tensors. Costs ~525M extra parameters but removes a constraint that can hurt quality on large vocabularies.</p>
+</blockquote>
+<h3 id="48-the-causal-mask">4.8 The causal mask<a class="headerlink" href="#48-the-causal-mask" title="Anchor link to this section">&para;</a></h3>
+<p>Because Llama 3 is a decoder-only autoregressive model, position <em>i</em> must not peek at positions &gt; i. The mask is built in <code>Transformer.forward</code> and added to attention scores before softmax:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># llama/model.py:284-296</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">if</span> <span class="n">seqlen</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>   <span class="c1"># no mask needed when decoding a single token</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">seqlen</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tokens</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># -inf above the diagonal, 0 on/below</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="c1"># With KV cache, new tokens can see ALL cached tokens; prepend `start_pos` zero columns.</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>        <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">seqlen</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tokens</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">mask</span><span class="p">]</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    <span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+</span></code></pre></div>
+<hr />
+<h2 id="5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model">5. A concrete forward pass: feeding "The cat sat on" into the model<a class="headerlink" href="#5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model" title="Anchor link to this section">&para;</a></h2>
+<p>The previous section explained the components. This one takes a real, small sentence and traces what happens to its vectors, step by step. Tokens, shapes, and semantic descriptions — everything grounded.</p>
+<p><strong>Input:</strong> <code>"The cat sat on"</code> (an incomplete sentence; we want the model to predict what comes next).</p>
+<h3 id="step-1-tokenize">Step 1 — Tokenize<a class="headerlink" href="#step-1-tokenize" title="Anchor link to this section">&para;</a></h3>
+<p>Using the Llama 3 tiktoken BPE (approximate IDs; exact values vary):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>&quot;The cat sat on&quot;
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>  ↓  BOS is always prepended.
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>[&lt;|begin_of_text|&gt;, &quot;The&quot;, &quot; cat&quot;, &quot; sat&quot;, &quot; on&quot;]
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>[    128000      ,  791 ,  8415 ,  7731 ,  389 ]
+</span></code></pre></div>
+<p>Sequence length T = 5. Shape so far: <code>(1, 5)</code> — one batch, five token IDs.</p>
+<h3 id="step-2-embed">Step 2 — Embed<a class="headerlink" href="#step-2-embed" title="Anchor link to this section">&para;</a></h3>
+<p><code>h = tok_embeddings(tokens)</code> → shape <code>(1, 5, 4096)</code>.</p>
+<p>Each ID indexes one row of a (128256, 4096) lookup table. At this point, the vector for " cat" is a <strong>generic, context-free "cat" vector</strong> — it looks the same regardless of whether the sentence is about a pet, a costume, or the Unix command.</p>
+<h3 id="step-3-the-journey-through-32-blocks-illustrated">Step 3 — The journey through 32 blocks (illustrated)<a class="headerlink" href="#step-3-the-journey-through-32-blocks-illustrated" title="Anchor link to this section">&para;</a></h3>
+<p>At each block, every token's 4096-dim vector gets (a) updated with information about <em>other</em> tokens in the sentence via attention, and (b) refined by a per-token FFN. Here's a schematic of how the <strong>contextual content</strong> of each token's vector evolves across key layers:</p>
+<p><img alt="Journey of &quot;The cat sat on&quot; through the model: each row shows the semantic content of each token's 4096-dim vector after embedding, early, middle, and late layers; the final &quot; on&quot; vector feeds the LM head and emits a probability distribution over the next token." src="../../assets/notes/sentence_journey.svg" /></p>
+<p><em>The colored boxes are the same 5 token positions. The content written in each row is a cartoon of "what semantic content the vector at that layer encodes." Shapes never change — always</em> <code>(1, 5, 4096)</code><em>.</em></p>
+<p><strong>What's happening underneath (one block):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>On " cat" (position 2)</th>
+<th>Shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attention_norm</code></td>
+<td>Rescale vector to unit RMS</td>
+<td><code>(1, 5, 4096)</code></td>
+</tr>
+<tr>
+<td><code>wq, wk, wv</code></td>
+<td>Project into 32 Q heads, 8 K heads, 8 V heads</td>
+<td>Q: <code>(1, 5, 32, 128)</code>, K/V: <code>(1, 5, 8, 128)</code></td>
+</tr>
+<tr>
+<td>RoPE on Q, K</td>
+<td>Rotate pair-by-pair using angles for position 2</td>
+<td>same shapes</td>
+</tr>
+<tr>
+<td>Cache write</td>
+<td><code>cache_k[0, 2] = xk[:, 2]</code>; same for V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Attention</td>
+<td>"cat" (pos 2) can only see positions 0-2 (causal mask) → attention scores highest on BOS, "The", itself</td>
+<td><code>scores: (1, 32, 5, 5)</code></td>
+</tr>
+<tr>
+<td><code>wo</code> + residual</td>
+<td>Project back to 4096, add to input</td>
+<td><code>(1, 5, 4096)</code></td>
+</tr>
+<tr>
+<td><code>ffn_norm</code> + SwiGLU + residual</td>
+<td>Per-token nonlinear refinement</td>
+<td><code>(1, 5, 4096)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Repeat 32 times. Each time, more context gets mixed in, and more abstract features get built. By the last layers, each token's vector is mostly about "what token do I predict comes next after me?"</p>
+<h3 id="step-4-final-norm-lm-head">Step 4 — Final norm + LM head<a class="headerlink" href="#step-4-final-norm-lm-head" title="Anchor link to this section">&para;</a></h3>
+<p>Take the final hidden state for the LAST token (" on" at position 4):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">h_last</span> <span class="o">=</span> <span class="n">h</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>          <span class="c1"># (1, 4096) — the &quot; on&quot; token&#39;s final vector</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">h_last</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">h_last</span><span class="p">)</span>    <span class="c1"># RMSNorm</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">h_last</span><span class="p">)</span>  <span class="c1"># (1, 128256) — one score per vocab token</span>
+</span></code></pre></div>
+<p>For our sentence, the highest-probability next tokens are plausibly something like:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>&quot; the&quot;  → logit ~12.1    (very likely — &quot;on the ___&quot;)
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>&quot; a&quot;    → logit ~10.8
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>&quot; my&quot;   →  8.4
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>&quot; his&quot;  →  7.9
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>...
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>&quot; ceiling&quot; → 2.1        (nonsense here — low score)
+</span></code></pre></div>
+<h3 id="step-5-sample">Step 5 — Sample<a class="headerlink" href="#step-5-sample" title="Anchor link to this section">&para;</a></h3>
+<p>With <code>temperature = 0.6</code> and <code>top_p = 0.9</code>, we divide logits by 0.6 (sharpens the distribution), softmax to get probabilities, keep the smallest set whose cumulative mass exceeds 0.9, and sample. We probably get <code>" the"</code>.</p>
+<h3 id="step-6-next-token-kv-cache-in-action">Step 6 — Next token (KV cache in action)<a class="headerlink" href="#step-6-next-token-kv-cache-in-action" title="Anchor link to this section">&para;</a></h3>
+<p>Now we have <code>"The cat sat on the"</code> and want token 6. We do <strong>not</strong> reprocess the whole sentence. Instead:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>tokens = [&quot; the&quot;]           # just the new token
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>start_pos = 5
+</span></code></pre></div>
+<p>For each layer:</p>
+<ul>
+<li>compute Q₅, K₅, V₅ <strong>just for position 5</strong> — one forward pass of size <code>(1, 1, 4096)</code></li>
+<li>write K₅, V₅ into the cache at slot 5</li>
+<li>attention: Q₅ dotted against cached K₀ through K₅ (all six), weighted, summed with V₀ through V₅</li>
+<li>result flows through FFN, residual, next layer</li>
+</ul>
+<p>Predicted next token: probably <code>" mat"</code> (completing the classic children's-book sentence).</p>
+<p>Total work for this step: one forward pass on a 1-token input plus cache reads. The quadratic cost of re-attending over the full prefix every step is avoided — only the newest K and V are computed fresh.</p>
+<hr />
+<h2 id="6-training-vs-inference-differences">6. Training vs inference differences<a class="headerlink" href="#6-training-vs-inference-differences" title="Anchor link to this section">&para;</a></h2>
+<p>The reference code in this repo is <strong>inference-only</strong> — there is no training loop. Still, worth calling out where the code paths would differ:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Training (conceptual)</th>
+<th>Inference (this repo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Forward pass</td>
+<td>Full sequence at once, T = max_seq_len.</td>
+<td>First "prefill" pass on the prompt, then 1 token at a time.</td>
+</tr>
+<tr>
+<td>KV cache</td>
+<td>Not used — everything recomputed.</td>
+<td>Static pre-allocated cache, written/read each step.</td>
+</tr>
+<tr>
+<td>Mask</td>
+<td>Single <code>(T, T)</code> causal triangle.</td>
+<td><code>(T_new, start_pos + T_new)</code> — zeros on left for cached tokens, triangle on right.</td>
+</tr>
+<tr>
+<td>Decorator</td>
+<td>(training loop)</td>
+<td><code>@torch.inference_mode()</code> — disables autograd, faster and lower memory.</td>
+</tr>
+<tr>
+<td>Sampling</td>
+<td>No sampling — cross-entropy loss vs. ground truth.</td>
+<td>Top-p (nucleus) sampling at <code>temperature &gt; 0</code>, or argmax at <code>temperature == 0</code>.</td>
+</tr>
+<tr>
+<td>Stop condition</td>
+<td>Full sequence always.</td>
+<td>Stop on `&lt;</td>
+</tr>
+</tbody>
+</table>
+<p>Top-p sampling:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># llama/generation.py:343-365</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    <span class="n">probs_sort</span><span class="p">,</span> <span class="n">probs_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="n">probs_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">probs_sort</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="c1"># Keep the smallest set whose cumulative mass first exceeds p.</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="c1"># (probs_sum - probs_sort) = mass strictly before this token; if that&#39;s already &gt; p, drop it.</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">probs_sum</span> <span class="o">-</span> <span class="n">probs_sort</span> <span class="o">&gt;</span> <span class="n">p</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    <span class="n">probs_sort</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>    <span class="n">probs_sort</span><span class="o">.</span><span class="n">div_</span><span class="p">(</span><span class="n">probs_sort</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">probs_sort</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>    <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">probs_idx</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">next_token</span><span class="p">)</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>    <span class="k">return</span> <span class="n">next_token</span>
+</span></code></pre></div>
+<hr />
+<h2 id="7-zoom-out-how-this-compares">7. Zoom-out: how this compares<a class="headerlink" href="#7-zoom-out-how-this-compares" title="Anchor link to this section">&para;</a></h2>
+<h3 id="vs-the-original-transformer-vaswani-et-al-2017">vs. the original Transformer (Vaswani et al., 2017)<a class="headerlink" href="#vs-the-original-transformer-vaswani-et-al-2017" title="Anchor link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>2017 Transformer</th>
+<th>Llama 3</th>
+<th>Why the change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Encoder + Decoder</td>
+<td>Both</td>
+<td>Decoder-only</td>
+<td>LM doesn't need a separate encoder.</td>
+</tr>
+<tr>
+<td>Positional encoding</td>
+<td>Sinusoidal absolute, added to embeddings</td>
+<td>RoPE, applied inside attention</td>
+<td>Better relative-position semantics and long-context behavior.</td>
+</tr>
+<tr>
+<td>Normalization</td>
+<td>LayerNorm, post-norm</td>
+<td>RMSNorm, pre-norm</td>
+<td>Cheaper; more stable at depth.</td>
+</tr>
+<tr>
+<td>Attention</td>
+<td>MHA</td>
+<td>GQA (fewer KV heads)</td>
+<td>Shrinks the KV cache.</td>
+</tr>
+<tr>
+<td>FFN activation</td>
+<td>ReLU</td>
+<td>SwiGLU</td>
+<td>Small consistent quality gain.</td>
+</tr>
+<tr>
+<td>Biases</td>
+<td>Yes</td>
+<td>No</td>
+<td>Biases add params, don't help quality.</td>
+</tr>
+<tr>
+<td>Dropout</td>
+<td>Yes</td>
+<td>None</td>
+<td>Huge training data makes dropout unnecessary.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vs-llama-2">vs. Llama 2<a class="headerlink" href="#vs-llama-2" title="Anchor link to this section">&para;</a></h3>
+<p>Architecturally nearly identical. The deltas:</p>
+<table>
+<thead>
+<tr>
+<th>Thing</th>
+<th>Llama 2 7B</th>
+<th>Llama 3 8B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vocabulary</td>
+<td>32,000 (SentencePiece)</td>
+<td>128,256 (tiktoken BPE)</td>
+</tr>
+<tr>
+<td>Context length</td>
+<td>4,096</td>
+<td>8,192</td>
+</tr>
+<tr>
+<td>RoPE base θ</td>
+<td>10,000</td>
+<td>500,000</td>
+</tr>
+<tr>
+<td>GQA at this size</td>
+<td>No (MHA)</td>
+<td>Yes (n_kv = 8, ratio 4)</td>
+</tr>
+<tr>
+<td>Training tokens</td>
+<td>2T</td>
+<td>~15T</td>
+</tr>
+<tr>
+<td>Chat format</td>
+<td><code>[INST] ... [/INST]</code></td>
+<td>Structured headers with `&lt;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vs-contemporaries">vs. contemporaries<a class="headerlink" href="#vs-contemporaries" title="Anchor link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Llama 3 8B</th>
+<th>Mistral 7B</th>
+<th>DeepSeek-V2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attention</td>
+<td>GQA</td>
+<td>GQA + <strong>sliding-window</strong> (local window of 4096)</td>
+<td><strong>MLA</strong> (low-rank latent KV compression)</td>
+</tr>
+<tr>
+<td>FFN</td>
+<td>Dense SwiGLU</td>
+<td>Dense SwiGLU</td>
+<td><strong>MoE</strong> (many experts, top-k routing)</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>8K</td>
+<td>8K effective</td>
+<td>128K</td>
+</tr>
+</tbody>
+</table>
+<p>All three are pre-norm / RMSNorm / RoPE / SwiGLU decoder-only transformers. They differ in how they make attention or FFN cheaper at scale.</p>
+<hr />
+<h2 id="8-the-spotlight-whats-actually-novel-here">8. The spotlight: what's actually novel here<a class="headerlink" href="#8-the-spotlight-whats-actually-novel-here" title="Anchor link to this section">&para;</a></h2>
+<p>Architecturally, Llama 3 doesn't invent anything new. It is a scaled-up, well-tuned, decoder-only transformer using exclusively 2019–2022-era techniques (RoPE, RMSNorm, SwiGLU, GQA). The honest answer to "what's the one innovation?" is: <strong>there isn't one</strong> — what matters is Meta's execution at scale. The 15T-token training corpus, the 128K tiktoken vocabulary, the bumped-up RoPE base for longer contexts, and the extensive post-training (SFT + RLHF + DPO) are what moved the numbers. The model is an engineering monument to "just keep everything else the same and scale it properly."</p>
+<hr />
+<h2 id="9-glossary">9. Glossary<a class="headerlink" href="#9-glossary" title="Anchor link to this section">&para;</a></h2>
+<ul>
+<li><strong>ALiBi</strong> — Attention with Linear Biases. A positional scheme (not used in Llama 3).</li>
+<li><strong>Autoregressive</strong> — Predicts the next token from all previous tokens, one at a time.</li>
+<li><strong>BOS / EOS</strong> — Beginning / End of Sequence special tokens.</li>
+<li><strong>BPE</strong> — Byte Pair Encoding. Builds a subword vocabulary by iteratively merging the most frequent byte/char pair.</li>
+<li><strong>Causal mask</strong> — Prevents a token at position i from attending to positions &gt; i.</li>
+<li><strong>Decoder-only</strong> — A transformer with only the decoder stack (no separate encoder). All modern LLMs are decoder-only.</li>
+<li><strong>FFN / MLP</strong> — Feed-Forward Network. Per-token two-layer network inside each transformer block.</li>
+<li><strong>GQA</strong> — Grouped-Query Attention. Multiple query heads share one K/V head.</li>
+<li><strong>KV cache</strong> — Stored K and V tensors from past tokens so attention at step t doesn't recompute them.</li>
+<li><strong>LayerNorm</strong> — Standard normalization: (x − μ)/σ · γ + β.</li>
+<li><strong>LM head</strong> — Final linear layer that projects hidden states onto vocabulary logits.</li>
+<li><strong>Logits</strong> — Unnormalized scores over the vocabulary.</li>
+<li><strong>MHA</strong> — Multi-Head Attention. Vanilla attention with separate Q/K/V per head.</li>
+<li><strong>MLA</strong> — Multi-head Latent Attention. DeepSeek's low-rank KV compression.</li>
+<li><strong>MoE</strong> — Mixture of Experts. Many small FFNs; each token is routed to top-k.</li>
+<li><strong>Nucleus (top-p) sampling</strong> — Sample from the smallest set of top tokens whose cumulative probability exceeds p.</li>
+<li><strong>Pre-norm / Post-norm</strong> — Whether the norm sits inside the residual branch (pre) or on the residual sum (post).</li>
+<li><strong>RLHF</strong> — Reinforcement Learning from Human Feedback.</li>
+<li><strong>RMSNorm</strong> — Root-Mean-Square normalization. LayerNorm without mean subtraction or bias.</li>
+<li><strong>RoPE</strong> — Rotary Position Embedding. Encodes position by rotating Q and K in 2D subspaces.</li>
+<li><strong>SFT</strong> — Supervised Fine-Tuning on instruction/response data.</li>
+<li><strong>SiLU</strong> — x · σ(x). Also called Swish.</li>
+<li><strong>SwiGLU</strong> — Swish-Gated Linear Unit. FFN of the form W₂( SiLU(W₁·x) ⊙ (W₃·x) ).</li>
+<li><strong>Temperature</strong> — Softmax temperature. Lower ⇒ sharper, more deterministic.</li>
+<li><strong>Tiktoken</strong> — OpenAI's BPE tokenizer library; Llama 3 reuses it with a 128K vocab.</li>
+<li><strong>Weight tying</strong> — Sharing weights between input embedding and LM head. Llama 3 does <strong>not</strong>.</li>
+</ul>
+<hr />
+<h2 id="10-where-to-go-next">10. Where to go next<a class="headerlink" href="#10-where-to-go-next" title="Anchor link to this section">&para;</a></h2>
+<p><strong>In this repo:</strong></p>
+<ul>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L49-L75">llama/model.py:49-75</a> — <code>precompute_freqs_cis</code> and <code>apply_rotary_emb</code>. Re-read this with a pencil; RoPE is the trickiest single piece.</li>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L146-L190">llama/model.py:146-190</a> — <code>Attention.forward</code> with the KV cache. Understanding the shape dance here is understanding transformer inference.</li>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/generation.py#L179-L205">llama/generation.py:179-205</a> — the batched generation loop with the <code>input_text_mask</code> trick.</li>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py#L202-L229">llama/tokenizer.py:202-229</a> — <code>ChatFormat.encode_dialog_prompt</code>. Shows exactly what tokens go into the model for a chat turn.</li>
+</ul>
+<p><strong>Papers:</strong></p>
+<ul>
+<li>Su et al. 2021, <em>RoFormer: Enhanced Transformer with Rotary Position Embedding</em> — the RoPE paper.</li>
+<li>Ainslie et al. 2023, <em>GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints</em>.</li>
+<li>Shazeer 2020, <em>GLU Variants Improve Transformer</em>. Two pages. Read it.</li>
+<li>The Llama 3 technical report (arXiv 2407.21783) for training details and context extension to 128K.</li>
+</ul>
+<p><strong>Suggested exercise.</strong> Change <code>rope_theta</code> from 500,000 to 10,000 (Llama 2's value) in <code>ModelArgs</code> and feed the model a prompt longer than ~4K tokens. Predict first: you should expect degraded long-range coherence, because the slowest RoPE frequencies will have completed enough rotations to alias near-distant and far-distant positions. Then compare perplexity or just eyeball the generations. This is the clearest hands-on demo of why the RoPE base frequency matters for context length.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../study-notes-prompt/" class="md-footer__link md-footer__link--next" aria-label="Next: Study-notes prompt">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Study-notes prompt
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Jun Yu Chen — <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/spearsheep" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
