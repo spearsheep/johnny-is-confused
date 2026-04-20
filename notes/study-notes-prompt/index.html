@@ -6,16 +6,16 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Careful, pedagogical study notes on modern LLM architectures — RoPE, GQA, SwiGLU, KV cache, and more.">
+        <meta name="description" content="Notes and blog posts on machine learning, AI, and whatever else I'm trying to figure out. Not authoritative — just writing it out until I understand it.">
       
       
-        <meta name="author" content="Jun Yu Chen">
+        <meta name="author" content="Johnny (Jun Yu Chen)">
       
       
         <link rel="canonical" href="https://spearsheep.github.io/johnny-is-confused/notes/study-notes-prompt/">
       
       
-        <link rel="prev" href="../llama3/">
+        <link rel="prev" href="../../blog/">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>Study-notes prompt - LLM Study Notes</title>
+        <title>Study-notes prompt - Johnny is Confused</title>
       
     
     
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="LLM Study Notes" class="md-header__button md-logo" aria-label="LLM Study Notes" data-md-component="logo">
+    <a href="../.." title="Johnny is Confused" class="md-header__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            LLM Study Notes
+            Johnny is Confused
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -251,13 +251,35 @@
     
     
       <li class="md-tabs__item">
-        <a href="../llama3/" class="md-tabs__link">
+        <a href="../" class="md-tabs__link">
           
   
   
     
   
   Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
 
         </a>
       </li>
@@ -311,13 +333,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="LLM Study Notes" class="md-nav__button md-logo" aria-label="LLM Study Notes" data-md-component="logo">
+    <a href="../.." title="Johnny is Confused" class="md-nav__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    LLM Study Notes
+    Johnny is Confused
   </label>
   
     <div class="md-nav__source">
@@ -371,6 +393,10 @@
     
       
         
+          
+        
+      
+        
       
     
     
@@ -388,8 +414,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -403,8 +430,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
@@ -416,6 +449,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -456,6 +491,75 @@
       
   
   
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -481,10 +585,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -502,8 +606,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1299,7 +1403,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../llama3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Llama 3 (Meta, 2024)">
+          <a href="../../blog/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Blog">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1309,7 +1413,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Llama 3 (Meta, 2024)
+                Blog
               </div>
             </div>
           </a>
@@ -1323,7 +1427,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2026 Jun Yu Chen — <a href="#__consent">Change cookie settings</a>
+      Written by Johnny (Jun Yu Chen) — read freely, share freely, please don't resell without asking.
 
     </div>
   

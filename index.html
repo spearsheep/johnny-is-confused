@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Careful, pedagogical study notes on modern LLM architectures — RoPE, GQA, SwiGLU, KV cache, and more.">
+        <meta name="description" content="Notes and blog posts on machine learning, AI, and whatever else I'm trying to figure out. Not authoritative — just writing it out until I understand it.">
       
       
-        <meta name="author" content="Jun Yu Chen">
+        <meta name="author" content="Johnny (Jun Yu Chen)">
       
       
         <link rel="canonical" href="https://spearsheep.github.io/johnny-is-confused/">
       
       
       
-        <link rel="next" href="notes/llama3/">
+        <link rel="next" href="notes/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>LLM Study Notes</title>
+        <title>Johnny is Confused</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#llm-study-notes" class="md-skip">
+        <a href="#johnny-is-confused" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="LLM Study Notes" class="md-header__button md-logo" aria-label="LLM Study Notes" data-md-component="logo">
+    <a href="." title="Johnny is Confused" class="md-header__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            LLM Study Notes
+            Johnny is Confused
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -253,13 +253,35 @@
     
     
       <li class="md-tabs__item">
-        <a href="notes/llama3/" class="md-tabs__link">
+        <a href="notes/" class="md-tabs__link">
           
   
   
     
   
   Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="blog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
 
         </a>
       </li>
@@ -313,13 +335,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="LLM Study Notes" class="md-nav__button md-logo" aria-label="LLM Study Notes" data-md-component="logo">
+    <a href="." title="Johnny is Confused" class="md-nav__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    LLM Study Notes
+    Johnny is Confused
   </label>
   
     <div class="md-nav__source">
@@ -403,10 +425,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-notes" class="md-nav__link">
+  <a href="#whats-here" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Available notes
+        What's here
       
     </span>
   </a>
@@ -414,10 +436,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
+  <a href="#latest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coming soon
+        Latest
       
     </span>
   </a>
@@ -425,10 +447,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-each-note-contains" class="md-nav__link">
+  <a href="#in-progress" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What each note contains
+        In progress
       
     </span>
   </a>
@@ -436,10 +458,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#about" class="md-nav__link">
+  <a href="#a-note-on-tone" class="md-nav__link">
     <span class="md-ellipsis">
       
-        About
+        A note on tone
       
     </span>
   </a>
@@ -464,6 +486,10 @@
     
       
         
+          
+        
+      
+        
       
     
     
@@ -481,8 +507,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="notes/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -496,8 +523,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
@@ -509,6 +542,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -555,6 +590,8 @@
     
       
         
+          
+        
       
     
     
@@ -572,7 +609,74 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <div class="md-nav__link md-nav__container">
+            <a href="blog/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -590,8 +694,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -665,10 +769,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#available-notes" class="md-nav__link">
+  <a href="#whats-here" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Available notes
+        What's here
       
     </span>
   </a>
@@ -676,10 +780,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
+  <a href="#latest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coming soon
+        Latest
       
     </span>
   </a>
@@ -687,10 +791,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-each-note-contains" class="md-nav__link">
+  <a href="#in-progress" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What each note contains
+        In progress
       
     </span>
   </a>
@@ -698,10 +802,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#about" class="md-nav__link">
+  <a href="#a-note-on-tone" class="md-nav__link">
     <span class="md-ellipsis">
       
-        About
+        A note on tone
       
     </span>
   </a>
@@ -735,69 +839,56 @@
   
 
 
-<h1 id="llm-study-notes">LLM Study Notes<a class="headerlink" href="#llm-study-notes" title="Anchor link to this section">&para;</a></h1>
+<h1 id="johnny-is-confused">johnny is confused<a class="headerlink" href="#johnny-is-confused" title="Anchor link to this section">&para;</a></h1>
+<p><em>and writes down what he's trying to figure out.</em></p>
+<p>Hi — I'm Johnny. I study machine learning and AI for fun, get confused a lot,
+and have found that the only way I actually understand something is to write
+it out slowly, from first principles, with diagrams. This site is where those
+write-ups live.</p>
+<p>Notes here are <strong>thoughtful where I can manage it and confused where I
+can't</strong>. Nothing here claims to be authoritative — I'm not an expert, I'm
+just a person working through this stuff in public. If you find mistakes or
+better ways to explain things, please tell me.</p>
+<h2 id="whats-here">What's here<a class="headerlink" href="#whats-here" title="Anchor link to this section">&para;</a></h2>
 <div class="grid cards">
 <ul>
 <li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong>Careful notes on modern LLM internals</strong></p>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4zM3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7zm2-2v2h2V5zm0 14h2v-2H5zm0-6h2v-2H5z"/></svg></span> <strong>Study notes</strong></p>
 <hr />
-<p>Walkthroughs of open-weight large language models, written for someone who
-knows Python and neural networks but wants to understand <strong>why</strong> each piece
-exists — not just what it does.</p>
+<p>Careful walkthroughs of papers, repos, and ideas in ML and AI. Currently
+mostly LLMs; computer vision and recommendation systems are on the way.</p>
+<p><a href="notes/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Browse notes</a></p>
 </li>
 <li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-5.04 9.29-2.75 3.54-1.96-2.36L6.5 17h11z"/></svg></span> <strong>Visual and grounded</strong></p>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.06 9 .94.94L5.92 19H5v-.92zm3.6-6c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg></span> <strong>Blog</strong></p>
 <hr />
-<p>Every architectural trick (RoPE, GQA, SwiGLU, KV cache, …) comes with
-diagrams, a worked numerical example, and code from the reference
-implementation — annotated line-by-line.</p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg></span> <strong>Teach, don't summarize</strong></p>
-<hr />
-<p>If you could get the same thing from the paper's abstract or the model
-card, I haven't done my job. The goal is intuition that sticks.</p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1a6.887 6.887 0 0 0 0 9.8c2.73 2.7 7.15 2.7 9.88 0 1.36-1.35 2.04-2.92 2.04-4.9h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58a8.987 8.987 0 0 1 12.65 0L21 3zM12.5 8v4.25l3.5 2.08-.72 1.21L11 13V8z"/></svg></span> <strong>A living collection</strong></p>
-<hr />
-<p>One note today, more coming. Each model gets its own deep dive.</p>
+<p>Shorter, less structured pieces — sometimes about what I'm studying,
+sometimes about life, sometimes just thinking out loud.</p>
+<p><a href="blog/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Read the blog</a></p>
 </li>
 </ul>
 </div>
-<h2 id="available-notes">Available notes<a class="headerlink" href="#available-notes" title="Anchor link to this section">&para;</a></h2>
+<h2 id="latest">Latest<a class="headerlink" href="#latest" title="Anchor link to this section">&para;</a></h2>
+<p><strong><a href="notes/llama3/">Llama 3 (Meta, 2024)</a></strong> — a walk through the reference
+implementation: RoPE, Grouped-Query Attention, SwiGLU, KV cache, and a real
+sentence traced through the whole model. Probably the thing I'm proudest of
+so far. ~5,000 words, lots of pictures.</p>
+<h2 id="in-progress">In progress<a class="headerlink" href="#in-progress" title="Anchor link to this section">&para;</a></h2>
+<p>Notes I'm working on or want to get to:</p>
 <ul>
-<li><a href="notes/llama3/"><strong>Llama 3</strong> (Meta, 2024)</a> — full architecture walkthrough of the
-  reference implementation, including RoPE, Grouped-Query Attention, SwiGLU,
-  the KV cache, and a concrete worked example of a sentence flowing through
-  the model.</li>
+<li>Mistral — sliding-window attention</li>
+<li>DeepSeek V2 — multi-head latent attention, MoE routing</li>
+<li>Vision transformers (ViT, DINOv2, SAM)</li>
+<li>Recommendation systems — two-tower models, retrieval at scale</li>
+<li>Whatever confuses me next</li>
 </ul>
-<h2 id="coming-soon">Coming soon<a class="headerlink" href="#coming-soon" title="Anchor link to this section">&para;</a></h2>
-<ul>
-<li>Mistral 7B — sliding-window attention</li>
-<li>DeepSeek V2 — Multi-head Latent Attention (MLA) and mixture-of-experts</li>
-<li>Qwen 2 — how a pragmatic Chinese-first model differs</li>
-</ul>
-<h2 id="what-each-note-contains">What each note contains<a class="headerlink" href="#what-each-note-contains" title="Anchor link to this section">&para;</a></h2>
-<p>Each model note follows the same skeleton so you can compare apples to apples:</p>
-<ol>
-<li><strong>TL;DR</strong> — one paragraph, zero jargon.</li>
-<li><strong>Mental-model diagram</strong> — end-to-end forward pass in one picture.</li>
-<li><strong>Key hyperparameters</strong> — with intuition for what each knob controls.</li>
-<li><strong>Architecture walkthrough</strong> — component by component, data-flow order.</li>
-<li><strong>Forward pass, narrated</strong> — a concrete sentence traced through the model.</li>
-<li><strong>Training vs inference</strong> — what changes between them.</li>
-<li><strong>Zoom-out comparisons</strong> — vs. the 2017 Transformer, vs. an older model in
-   the same family, vs. one contemporary competitor.</li>
-<li><strong>What's actually novel</strong> — and what isn't.</li>
-<li><strong>Glossary + further reading.</strong></li>
-</ol>
-<h2 id="about">About<a class="headerlink" href="#about" title="Anchor link to this section">&para;</a></h2>
-<p>Written by Jun Yu Chen while learning this stuff. If you spot an error, a
-confusion, or a better intuition, please open an issue — I'd rather get it
-right than save face.</p>
+<h2 id="a-note-on-tone">A note on tone<a class="headerlink" href="#a-note-on-tone" title="Anchor link to this section">&para;</a></h2>
+<p>I write carefully because I want to <em>understand</em> things, not because I think
+I'm good at any of this. If a sentence sounds confident, it's because I
+checked it twice; if it sounds unsure, it's because I'm unsure and saying so
+is more useful than pretending. That's the whole vibe.</p>
 <p><small>Built with <a href="https://squidfunk.github.io/mkdocs-material/">MkDocs Material</a>.
-Source Markdown on <a href="https://github.com/spearsheep/johnny-is-confused">GitHub</a>.</small></p>
+Source on <a href="https://github.com/spearsheep/johnny-is-confused">GitHub</a>.</small></p>
 
 
 
@@ -843,13 +934,13 @@ Source Markdown on <a href="https://github.com/spearsheep/johnny-is-confused">Gi
         
         
           
-          <a href="notes/llama3/" class="md-footer__link md-footer__link--next" aria-label="Next: Llama 3 (Meta, 2024)">
+          <a href="notes/" class="md-footer__link md-footer__link--next" aria-label="Next: Notes">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Llama 3 (Meta, 2024)
+                Notes
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -866,7 +957,7 @@ Source Markdown on <a href="https://github.com/spearsheep/johnny-is-confused">Gi
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2026 Jun Yu Chen — <a href="#__consent">Change cookie settings</a>
+      Written by Johnny (Jun Yu Chen) — read freely, share freely, please don't resell without asking.
 
     </div>
   
