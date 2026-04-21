@@ -542,6 +542,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. 一句话总结（俯视视角，一段话）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一张图看完整个架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -800,7 +817,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         对比同时代模型
@@ -968,6 +985,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. 一句话总结（俯视视角，一段话）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一张图看完整个架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1226,7 +1260,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         对比同时代模型
@@ -1307,6 +1341,12 @@
 <hr />
 <h2 id="1">1. 一句话总结（俯视视角，一段话）<a class="headerlink" href="#1" title="Anchor link to this section">&para;</a></h2>
 <p>Llama 3 是 Meta 于 2024 年发布的开源权重大语言模型 —— 一个<strong>仅解码器 (decoder-only) 的 Transformer</strong>：接收一串文本 token，一次预测一个后续 token。它提供 8B 和 70B 两种参数规模，支持 8,192 token 的上下文窗口。从架构上讲，它与 GPT、Llama 2 同属一个家族：层层堆叠的 Transformer block，每个 block 都包含自注意力和前馈网络。它之所以值得关注，不是因为某个新的架构创新，而是一组针对 2017 年原始 Transformer 的"现代化改造"都调得很到位：用 <strong>RMSNorm</strong> 替换 LayerNorm（更省，无偏置），用 <strong>RoPE</strong> 替换可学习的位置嵌入（更擅长外推到更长序列），用 <strong>SwiGLU</strong> 替换 ReLU MLP（同样 FLOP 下质量更好），用<strong>分组查询注意力 (Grouped-Query Attention, GQA)</strong> 让推理时的 KV 缓存保持小规模。和 Llama 2 相比架构几乎没变 —— 真正的跃进是词表扩大了 4 倍（128K，基于 tiktoken）、上下文加长 2 倍（8K vs 4K）、RoPE 基频大得多（500,000 vs 10,000）以避免长上下文下的频率混叠，以及大幅增加了训练数据（约 15T token）。</p>
+<h3 id="_1">一张图看完整个架构<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h3>
+<figure>
+<p><img alt="Llama 3 8B 架构：自底向上的前向传播。token 从底部进入，经过嵌入层进入 32 个堆叠的 Transformer block（block 1 展开以展示 pre-norm 残差结构，内含自注意力 + SwiGLU FFN 两个子块），再经过最终 RMSNorm、LM head，最后输出 128,256 维的 logits。" src="../../../assets/notes/llama3_architecture.svg" width="480" />
+  </p>
+<figcaption>Llama 3 8B，论文风格示意图。展开的是 block 1；block 2–32 完全相同。每条线上都标了张量形状。</figcaption>
+</figure>
 <hr />
 <h2 id="2-30">2. 30 秒理解全貌<a class="headerlink" href="#2-30" title="Anchor link to this section">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
@@ -1472,7 +1512,7 @@
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="c1"># ... + 约 250 个保留槽位以备将来使用</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">]</span>
 </span></code></pre></div>
-<h4 id="_1">嵌入查表<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_2">嵌入查表<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h4>
 <p><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L280">llama/model.py:280</a>：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tok_embeddings</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>   <span class="c1"># tokens: (B, T) int   →   h: (B, T, 4096)</span>
 </span></code></pre></div>
@@ -1482,7 +1522,7 @@
 <h3 id="42-rope">4.2 位置编码：旋转位置编码 (RoPE)<a class="headerlink" href="#42-rope" title="Anchor link to this section">&para;</a></h3>
 <p><strong>是什么。</strong> 通过在二维子空间里<strong>旋转</strong> query 和 key 向量来注入位置信息的一种方式。</p>
 <p><strong>为什么需要它。</strong> 自注意力本身是置换不变的 —— 没有位置信息的话，"狗咬人"和"人咬狗"对它来说是一样的。RoPE 注入位置的方式满足以下好处：(a) 不引入额外参数，(b) 注意力里自然地编码了<strong>相对</strong>位置（位置 <em>i</em> 和 <em>j</em> 之间的相似度只取决于 <code>i − j</code>），&copy; 对超出训练长度的上下文外推得不错。</p>
-<h4 id="_2">数学公式<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_3">数学公式<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h4>
 <p>对一个在位置 <strong>m</strong> 的 query 向量 <strong>q</strong>（d 维）。把 d 维分成 d/2 对：(q₀, q₁), (q₂, q₃), …。每一对视为一个 2D 向量，<strong>旋转</strong>一个同时取决于位置 m 和第几对的角度。</p>
 <p>对第 k 对（下标 2k 和 2k+1），旋转角度为 m·θₖ，其中：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>θₖ = θ_base ^ (−2k/d),     k = 0, 1, …, d/2 − 1
@@ -1497,10 +1537,10 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>⟨ R_m · q ,  R_n · k ⟩   =   ⟨ q ,  R_(n−m) · k ⟩
 </span></code></pre></div>
 <p>翻译：位置 m 的 query 和位置 n 的 key 旋转后再做的点积，<strong>只取决于差值 n − m</strong>，与它们的绝对位置无关。这就是这里"相对位置"的含义。</p>
-<h4 id="_3">示意图：旋转一对<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_4">示意图：旋转一对<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h4>
 <p><img alt="RoPE：按位置 m 旋转一对 (x, y)。在 2D 平面上画出了 m=0、m=1、m=5 的三个单位长度向量，只有角度随 m 改变。" src="../../../assets/notes/rope_rotation.svg" /></p>
 <p>向量的<strong>长度从不改变</strong> —— 旋转只在单位圆上移动它。变化的是它的<em>角度</em>，而这个角度就编码了位置。</p>
-<h4 id="_4">数值化示例<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_5">数值化示例<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h4>
 <p>用一个迷你的 head_dim d = 4（只有 2 对）和 θ_base = 10,000，方便读数。</p>
 <p>频率：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>θ₀ = 10000^(−0/4) = 1
@@ -1540,7 +1580,7 @@
 <p><strong>3. 不污染 value。</strong> 正弦编码把位置混进整条残差流，所以 value V 会在内容之外带着位置信号。RoPE 只旋转 Q 和 K。Value 保持纯粹的<em>内容</em> —— 真正被搬运的东西，和"它从哪儿来"解耦。</p>
 <p><strong>4. 向更长上下文外推。</strong> 正弦的理论外推在实践中平平；可学习绝对编码<strong>根本</strong>不外推（位置 8193 根本没有对应的向量）。RoPE 在超过训练长度后还能优雅地退化，再加上便宜的微调 —— 比如 Llama 3 把 θ_base 从 10,000 改成 500,000，或用 YaRN、NTK-aware scaling 之类的方法 —— 上下文可以远远拉伸到训练窗口之外，几乎不需要重新训练。</p>
 <p><strong>一句话版本：</strong> 正弦编码说的是"你在<em>哪里</em>"；RoPE 说的是"你和另一个 token <em>相距多远</em>" —— 而这才是注意力真正在问的问题。</p>
-<h4 id="_5">代码<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_6">代码<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># llama/model.py:49-54 —— 一次性预计算好复指数。</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">precompute_freqs_cis</span><span class="p">(</span><span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10000.0</span><span class="p">):</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="c1"># freqs[k] = 1 / theta^(2k/dim)  k = 0, 2, ..., dim-2</span>
@@ -1606,7 +1646,7 @@
 <h3 id="44-gqa-kv">4.4 注意力：分组查询注意力 (GQA) 与 KV 缓存<a class="headerlink" href="#44-gqa-kv" title="Anchor link to this section">&para;</a></h3>
 <p><strong>是什么。</strong> 每个 token 用来吸收前面 token 信息的机制。</p>
 <p><strong>为什么需要它。</strong> 每个 token 会产生三个向量：<strong>query</strong>（我在找什么？）、<strong>key</strong>（我能提供什么？）、<strong>value</strong>（如果匹配到了应该传递什么？）。注意力的输出是 value 的加权平均，权重来自 query-key 相似度。</p>
-<h4 id="_6">数学公式<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_7">数学公式<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h4>
 <p>标准的缩放点积注意力：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>                               ⎛  Q · Kᵀ  ⎞
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Attention(Q, K, V)  =  softmax ⎜ ──────── ⎟ · V
@@ -1634,9 +1674,9 @@
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>             ≈  每条序列约 1.07 GB
 </span></code></pre></div>
 <p>如果是 MHA（n_kv = 32），就变成约 4.3 GB。这才是 GQA 在实际操作上的具体收益。</p>
-<h4 id="_7">图解：三个时间步里缓存的演化<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_8">图解：三个时间步里缓存的演化<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h4>
 <p><img alt="KV 缓存在三个解码步骤中的演化：填充格子存放已缓存的 K、V 对；每一步把新 token 的 K、V 写入下一个槽位，并读取整个前缀用于注意力。" src="../../../assets/notes/kv_cache.svg" /></p>
-<h4 id="_8">构造函数<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_9">构造函数<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># llama/model.py:90-144 —— Attention 构造函数（精简版）</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Attention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
@@ -1657,7 +1697,7 @@
 </span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>                                    <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">))</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 </span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span><span class="p">)</span>
 </span></code></pre></div>
-<h4 id="_9">前向传播<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_10">前向传播<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># llama/model.py:146-190</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>                  <span class="c1"># x: (B, T_new, 4096) —— 解码时 T_new=1</span>
@@ -1695,7 +1735,7 @@
 <h3 id="45-swiglu">4.5 前馈网络：SwiGLU<a class="headerlink" href="#45-swiglu" title="Anchor link to this section">&para;</a></h3>
 <p><strong>是什么。</strong> 一个带门控机制的两层 MLP。</p>
 <p><strong>为什么需要它。</strong> 经典 Transformer 的 FFN 是 <code>Linear → ReLU → Linear</code> —— 在注意力完成信息混合之后，让 token 逐位做一点非线性运算。SwiGLU 用一个门控变体替换了它，经验上在相同参数量下 loss 更低。</p>
-<h4 id="_10">数学公式<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_11">数学公式<a class="headerlink" href="#_11" title="Anchor link to this section">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>                              x
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>SiLU(x)  =  x · σ(x)  =  ─────────────
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>                          1 + e^(−x)
@@ -1747,7 +1787,7 @@
 <p><strong>极端情形 1 —— 全部门关闭。</strong> 如果某个 token 的每个 W₁·x 坐标都非常负，SiLU 会把它们全往 0 按，SwiGLU 输出 ≈ 0，FFN 对这个 token 实际上是一个空操作。它只靠残差连接通过。</p>
 <p><strong>极端情形 2 —— 全部门大开。</strong> 如果 W₁·x 和 W₃·x 都是很大的正数，SwiGLU 输出 ≈ (W₁·x) ⊙ (W₃·x) —— 这会随输入幅度<strong>平方增长</strong>。这也是前置 RMSNorm 重要的原因：它把输入幅度限制住，避免 SwiGLU 爆炸。在 bf16 下，这里不受控的增长会溢出。</p>
 <p><strong>极端情形 3 —— "负门"的怪癖。</strong> 和 ReLU 型的门不同，SwiGLU 的门可以轻微为负。这意味着 SwiGLU 能主动<em>反转</em>一个信号通道，而不是只能通过或阻止。这种额外的表达能力到底"有用"还是"好玩"有争议；经验上不会有坏影响，而且它让函数光滑，优化会更顺。</p>
-<h4 id="_11">代码<a class="headerlink" href="#_11" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_12">代码<a class="headerlink" href="#_12" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># llama/model.py:193-219</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">FeedForward</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">multiple_of</span><span class="p">,</span> <span class="n">ffn_dim_multiplier</span><span class="p">):</span>
@@ -2057,7 +2097,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_12">对比同时代模型<a class="headerlink" href="#_12" title="Anchor link to this section">&para;</a></h3>
+<h3 id="_13">对比同时代模型<a class="headerlink" href="#_13" title="Anchor link to this section">&para;</a></h3>
 <table>
 <thead>
 <tr>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 640 900" xmlns="http://www.w3.org/2000/svg"
+     font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#333"/>
+    </marker>
+    <style>
+      .block      { fill: #f4f4f8; stroke: #333; stroke-width: 1.5; }
+      .sub        { fill: #ffffff; stroke: #555; stroke-width: 1; }
+      .attn       { fill: #e8efff; stroke: #3653b6; stroke-width: 1.2; }
+      .ffn        { fill: #fdf2e0; stroke: #b37a1c; stroke-width: 1.2; }
+      .norm       { fill: #f3e8ff; stroke: #6a2aa6; stroke-width: 1; }
+      .emb        { fill: #e6f7ec; stroke: #247a4a; stroke-width: 1.4; }
+      .head       { fill: #fce8ec; stroke: #a6264a; stroke-width: 1.4; }
+      .io         { fill: #f8f8f8; stroke: #111; stroke-width: 1.4; }
+      .repeat     { fill: none; stroke: #888; stroke-width: 1; stroke-dasharray: 6 4; }
+      .wire       { stroke: #333; stroke-width: 1.4; fill: none; }
+      .residual   { stroke: #888; stroke-width: 1.2; fill: none; stroke-dasharray: 5 3; }
+      .plus       { fill: #fff; stroke: #333; stroke-width: 1.2; }
+      .lbl        { font-size: 13px; fill: #111; }
+      .lbl-b      { font-size: 13px; fill: #111; font-weight: 600; }
+      .lbl-s      { font-size: 11px; fill: #555; }
+      .lbl-xs     { font-size: 10px; fill: #777; }
+      .shape      { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 10px; fill: #555; }
+      .title      { font-size: 15px; fill: #111; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect width="640" height="900" fill="#ffffff"/>
+  <text x="320" y="26" text-anchor="middle" class="title">Llama 3 8B — architecture (bottom-up forward pass)</text>
+  <text x="320" y="44" text-anchor="middle" class="lbl-s">32 Transformer blocks stacked; only block 1 is expanded for clarity</text>
+
+  <!-- ============= BOTTOM: INPUT TOKENS ============= -->
+  <rect x="220" y="820" width="200" height="44" rx="6" class="io"/>
+  <text x="320" y="842" text-anchor="middle" class="lbl-b">Input token IDs</text>
+  <text x="320" y="857" text-anchor="middle" class="shape">(B, T)</text>
+
+  <!-- wire up -->
+  <line x1="320" y1="820" x2="320" y2="790" class="wire" marker-end="url(#arr)"/>
+
+  <!-- ============= EMBEDDING ============= -->
+  <rect x="200" y="746" width="240" height="44" rx="6" class="emb"/>
+  <text x="320" y="768" text-anchor="middle" class="lbl-b">Token Embedding</text>
+  <text x="320" y="783" text-anchor="middle" class="lbl-s">VocabParallelEmbedding (128256 × 4096)</text>
+
+  <line x1="320" y1="746" x2="320" y2="716" class="wire" marker-end="url(#arr)"/>
+  <text x="460" y="735" class="shape">(B, T, 4096)</text>
+
+  <!-- ============= TRANSFORMER BLOCK 1 (EXPANDED) ============= -->
+  <rect x="80" y="380" width="480" height="336" rx="10" class="block"/>
+  <text x="100" y="400" class="lbl-b">Transformer Block 1</text>
+  <text x="560" y="400" text-anchor="end" class="lbl-xs">(pre-norm, residual)</text>
+
+  <!-- input wire into block enters at bottom middle of block area -->
+  <!-- residual split point (x=320, y=680) -->
+  <circle cx="320" cy="690" r="3" fill="#333"/>
+
+  <!-- ========== ATTENTION SUB-BLOCK ========== -->
+  <!-- RMSNorm 1 -->
+  <rect x="230" y="624" width="180" height="36" rx="5" class="norm"/>
+  <text x="320" y="647" text-anchor="middle" class="lbl">RMSNorm</text>
+
+  <!-- Attention box -->
+  <rect x="150" y="528" width="340" height="78" rx="6" class="attn"/>
+  <text x="320" y="548" text-anchor="middle" class="lbl-b">Self-Attention  (GQA + RoPE)</text>
+  <text x="320" y="566" text-anchor="middle" class="lbl-s">32 Q heads · 8 KV heads · head_dim 128</text>
+  <text x="320" y="582" text-anchor="middle" class="lbl-xs">RoPE rotates Q, K pair-by-pair · static KV cache at inference</text>
+  <text x="320" y="598" text-anchor="middle" class="lbl-xs">causal mask → softmax(Q Kᵀ / √dₖ) V</text>
+
+  <!-- + node (attention residual) -->
+  <circle cx="320" cy="498" r="12" class="plus"/>
+  <text x="320" y="503" text-anchor="middle" class="lbl-b">+</text>
+
+  <!-- wires within attention sub-block -->
+  <line x1="320" y1="690" x2="320" y2="661" class="wire" marker-end="url(#arr)"/>
+  <line x1="320" y1="624" x2="320" y2="607" class="wire" marker-end="url(#arr)"/>
+  <line x1="320" y1="528" x2="320" y2="511" class="wire" marker-end="url(#arr)"/>
+  <!-- residual skip: from split point (320, 690) around to + -->
+  <path d="M 320 690 C 110 690  110 498  308 498" class="residual"/>
+  <text x="96" y="596" class="lbl-xs" fill="#666">residual</text>
+
+  <!-- ========== FFN SUB-BLOCK ========== -->
+  <!-- output of attention residual flows up -->
+  <line x1="320" y1="486" x2="320" y2="470" class="wire" marker-end="url(#arr)"/>
+  <!-- split point for FFN residual -->
+  <circle cx="320" cy="468" r="3" fill="#333"/>
+
+  <!-- RMSNorm 2 -->
+  <rect x="230" y="430" width="180" height="36" rx="5" class="norm"/>
+  <text x="320" y="453" text-anchor="middle" class="lbl">RMSNorm</text>
+  <line x1="320" y1="468" x2="320" y2="466" class="wire"/>
+
+  <!-- FFN box -->
+  <rect x="180" y="346" width="280" height="66" rx="6" class="ffn"/>
+  <text x="320" y="366" text-anchor="middle" class="lbl-b">SwiGLU FFN</text>
+  <text x="320" y="383" text-anchor="middle" class="lbl-s">W₂ · (SiLU(W₁·x) ⊙ (W₃·x))</text>
+  <text x="320" y="399" text-anchor="middle" class="lbl-xs">hidden_dim ≈ 14336  (≈ 3.5 × dim)</text>
+
+  <line x1="320" y1="430" x2="320" y2="412" class="wire" marker-end="url(#arr)"/>
+
+  <!-- + node (FFN residual) -->
+  <circle cx="320" cy="328" r="12" class="plus"/>
+  <text x="320" y="333" text-anchor="middle" class="lbl-b">+</text>
+  <line x1="320" y1="346" x2="320" y2="341" class="wire" marker-end="url(#arr)"/>
+
+  <!-- residual skip: from FFN-split point (320, 468) around to + -->
+  <path d="M 320 468 C 540 468  540 328  332 328" class="residual"/>
+  <text x="528" y="400" class="lbl-xs" fill="#666">residual</text>
+
+  <!-- ========== EXIT BLOCK 1 ========== -->
+  <line x1="320" y1="316" x2="320" y2="300" class="wire" marker-end="url(#arr)"/>
+  <text x="460" y="705" class="shape">(B, T, 4096)</text>
+  <text x="460" y="330" class="shape">(B, T, 4096)</text>
+
+  <!-- ============= REPEATED BLOCKS 2 .. 32 ============= -->
+  <rect x="140" y="230" width="360" height="56" rx="8" class="repeat"/>
+  <text x="320" y="253" text-anchor="middle" class="lbl-b">Transformer Blocks 2 … 32</text>
+  <text x="320" y="272" text-anchor="middle" class="lbl-s">(identical structure to block 1)</text>
+
+  <line x1="320" y1="230" x2="320" y2="208" class="wire" marker-end="url(#arr)"/>
+
+  <!-- ============= FINAL NORM ============= -->
+  <rect x="230" y="164" width="180" height="40" rx="6" class="norm"/>
+  <text x="320" y="189" text-anchor="middle" class="lbl-b">RMSNorm (final)</text>
+
+  <line x1="320" y1="164" x2="320" y2="142" class="wire" marker-end="url(#arr)"/>
+
+  <!-- ============= LM HEAD ============= -->
+  <rect x="200" y="98" width="240" height="44" rx="6" class="head"/>
+  <text x="320" y="120" text-anchor="middle" class="lbl-b">LM Head  (Linear, no bias)</text>
+  <text x="320" y="135" text-anchor="middle" class="lbl-s">4096 → 128256   (no weight tying)</text>
+
+  <line x1="320" y1="98" x2="320" y2="74" class="wire" marker-end="url(#arr)"/>
+  <text x="460" y="90" class="shape">(B, T, 128256)</text>
+
+  <!-- ============= OUTPUT ============= -->
+  <rect x="240" y="30" width="160" height="44" rx="6" class="io"/>
+  <text x="320" y="52" text-anchor="middle" class="lbl-b">Logits</text>
+  <text x="320" y="67" text-anchor="middle" class="shape">argmax / top-p → next token</text>
+
+  <!-- ============= LEGEND ============= -->
+  <g transform="translate(28, 380)">
+    <text x="0" y="0" class="lbl-b">Legend</text>
+    <rect x="0" y="10" width="16" height="12" class="emb"/><text x="22" y="20" class="lbl-s">Embedding</text>
+    <rect x="0" y="28" width="16" height="12" class="norm"/><text x="22" y="38" class="lbl-s">RMSNorm</text>
+    <rect x="0" y="46" width="16" height="12" class="attn"/><text x="22" y="56" class="lbl-s">Attention</text>
+    <rect x="0" y="64" width="16" height="12" class="ffn"/><text x="22" y="74" class="lbl-s">FFN (SwiGLU)</text>
+    <rect x="0" y="82" width="16" height="12" class="head"/><text x="22" y="92" class="lbl-s">LM head</text>
+    <line x1="0" y1="108" x2="16" y2="108" class="residual"/><text x="22" y="112" class="lbl-s">residual</text>
+  </g>
+
+</svg>

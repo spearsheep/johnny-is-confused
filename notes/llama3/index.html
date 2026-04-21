@@ -542,6 +542,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. TL;DR (zoom-out, 1 paragraph)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-whole-architecture-in-one-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The whole architecture, in one picture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -968,6 +985,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1. TL;DR (zoom-out, 1 paragraph)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-whole-architecture-in-one-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The whole architecture, in one picture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1307,6 +1341,12 @@
 <hr />
 <h2 id="1-tldr-zoom-out-1-paragraph">1. TL;DR (zoom-out, 1 paragraph)<a class="headerlink" href="#1-tldr-zoom-out-1-paragraph" title="Anchor link to this section">&para;</a></h2>
 <p>Llama 3 is Meta's 2024 open-weights large language model — a <strong>decoder-only transformer</strong> that reads a sequence of text tokens and predicts the next token, one at a time. It comes in 8B and 70B parameter sizes and has a context window of 8,192 tokens. Architecturally it is the same family as GPT and Llama 2: stacked transformer blocks, each with self-attention and a feed-forward network. What makes it notable is not a new architectural idea but a collection of well-tuned "modernizations" over the 2017 Transformer: <strong>RMSNorm</strong> instead of LayerNorm (cheaper, no bias), <strong>RoPE</strong> instead of learned positional embeddings (better at extrapolating to longer sequences), <strong>SwiGLU</strong> instead of ReLU MLPs (better quality per FLOP), and <strong>Grouped-Query Attention (GQA)</strong> so the key/value cache stays small during inference. Compared to Llama 2 the architecture is almost identical — the real jumps are a 4× bigger vocabulary (128K, tiktoken-based), a 2× longer context (8K vs 4K), a much larger RoPE base frequency (500,000 vs 10,000) so long contexts don't alias, and dramatically more training data (~15T tokens).</p>
+<h3 id="the-whole-architecture-in-one-picture">The whole architecture, in one picture<a class="headerlink" href="#the-whole-architecture-in-one-picture" title="Anchor link to this section">&para;</a></h3>
+<figure>
+<p><img alt="Llama 3 8B architecture: bottom-up forward pass. Tokens enter at the bottom, flow through an embedding layer into 32 stacked Transformer blocks (block 1 expanded to show pre-norm residual structure with Self-Attention + SwiGLU FFN sub-blocks), then a final RMSNorm, LM head, and out as logits over 128,256 tokens." src="../../assets/notes/llama3_architecture.svg" width="480" />
+  </p>
+<figcaption>Llama 3 8B, paper-style. Block 1 is drawn out; blocks 2–32 are identical. Tensor shapes annotated on the wires.</figcaption>
+</figure>
 <hr />
 <h2 id="2-the-30-second-mental-model">2. The 30-second mental model<a class="headerlink" href="#2-the-30-second-mental-model" title="Anchor link to this section">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
