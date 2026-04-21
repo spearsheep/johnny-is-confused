@@ -32,11 +32,6 @@ Working on / want to get to:
 Shorter, less-structured pieces. Sometimes about what I'm studying,
 sometimes about life. None posted yet.
 
-### Other resources
-- A [prompt template](docs/notes/study-notes-prompt.md) for generating
-  study notes like these with Claude Code. Distilled from real iterations
-  — if it looks opinionated, that's why.
-
 ## Local setup
 
 For me, mostly, but the site builds the same way on any machine:

@@ -62,8 +62,6 @@ nav:
     - "Llama 3 (Meta, 2024)": notes/llama3.md
   - Blog:
     - blog/index.md
-  - Resources:
-    - "Study-notes prompt": notes/study-notes-prompt.md
 
 markdown_extensions:
   # Sane defaults
