@@ -1,11 +1,5 @@
 # Llama 3 — A Study Guide
 
-> Notes generated from the reference implementation at [llama/model.py](https://github.com/meta-llama/llama3/blob/main/llama/model.py), [llama/generation.py](https://github.com/meta-llama/llama3/blob/main/llama/generation.py), and [llama/tokenizer.py](https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py).
->
-> **Rendering:** math is written with Unicode symbols inside fenced code blocks, so it renders in every Markdown viewer (VS Code built-in preview, GitHub, Typora, Obsidian, etc.) with no KaTeX extension required. Diagrams are inline SVG and render the same way.
-
----
-
 ## 1. TL;DR (zoom-out, 1 paragraph)
 
 Llama 3 is Meta's 2024 open-weights large language model — a **decoder-only transformer** that reads a sequence of text tokens and predicts the next token, one at a time. It comes in 8B and 70B parameter sizes and has a context window of 8,192 tokens. Architecturally it is the same family as GPT and Llama 2: stacked transformer blocks, each with self-attention and a feed-forward network. What makes it notable is not a new architectural idea but a collection of well-tuned "modernizations" over the 2017 Transformer: **RMSNorm** instead of LayerNorm (cheaper, no bias), **RoPE** instead of learned positional embeddings (better at extrapolating to longer sequences), **SwiGLU** instead of ReLU MLPs (better quality per FLOP), and **Grouped-Query Attention (GQA)** so the key/value cache stays small during inference. Compared to Llama 2 the architecture is almost identical — the real jumps are a 4× bigger vocabulary (128K, tiktoken-based), a 2× longer context (8K vs 4K), a much larger RoPE base frequency (500,000 vs 10,000) so long contexts don't alias, and dramatically more training data (~15T tokens).
