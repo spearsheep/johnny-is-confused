@@ -24,39 +24,6 @@ the note isn't done yet.
 
 </div>
 
-## Working on / wanting to get to
-
-Things that have caught my attention, roughly in the order I'm likely to
-tackle them. No promises on timing — I write when I'm confused enough to
-need to.
-
-### Large language models
-
-- **Mistral** — sliding-window attention; how does the local/global tradeoff
-  actually work in practice?
-- **DeepSeek V2 / V3** — Multi-head Latent Attention, MoE routing, the
-  engineering behind the scaling claims
-- **Qwen** — the pragmatic Chinese-first model family; what's different
-- **Gemma** — Google's compact open models; architectural choices
-
-### Computer vision
-
-- **Vision Transformers (ViT)** — the first time attention worked on images
-- **DINOv2** — self-supervised learning on images at scale
-- **SAM** — Segment Anything, promptable segmentation
-
-### Recommendation / retrieval
-
-- Two-tower models — the workhorse of modern retrieval
-- Dense vs sparse retrieval
-- Approximate nearest neighbor search (HNSW, IVF)
-
-### And probably
-
-- Transformers from scratch in plain PyTorch
-- A diffusion-model walkthrough when I'm brave enough
-- Something on RL from human feedback
-
 ## Found an error?
 
 Please [open an issue on GitHub](https://github.com/spearsheep/johnny-is-confused/issues).

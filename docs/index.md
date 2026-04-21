@@ -49,22 +49,14 @@ implementation: RoPE, Grouped-Query Attention, SwiGLU, KV cache, and a real
 sentence traced through the whole model. Probably the thing I'm proudest of
 so far. ~5,000 words, lots of pictures.
 
-## In progress
-
-Notes I'm working on or want to get to:
-
-- Mistral — sliding-window attention
-- DeepSeek V2 — multi-head latent attention, MoE routing
-- Vision transformers (ViT, DINOv2, SAM)
-- Recommendation systems — two-tower models, retrieval at scale
-- Whatever confuses me next
-
 ## A note on tone
 
-I write carefully because I want to *understand* things, not because I think
-I'm good at any of this. If a sentence sounds confident, it's because I
-checked it twice; if it sounds unsure, it's because I'm unsure and saying so
-is more useful than pretending. That's the whole vibe.
+I'm slowly learning this stuff myself, and I try to make each write-up as
+deep and detailed as I can. But plenty of it is me catching up — if
+something doesn't click for you, or you have a suggestion or correction,
+please feel free to
+[reach out on GitHub](https://github.com/spearsheep/johnny-is-confused/issues).
+I'd rather fix it than be wrong.
 
 <small>Built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
 Source on [GitHub](https://github.com/spearsheep/johnny-is-confused).</small>
