@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -12,7 +12,7 @@
         <meta name="author" content="Johnny (Jun Yu Chen)">
       
       
-        <link rel="canonical" href="https://spearsheep.github.io/johnny-is-confused/notes/llama3/">
+        <link rel="canonical" href="https://spearsheep.github.io/johnny-is-confused/zh/notes/llama3/">
       
       
         <link rel="prev" href="../">
@@ -22,25 +22,25 @@
       
       
         
-          <link rel="alternate" href="./" hreflang="en">
+          <link rel="alternate" href="../../../notes/llama3/" hreflang="en">
         
-          <link rel="alternate" href="../../zh/notes/llama3/" hreflang="zh">
+          <link rel="alternate" href="./" hreflang="zh">
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Llama 3 (Meta, 2024) - Johnny is Confused</title>
+        <title>Llama 3（Meta 出品，2024） - Johnny is Confused</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -59,7 +59,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,8 +84,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#llama-3-a-study-guide" class="md-skip">
-          Skip to content
+        <a href="#llama-3" class="md-skip">
+          跳转至
         </a>
       
     </div>
@@ -97,8 +97,8 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Johnny is Confused" class="md-header__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="Johnny is Confused" class="md-header__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Llama 3 (Meta, 2024)
+              Llama 3（Meta 出品，2024）
             
           </span>
         </div>
@@ -158,20 +158,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="en" class="md-select__link">
+            <a href="../../../notes/llama3/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../zh/notes/llama3/" hreflang="zh" class="md-select__link">
+            <a href="./" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
@@ -192,21 +192,21 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="查找">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -219,7 +219,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -231,7 +231,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/spearsheep/johnny-is-confused" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/spearsheep/johnny-is-confused" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -252,7 +252,7 @@
         
           
             
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -262,13 +262,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../" class="md-tabs__link">
         
   
   
     
   
-  Home
+  主页
 
       </a>
     </li>
@@ -291,7 +291,7 @@
   
     
   
-  Notes
+  笔记
 
         </a>
       </li>
@@ -313,7 +313,7 @@
   
     
   
-  Blog
+  博客
 
         </a>
       </li>
@@ -341,9 +341,9 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Johnny is Confused" class="md-nav__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
+    <a href="../../" title="Johnny is Confused" class="md-nav__button md-logo" aria-label="Johnny is Confused" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -353,7 +353,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/spearsheep/johnny-is-confused" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/spearsheep/johnny-is-confused" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
@@ -373,14 +373,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    主页
   
 
     
@@ -437,7 +437,7 @@
   <span class="md-ellipsis">
     
   
-    Notes
+    笔记
   
 
     
@@ -459,7 +459,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Notes
+    笔记
   
 
           </label>
@@ -490,7 +490,7 @@
   <span class="md-ellipsis">
     
   
-    Llama 3 (Meta, 2024)
+    Llama 3（Meta 出品，2024）
   
 
     
@@ -508,7 +508,7 @@
   <span class="md-ellipsis">
     
   
-    Llama 3 (Meta, 2024)
+    Llama 3（Meta 出品，2024）
   
 
     
@@ -520,7 +520,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -529,15 +529,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-tldr-zoom-out-1-paragraph" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. TL;DR (zoom-out, 1 paragraph)
+        1. 一句话总结（俯视视角，一段话）
       
     </span>
   </a>
@@ -545,10 +545,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-the-30-second-mental-model" class="md-nav__link">
+  <a href="#2-30" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. The 30-second mental model
+        2. 30 秒理解全貌
       
     </span>
   </a>
@@ -556,10 +556,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-key-hyperparameters-with-intuition" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Key hyperparameters (with intuition)
+        3. 关键超参数（附带直觉）
       
     </span>
   </a>
@@ -567,22 +567,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-architecture-walk-through-zoom-in" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Architecture walk-through (zoom-in)
+        4. 架构细节走读
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Architecture walk-through (zoom-in)">
+    <nav class="md-nav" aria-label="4. 架构细节走读">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-tokenizer-embeddings" class="md-nav__link">
+  <a href="#41" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Tokenizer &amp; embeddings
+        4.1 分词器与嵌入
       
     </span>
   </a>
@@ -590,10 +590,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-positional-encoding-rotary-position-embeddings-rope" class="md-nav__link">
+  <a href="#42-rope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 Positional encoding: Rotary Position Embeddings (RoPE)
+        4.2 位置编码：旋转位置编码 (RoPE)
       
     </span>
   </a>
@@ -601,10 +601,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-normalization-rmsnorm" class="md-nav__link">
+  <a href="#43-rmsnorm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 Normalization: RMSNorm
+        4.3 归一化：RMSNorm
       
     </span>
   </a>
@@ -612,10 +612,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#44-attention-grouped-query-attention-gqa-with-kv-cache" class="md-nav__link">
+  <a href="#44-gqa-kv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.4 Attention: Grouped-Query Attention (GQA) with KV cache
+        4.4 注意力：分组查询注意力 (GQA) 与 KV 缓存
       
     </span>
   </a>
@@ -623,10 +623,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#45-feed-forward-network-swiglu" class="md-nav__link">
+  <a href="#45-swiglu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.5 Feed-forward network: SwiGLU
+        4.5 前馈网络：SwiGLU
       
     </span>
   </a>
@@ -634,10 +634,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#46-the-transformerblock" class="md-nav__link">
+  <a href="#46-transformerblock" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.6 The TransformerBlock
+        4.6 TransformerBlock
       
     </span>
   </a>
@@ -656,10 +656,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#48-the-causal-mask" class="md-nav__link">
+  <a href="#48" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.8 The causal mask
+        4.8 因果掩码
       
     </span>
   </a>
@@ -672,22 +672,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model" class="md-nav__link">
+  <a href="#5-the-cat-sat-on" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. A concrete forward pass: feeding "The cat sat on" into the model
+        5. 一个具体的前向传播：把 "The cat sat on" 喂给模型
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. A concrete forward pass: feeding &#34;The cat sat on&#34; into the model">
+    <nav class="md-nav" aria-label="5. 一个具体的前向传播：把 &#34;The cat sat on&#34; 喂给模型">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-tokenize" class="md-nav__link">
+  <a href="#1_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1 — Tokenize
+        第 1 步 —— 分词
       
     </span>
   </a>
@@ -695,10 +695,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-embed" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2 — Embed
+        第 2 步 —— 嵌入
       
     </span>
   </a>
@@ -706,10 +706,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-the-journey-through-32-blocks-illustrated" class="md-nav__link">
+  <a href="#3-32-block" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3 — The journey through 32 blocks (illustrated)
+        第 3 步 —— 穿过 32 个 block（图示）
       
     </span>
   </a>
@@ -717,10 +717,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-4-final-norm-lm-head" class="md-nav__link">
+  <a href="#4-lm-head" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4 — Final norm + LM head
+        第 4 步 —— 最后的归一化 + LM head
       
     </span>
   </a>
@@ -728,10 +728,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-sample" class="md-nav__link">
+  <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5 — Sample
+        第 5 步 —— 采样
       
     </span>
   </a>
@@ -739,10 +739,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-6-next-token-kv-cache-in-action" class="md-nav__link">
+  <a href="#6-tokenkv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6 — Next token (KV cache in action)
+        第 6 步 —— 下一个 token（KV 缓存登场）
       
     </span>
   </a>
@@ -755,10 +755,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-training-vs-inference-differences" class="md-nav__link">
+  <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Training vs inference differences
+        6. 训练与推理的差异
       
     </span>
   </a>
@@ -766,22 +766,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-zoom-out-how-this-compares" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Zoom-out: how this compares
+        7. 拉远看：对比
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="7. Zoom-out: how this compares">
+    <nav class="md-nav" aria-label="7. 拉远看：对比">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vs-the-original-transformer-vaswani-et-al-2017" class="md-nav__link">
+  <a href="#transformervaswani-et-al-2017" class="md-nav__link">
     <span class="md-ellipsis">
       
-        vs. the original Transformer (Vaswani et al., 2017)
+        对比原始 Transformer（Vaswani et al., 2017）
       
     </span>
   </a>
@@ -789,10 +789,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vs-llama-2" class="md-nav__link">
+  <a href="#llama-2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        vs. Llama 2
+        对比 Llama 2
       
     </span>
   </a>
@@ -800,10 +800,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vs-contemporaries" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        vs. contemporaries
+        对比同时代模型
       
     </span>
   </a>
@@ -816,10 +816,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-the-spotlight-whats-actually-novel-here" class="md-nav__link">
+  <a href="#8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. The spotlight: what's actually novel here
+        8. 关注点：这个模型究竟有什么新东西
       
     </span>
   </a>
@@ -827,10 +827,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-glossary" class="md-nav__link">
+  <a href="#9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. Glossary
+        9. 术语表
       
     </span>
   </a>
@@ -838,10 +838,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-where-to-go-next" class="md-nav__link">
+  <a href="#10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. Where to go next
+        10. 接下来读什么
       
     </span>
   </a>
@@ -901,7 +901,7 @@
   <span class="md-ellipsis">
     
   
-    Blog
+    博客
   
 
     
@@ -918,7 +918,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Blog
+    博客
   
 
           </label>
@@ -946,7 +946,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -955,15 +955,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-tldr-zoom-out-1-paragraph" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. TL;DR (zoom-out, 1 paragraph)
+        1. 一句话总结（俯视视角，一段话）
       
     </span>
   </a>
@@ -971,10 +971,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-the-30-second-mental-model" class="md-nav__link">
+  <a href="#2-30" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. The 30-second mental model
+        2. 30 秒理解全貌
       
     </span>
   </a>
@@ -982,10 +982,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-key-hyperparameters-with-intuition" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Key hyperparameters (with intuition)
+        3. 关键超参数（附带直觉）
       
     </span>
   </a>
@@ -993,22 +993,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-architecture-walk-through-zoom-in" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Architecture walk-through (zoom-in)
+        4. 架构细节走读
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Architecture walk-through (zoom-in)">
+    <nav class="md-nav" aria-label="4. 架构细节走读">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-tokenizer-embeddings" class="md-nav__link">
+  <a href="#41" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Tokenizer &amp; embeddings
+        4.1 分词器与嵌入
       
     </span>
   </a>
@@ -1016,10 +1016,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-positional-encoding-rotary-position-embeddings-rope" class="md-nav__link">
+  <a href="#42-rope" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 Positional encoding: Rotary Position Embeddings (RoPE)
+        4.2 位置编码：旋转位置编码 (RoPE)
       
     </span>
   </a>
@@ -1027,10 +1027,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-normalization-rmsnorm" class="md-nav__link">
+  <a href="#43-rmsnorm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 Normalization: RMSNorm
+        4.3 归一化：RMSNorm
       
     </span>
   </a>
@@ -1038,10 +1038,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#44-attention-grouped-query-attention-gqa-with-kv-cache" class="md-nav__link">
+  <a href="#44-gqa-kv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.4 Attention: Grouped-Query Attention (GQA) with KV cache
+        4.4 注意力：分组查询注意力 (GQA) 与 KV 缓存
       
     </span>
   </a>
@@ -1049,10 +1049,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#45-feed-forward-network-swiglu" class="md-nav__link">
+  <a href="#45-swiglu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.5 Feed-forward network: SwiGLU
+        4.5 前馈网络：SwiGLU
       
     </span>
   </a>
@@ -1060,10 +1060,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#46-the-transformerblock" class="md-nav__link">
+  <a href="#46-transformerblock" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.6 The TransformerBlock
+        4.6 TransformerBlock
       
     </span>
   </a>
@@ -1082,10 +1082,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#48-the-causal-mask" class="md-nav__link">
+  <a href="#48" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.8 The causal mask
+        4.8 因果掩码
       
     </span>
   </a>
@@ -1098,22 +1098,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model" class="md-nav__link">
+  <a href="#5-the-cat-sat-on" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. A concrete forward pass: feeding "The cat sat on" into the model
+        5. 一个具体的前向传播：把 "The cat sat on" 喂给模型
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. A concrete forward pass: feeding &#34;The cat sat on&#34; into the model">
+    <nav class="md-nav" aria-label="5. 一个具体的前向传播：把 &#34;The cat sat on&#34; 喂给模型">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-tokenize" class="md-nav__link">
+  <a href="#1_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1 — Tokenize
+        第 1 步 —— 分词
       
     </span>
   </a>
@@ -1121,10 +1121,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-embed" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2 — Embed
+        第 2 步 —— 嵌入
       
     </span>
   </a>
@@ -1132,10 +1132,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-the-journey-through-32-blocks-illustrated" class="md-nav__link">
+  <a href="#3-32-block" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3 — The journey through 32 blocks (illustrated)
+        第 3 步 —— 穿过 32 个 block（图示）
       
     </span>
   </a>
@@ -1143,10 +1143,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-4-final-norm-lm-head" class="md-nav__link">
+  <a href="#4-lm-head" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4 — Final norm + LM head
+        第 4 步 —— 最后的归一化 + LM head
       
     </span>
   </a>
@@ -1154,10 +1154,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-sample" class="md-nav__link">
+  <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5 — Sample
+        第 5 步 —— 采样
       
     </span>
   </a>
@@ -1165,10 +1165,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-6-next-token-kv-cache-in-action" class="md-nav__link">
+  <a href="#6-tokenkv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 6 — Next token (KV cache in action)
+        第 6 步 —— 下一个 token（KV 缓存登场）
       
     </span>
   </a>
@@ -1181,10 +1181,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-training-vs-inference-differences" class="md-nav__link">
+  <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Training vs inference differences
+        6. 训练与推理的差异
       
     </span>
   </a>
@@ -1192,22 +1192,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-zoom-out-how-this-compares" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. Zoom-out: how this compares
+        7. 拉远看：对比
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="7. Zoom-out: how this compares">
+    <nav class="md-nav" aria-label="7. 拉远看：对比">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vs-the-original-transformer-vaswani-et-al-2017" class="md-nav__link">
+  <a href="#transformervaswani-et-al-2017" class="md-nav__link">
     <span class="md-ellipsis">
       
-        vs. the original Transformer (Vaswani et al., 2017)
+        对比原始 Transformer（Vaswani et al., 2017）
       
     </span>
   </a>
@@ -1215,10 +1215,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vs-llama-2" class="md-nav__link">
+  <a href="#llama-2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        vs. Llama 2
+        对比 Llama 2
       
     </span>
   </a>
@@ -1226,10 +1226,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vs-contemporaries" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
-        vs. contemporaries
+        对比同时代模型
       
     </span>
   </a>
@@ -1242,10 +1242,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-the-spotlight-whats-actually-novel-here" class="md-nav__link">
+  <a href="#8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. The spotlight: what's actually novel here
+        8. 关注点：这个模型究竟有什么新东西
       
     </span>
   </a>
@@ -1253,10 +1253,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#9-glossary" class="md-nav__link">
+  <a href="#9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. Glossary
+        9. 术语表
       
     </span>
   </a>
@@ -1264,10 +1264,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#10-where-to-go-next" class="md-nav__link">
+  <a href="#10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. Where to go next
+        10. 接下来读什么
       
     </span>
   </a>
@@ -1291,7 +1291,7 @@
 
 
   
-    <a href="https://github.com/spearsheep/johnny-is-confused/edit/main/docs/notes/llama3.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/spearsheep/johnny-is-confused/edit/main/docs/notes/llama3.zh.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -1299,25 +1299,25 @@
   
 
 
-<h1 id="llama-3-a-study-guide">Llama 3 — A Study Guide<a class="headerlink" href="#llama-3-a-study-guide" title="Anchor link to this section">&para;</a></h1>
+<h1 id="llama-3">Llama 3 —— 学习指南<a class="headerlink" href="#llama-3" title="Anchor link to this section">&para;</a></h1>
 <blockquote>
-<p>Notes generated from the reference implementation at <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py">llama/model.py</a>, <a href="https://github.com/meta-llama/llama3/blob/main/llama/generation.py">llama/generation.py</a>, and <a href="https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py">llama/tokenizer.py</a>.</p>
-<p><strong>Rendering:</strong> math is written with Unicode symbols inside fenced code blocks, so it renders in every Markdown viewer (VS Code built-in preview, GitHub, Typora, Obsidian, etc.) with no KaTeX extension required. Diagrams are inline SVG and render the same way.</p>
+<p>本文基于参考实现生成的笔记：<a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py">llama/model.py</a>、<a href="https://github.com/meta-llama/llama3/blob/main/llama/generation.py">llama/generation.py</a> 和 <a href="https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py">llama/tokenizer.py</a>。</p>
+<p><strong>关于渲染：</strong> 所有公式都写在代码块里，用 Unicode 符号表示 —— 这样在任何 Markdown 阅读器里都能正常显示（VS Code 内置预览、GitHub、Typora、Obsidian 等），不需要额外的 KaTeX 插件。示意图都以 SVG 文件引入，同样在所有环境下都能稳定渲染。</p>
 </blockquote>
 <hr />
-<h2 id="1-tldr-zoom-out-1-paragraph">1. TL;DR (zoom-out, 1 paragraph)<a class="headerlink" href="#1-tldr-zoom-out-1-paragraph" title="Anchor link to this section">&para;</a></h2>
-<p>Llama 3 is Meta's 2024 open-weights large language model — a <strong>decoder-only transformer</strong> that reads a sequence of text tokens and predicts the next token, one at a time. It comes in 8B and 70B parameter sizes and has a context window of 8,192 tokens. Architecturally it is the same family as GPT and Llama 2: stacked transformer blocks, each with self-attention and a feed-forward network. What makes it notable is not a new architectural idea but a collection of well-tuned "modernizations" over the 2017 Transformer: <strong>RMSNorm</strong> instead of LayerNorm (cheaper, no bias), <strong>RoPE</strong> instead of learned positional embeddings (better at extrapolating to longer sequences), <strong>SwiGLU</strong> instead of ReLU MLPs (better quality per FLOP), and <strong>Grouped-Query Attention (GQA)</strong> so the key/value cache stays small during inference. Compared to Llama 2 the architecture is almost identical — the real jumps are a 4× bigger vocabulary (128K, tiktoken-based), a 2× longer context (8K vs 4K), a much larger RoPE base frequency (500,000 vs 10,000) so long contexts don't alias, and dramatically more training data (~15T tokens).</p>
+<h2 id="1">1. 一句话总结（俯视视角，一段话）<a class="headerlink" href="#1" title="Anchor link to this section">&para;</a></h2>
+<p>Llama 3 是 Meta 于 2024 年发布的开源权重大语言模型 —— 一个<strong>仅解码器 (decoder-only) 的 Transformer</strong>：接收一串文本 token，一次预测一个后续 token。它提供 8B 和 70B 两种参数规模，支持 8,192 token 的上下文窗口。从架构上讲，它与 GPT、Llama 2 同属一个家族：层层堆叠的 Transformer block，每个 block 都包含自注意力和前馈网络。它之所以值得关注，不是因为某个新的架构创新，而是一组针对 2017 年原始 Transformer 的"现代化改造"都调得很到位：用 <strong>RMSNorm</strong> 替换 LayerNorm（更省，无偏置），用 <strong>RoPE</strong> 替换可学习的位置嵌入（更擅长外推到更长序列），用 <strong>SwiGLU</strong> 替换 ReLU MLP（同样 FLOP 下质量更好），用<strong>分组查询注意力 (Grouped-Query Attention, GQA)</strong> 让推理时的 KV 缓存保持小规模。和 Llama 2 相比架构几乎没变 —— 真正的跃进是词表扩大了 4 倍（128K，基于 tiktoken）、上下文加长 2 倍（8K vs 4K）、RoPE 基频大得多（500,000 vs 10,000）以避免长上下文下的频率混叠，以及大幅增加了训练数据（约 15T token）。</p>
 <hr />
-<h2 id="2-the-30-second-mental-model">2. The 30-second mental model<a class="headerlink" href="#2-the-30-second-mental-model" title="Anchor link to this section">&para;</a></h2>
+<h2 id="2-30">2. 30 秒理解全貌<a class="headerlink" href="#2-30" title="Anchor link to this section">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
-    A["Input token IDs&lt;br/&gt;(B, T)"] --&gt; B["VocabParallelEmbedding&lt;br/&gt;(B, T, 4096)"]
+    A["输入 token ID&lt;br/&gt;(B, T)"] --&gt; B["VocabParallelEmbedding&lt;br/&gt;(B, T, 4096)"]
     B --&gt; C["TransformerBlock 1"]
     C --&gt; D["..."]
     D --&gt; E["TransformerBlock 32"]
     E --&gt; F["RMSNorm"]
-    F --&gt; G["Output Linear&lt;br/&gt;(LM head)"]
+    F --&gt; G["输出线性层&lt;br/&gt;(LM head)"]
     G --&gt; H["Logits&lt;br/&gt;(B, T, 128256)"]</code></pre>
-<p>Inside <strong>each TransformerBlock</strong> (pre-norm residual structure):</p>
+<p><strong>每一个 TransformerBlock 内部</strong>（pre-norm 残差结构）：</p>
 <pre class="mermaid"><code>flowchart LR
     X["x (B,T,4096)"] --&gt; N1["RMSNorm"]
     N1 --&gt; ATT["Attention&lt;br/&gt;(GQA + RoPE + KV cache)"]
@@ -1328,103 +1328,103 @@
     FFN --&gt; ADD2(("+"))
     ADD1 --&gt; ADD2
     ADD2 --&gt; Y["x' (B,T,4096)"]</code></pre>
-<p>That diagram is the whole model. The rest of the notes expand every box.</p>
+<p>这两张图就是整个模型。本笔记剩下的部分会把每个方框展开讲。</p>
 <hr />
-<h2 id="3-key-hyperparameters-with-intuition">3. Key hyperparameters (with intuition)<a class="headerlink" href="#3-key-hyperparameters-with-intuition" title="Anchor link to this section">&para;</a></h2>
-<p>These are the defaults in <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L20-L32">llama/model.py:20-32</a> overlaid with the <strong>real</strong> 8B parameters which the inference code pulls from <code>params.json</code> on disk.</p>
+<h2 id="3">3. 关键超参数（附带直觉）<a class="headerlink" href="#3" title="Anchor link to this section">&para;</a></h2>
+<p>这些是 <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L20-L32">llama/model.py:20-32</a> 中 <code>ModelArgs</code> 的默认值，叠加上推理代码从磁盘 <code>params.json</code> 中读到的 <strong>真实</strong> 8B 参数。</p>
 <table>
 <thead>
 <tr>
-<th>Param</th>
-<th>Value (8B)</th>
-<th>What it means</th>
-<th>Why this value</th>
+<th>参数</th>
+<th>值 (8B)</th>
+<th>它控制什么</th>
+<th>为什么选这个值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>dim</code></td>
 <td>4096</td>
-<td>Width of the residual stream — every token is represented as a 4096-dim vector that gets read from and written to by each block.</td>
-<td>Wider ⇒ more capacity per token. 4096 is the standard "medium" width.</td>
+<td>残差流的宽度 —— 每个 token 都表示为一个 4096 维向量，每个 block 都会读写它。</td>
+<td>越宽 ⇒ 每个 token 的表达能力越强。4096 是"中等宽度"的标准选择。</td>
 </tr>
 <tr>
 <td><code>n_layers</code></td>
 <td>32</td>
-<td>Depth: how many transformer blocks are stacked. Depth gives the model its reasoning hops.</td>
-<td>Deeper ⇒ more serial compute / more reasoning depth. 32 is the Llama-8B-class standard.</td>
+<td>深度：堆叠多少个 Transformer block。深度决定了模型能做多少"推理跳步"。</td>
+<td>越深 ⇒ 串行计算越多 / 推理深度越大。32 是 Llama 8B 类模型的标准。</td>
 </tr>
 <tr>
 <td><code>n_heads</code></td>
 <td>32</td>
-<td>Number of query attention heads.</td>
-<td><code>head_dim = dim / n_heads = 128</code>. 128 is a sweet spot for GPU tensor cores.</td>
+<td>查询 (Query) 注意力头的数量。</td>
+<td><code>head_dim = dim / n_heads = 128</code>。128 是 GPU tensor core 的最优尺寸。</td>
 </tr>
 <tr>
 <td><code>n_kv_heads</code></td>
 <td>8</td>
-<td>Number of <strong>shared</strong> key/value heads (GQA). 32 query heads are split into 8 groups of 4, each group sharing one K and one V.</td>
-<td>Shrinks the KV cache by 4× at inference for nearly-free quality loss.</td>
+<td><strong>共享的</strong> KV 头数（GQA）。32 个 Q 头被分成 8 组，每组 4 个共享同一对 K 和 V。</td>
+<td>推理时 KV 缓存缩小 4 倍，质量几乎无损。</td>
 </tr>
 <tr>
 <td><code>vocab_size</code></td>
 <td>128,256</td>
-<td>Size of the token vocabulary. See §4.1 for what "128K" really means.</td>
-<td>4× bigger than Llama 2's 32K — ~15% fewer tokens for the same text.</td>
+<td>token 词表大小。§4.1 会解释这里的"128K"到底是什么意思。</td>
+<td>比 Llama 2 的 32K 大 4 倍 —— 同样的文本少用约 15% 的 token。</td>
 </tr>
 <tr>
 <td><code>multiple_of</code></td>
 <td>1024</td>
-<td>Rounds the FFN hidden dim to a multiple of this for hardware-friendly shapes.</td>
-<td>Bigger multiples ⇒ nicer tensor cores; cost is a slightly bigger FFN.</td>
+<td>把 FFN 的隐藏维度向上取整到这个值的倍数，让形状对硬件友好。</td>
+<td>倍数越大 ⇒ tensor core 越舒服；代价是 FFN 稍微变大一点。</td>
 </tr>
 <tr>
 <td><code>ffn_dim_multiplier</code></td>
 <td>1.3</td>
-<td>Extra scale factor on the FFN hidden dim.</td>
-<td>Pushes FFN hidden dim to ≈ <code>3.47·dim</code>, which Llama 3 found better.</td>
+<td>FFN 隐藏维度的额外放缩因子。</td>
+<td>把 FFN 隐藏维度拉到大约 <code>3.47·dim</code>，Llama 3 实验发现这个比例更好。</td>
 </tr>
 <tr>
 <td><code>norm_eps</code></td>
 <td>1e-5</td>
-<td>Stability epsilon inside RMSNorm.</td>
-<td>Prevents division-by-zero when activations are near zero.</td>
+<td>RMSNorm 的数值稳定 ε。</td>
+<td>防止当激活接近 0 时除零。</td>
 </tr>
 <tr>
 <td><code>rope_theta</code></td>
 <td>500,000</td>
-<td>Base frequency for Rotary Position Embeddings.</td>
-<td>Llama 2 used 10,000. Bigger base ⇒ slower-rotating sinusoids ⇒ better support for long positions.</td>
+<td>RoPE（旋转位置编码）的基频。</td>
+<td>Llama 2 用 10,000。基频越大 ⇒ 正弦函数转得越慢 ⇒ 对长上下文的支持越好。</td>
 </tr>
 <tr>
 <td><code>max_batch_size</code></td>
 <td>32</td>
-<td>Pre-allocates the KV cache of this batch size.</td>
-<td>Static cache sizing — trades memory for avoiding reallocations.</td>
+<td>按这个 batch 大小预分配 KV 缓存。</td>
+<td>静态缓存尺寸 —— 用内存换掉重新分配的开销。</td>
 </tr>
 <tr>
 <td><code>max_seq_len</code></td>
-<td>up to 8192</td>
-<td>Max context length. Asserted in <code>Llama.build</code>.</td>
-<td>Defines cache length and RoPE table length.</td>
+<td>最多 8192</td>
+<td>最大上下文长度，在 <code>Llama.build</code> 中断言。</td>
+<td>决定了缓存长度和 RoPE 表的长度。</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="4-architecture-walk-through-zoom-in">4. Architecture walk-through (zoom-in)<a class="headerlink" href="#4-architecture-walk-through-zoom-in" title="Anchor link to this section">&para;</a></h2>
-<h3 id="41-tokenizer-embeddings">4.1 Tokenizer &amp; embeddings<a class="headerlink" href="#41-tokenizer-embeddings" title="Anchor link to this section">&para;</a></h3>
-<p><strong>What it is.</strong> A function <code>text → list[int]</code>, plus a lookup table <code>int → vector</code>.</p>
-<p><strong>Why it exists.</strong> Neural nets only eat numbers. We need a reversible way to chop text into integer IDs, and a trainable table that turns each ID into a 4096-dim vector ("word embedding").</p>
-<h4 id="vocab-size-is-128256-arent-there-way-more-words-than-that">🤔 "Vocab size is 128,256 — aren't there way more words than that?"<a class="headerlink" href="#vocab-size-is-128256-arent-there-way-more-words-than-that" title="Anchor link to this section">&para;</a></h4>
-<p>This is the right question to ask, and the answer is: <strong>tokens are not words</strong>.</p>
-<p>Tokens are <strong>sub-word pieces</strong> learned by an algorithm called <strong>BPE (Byte Pair Encoding)</strong>. BPE starts from raw bytes (256 of them) and iteratively merges the most frequent adjacent pair into a new token. Common whole words become single tokens; rare words get split into a handful of pieces; completely novel strings fall back to individual bytes. So 128,256 tokens can represent <strong>any</strong> UTF-8 text, including languages and emojis the tokenizer has never seen — they just take more tokens.</p>
-<p>Concretely (using the Llama 3 tokenizer):</p>
+<h2 id="4">4. 架构细节走读<a class="headerlink" href="#4" title="Anchor link to this section">&para;</a></h2>
+<h3 id="41">4.1 分词器与嵌入<a class="headerlink" href="#41" title="Anchor link to this section">&para;</a></h3>
+<p><strong>是什么。</strong> 一个 <code>text → list[int]</code> 的函数，加上一个 <code>int → vector</code> 的查表。</p>
+<p><strong>为什么需要它。</strong> 神经网络只吃数字。我们需要一种可逆的方式把文本切成整数 ID，再用一个可训练的表把每个 ID 映射到 4096 维向量（"词嵌入"）。</p>
+<h4 id="128256">🤔 "词表大小是 128,256 —— 世界上的词明明远远不止这么多吧？"<a class="headerlink" href="#128256" title="Anchor link to this section">&para;</a></h4>
+<p>这个问题问得对，答案是：<strong>token 不是词</strong>。</p>
+<p>Token 是<strong>子词片段 (sub-word pieces)</strong>，由一种叫 <strong>BPE（Byte Pair Encoding，字节对编码）</strong> 的算法学出来的。BPE 从原始字节（256 个）开始，反复把最频繁出现的相邻对合并成一个新 token。常见的完整词会变成单个 token；罕见词会被拆成几个片段；完全见都没见过的字符串会回退到单个字节。所以 128,256 个 token 可以表示<strong>任何</strong> UTF-8 文本，包括分词器从未见过的语言和 emoji —— 只是会占更多 token。</p>
+<p>具体来说（用 Llama 3 的分词器）：</p>
 <table>
 <thead>
 <tr>
-<th>Text</th>
-<th>Tokens (approx.)</th>
-<th># tokens</th>
+<th>文本</th>
+<th>Token（大致）</th>
+<th>数量</th>
 </tr>
 </thead>
 <tbody>
@@ -1444,206 +1444,206 @@
 <td>6</td>
 </tr>
 <tr>
-<td><code>" 你好"</code> (Chinese "hello")</td>
-<td>multi-byte fallback tokens</td>
+<td><code>" 你好"</code></td>
+<td>多字节回退 token</td>
 <td>2–3</td>
 </tr>
 <tr>
 <td><code>" 🚀"</code></td>
-<td>4 byte-level tokens</td>
+<td>4 个字节级 token</td>
 <td>4</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Analogy.</strong> English has millions of possible word forms, but only 26 letters. BPE is somewhere between those two extremes — a vocabulary of "word fragments" you can compose to write anything. 128K is large enough that the ~20,000 most common English words tend to be single tokens, while rare/technical/multi-lingual strings get decomposed.</p>
-<p><strong>Why 128K and not 50K or 500K?</strong> Bigger vocab → shorter token sequences → less compute per sentence → effectively longer context. But also → a bigger embedding table (128K × 4096 = ~525M params just for embeddings) and a bigger LM head. Llama 3 picked 128K as the sweet spot. Llama 2 used 32K. GPT-4 uses ~100K.</p>
-<h4 id="the-regex-and-special-tokens">The regex and special tokens<a class="headerlink" href="#the-regex-and-special-tokens" title="Anchor link to this section">&para;</a></h4>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># llama/tokenizer.py:47 — the regex that defines &quot;raw chunks&quot; before BPE merging.</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Breaks text into contractions, words, short number runs, punctuation, whitespace.</span>
+<p><strong>类比。</strong> 英语有几百万种词形，却只有 26 个字母。BPE 处在这两个极端之间 —— 一张由"词片段"构成的词表，可以拼出任意内容。128K 已经足够大，能让最常见的约 2 万个英文词成为单 token，而罕见 / 技术 / 多语言字符串会被拆开。</p>
+<p><strong>为什么是 128K，不是 50K 或 500K？</strong> 词表越大 → token 序列越短 → 每句耗算力越少 → 实际上下文更长。但同时 → 嵌入表更大（128K × 4096 ≈ 5.25 亿参数，光嵌入层就要这么多）、LM head 也更大。Llama 3 把 128K 选为平衡点。Llama 2 用 32K，GPT-4 大约用 100K。</p>
+<h4 id="token">正则表达式与特殊 token<a class="headerlink" href="#token" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># llama/tokenizer.py:47 —— 这个正则定义了 BPE 合并前&quot;原始片段&quot;的切法。</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># 把文本切成缩写、单词、短数字串、标点、空白。</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">pat_str</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?i:&#39;s|&#39;t|&#39;re|&#39;ve|&#39;m|&#39;ll|&#39;d)|[^\r\n\p</span><span class="si">{L}</span><span class="s2">\p</span><span class="si">{N}</span><span class="s2">]?\p</span><span class="si">{L}</span><span class="s2">+|\p</span><span class="si">{N}</span><span class="s2">{1,3}| ?[^\s\p</span><span class="si">{L}</span><span class="s2">\p</span><span class="si">{N}</span><span class="s2">]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+&quot;</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Special tokens occupy the top 256 slots of the vocab:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 特殊 token 占据词表顶部 256 个槽位：</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">special_tokens</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">&quot;&lt;|begin_of_text|&gt;&quot;</span><span class="p">,</span>     <span class="c1"># BOS: start of any input</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;&lt;|end_of_text|&gt;&quot;</span><span class="p">,</span>       <span class="c1"># EOS: end of raw-text completion</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">&quot;&lt;|start_header_id|&gt;&quot;</span><span class="p">,</span>   <span class="c1"># Wraps the role marker in chat format</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">&quot;&lt;|begin_of_text|&gt;&quot;</span><span class="p">,</span>     <span class="c1"># BOS: 任何输入的起始</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;&lt;|end_of_text|&gt;&quot;</span><span class="p">,</span>       <span class="c1"># EOS: 纯文本续写的结束</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="s2">&quot;&lt;|start_header_id|&gt;&quot;</span><span class="p">,</span>   <span class="c1"># 聊天格式里 role 标签的包裹符</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="s2">&quot;&lt;|end_header_id|&gt;&quot;</span><span class="p">,</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">&quot;&lt;|eot_id|&gt;&quot;</span><span class="p">,</span>            <span class="c1"># &quot;End of turn&quot; — separates chat messages</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="c1"># ... + ~250 reserved slots for future use</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">&quot;&lt;|eot_id|&gt;&quot;</span><span class="p">,</span>            <span class="c1"># &quot;end of turn&quot; —— 分隔聊天消息</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="c1"># ... + 约 250 个保留槽位以备将来使用</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">]</span>
 </span></code></pre></div>
-<h4 id="the-embedding-lookup">The embedding lookup<a class="headerlink" href="#the-embedding-lookup" title="Anchor link to this section">&para;</a></h4>
-<p><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L280">llama/model.py:280</a>:</p>
+<h4 id="_1">嵌入查表<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h4>
+<p><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L280">llama/model.py:280</a>：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tok_embeddings</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>   <span class="c1"># tokens: (B, T) int   →   h: (B, T, 4096)</span>
 </span></code></pre></div>
-<p><code>VocabParallelEmbedding</code> is a big lookup matrix of shape <code>(128256, 4096)</code>, sharded across GPUs — functionally identical to <code>nn.Embedding</code>. <strong>Each row is a 4096-dim vector, and there are 128,256 rows.</strong> Token ID <em>i</em> just grabs row <em>i</em>.</p>
-<p>Positions are <strong>not</strong> encoded here. They're injected later by RoPE, inside attention.</p>
+<p><code>VocabParallelEmbedding</code> 就是一张形状为 <code>(128256, 4096)</code> 的大查找矩阵，跨 GPU 分片存放 —— 功能上等同于 <code>nn.Embedding</code>。<strong>每一行是一个 4096 维向量，总共有 128,256 行。</strong> token ID <em>i</em> 就是取第 <em>i</em> 行。</p>
+<p>位置信息<strong>不</strong>在这里注入，要等到注意力内部的 RoPE 那一步。</p>
 <hr />
-<h3 id="42-positional-encoding-rotary-position-embeddings-rope">4.2 Positional encoding: Rotary Position Embeddings (RoPE)<a class="headerlink" href="#42-positional-encoding-rotary-position-embeddings-rope" title="Anchor link to this section">&para;</a></h3>
-<p><strong>What it is.</strong> A way to inject token position information by <strong>rotating</strong> query and key vectors in 2D subspaces.</p>
-<p><strong>Why it exists.</strong> Self-attention is permutation-invariant — without position info, "dog bites man" and "man bites dog" are identical. RoPE encodes position so that (a) no extra parameters are added, (b) attention naturally encodes <strong>relative</strong> position (similarity between positions <em>i</em> and <em>j</em> depends only on <code>i − j</code>), &copy; it extrapolates well to longer contexts than seen during training.</p>
-<h4 id="the-math">The math<a class="headerlink" href="#the-math" title="Anchor link to this section">&para;</a></h4>
-<p>Take one query vector <strong>q</strong> (a d-dim vector) at position <strong>m</strong>. Group its d dimensions into d/2 pairs: (q₀, q₁), (q₂, q₃), …. Each pair is treated as a 2D vector and <strong>rotated</strong> by an angle that depends on both the position m and which pair we're rotating.</p>
-<p>For pair k (indices 2k and 2k+1), the rotation angle is m·θₖ, where:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>θₖ = θ_base ^ (−2k/d),     for k = 0, 1, …, d/2 − 1
+<h3 id="42-rope">4.2 位置编码：旋转位置编码 (RoPE)<a class="headerlink" href="#42-rope" title="Anchor link to this section">&para;</a></h3>
+<p><strong>是什么。</strong> 通过在二维子空间里<strong>旋转</strong> query 和 key 向量来注入位置信息的一种方式。</p>
+<p><strong>为什么需要它。</strong> 自注意力本身是置换不变的 —— 没有位置信息的话，"狗咬人"和"人咬狗"对它来说是一样的。RoPE 注入位置的方式满足以下好处：(a) 不引入额外参数，(b) 注意力里自然地编码了<strong>相对</strong>位置（位置 <em>i</em> 和 <em>j</em> 之间的相似度只取决于 <code>i − j</code>），&copy; 对超出训练长度的上下文外推得不错。</p>
+<h4 id="_2">数学公式<a class="headerlink" href="#_2" title="Anchor link to this section">&para;</a></h4>
+<p>对一个在位置 <strong>m</strong> 的 query 向量 <strong>q</strong>（d 维）。把 d 维分成 d/2 对：(q₀, q₁), (q₂, q₃), …。每一对视为一个 2D 向量，<strong>旋转</strong>一个同时取决于位置 m 和第几对的角度。</p>
+<p>对第 k 对（下标 2k 和 2k+1），旋转角度为 m·θₖ，其中：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>θₖ = θ_base ^ (−2k/d),     k = 0, 1, …, d/2 − 1
 </span></code></pre></div>
-<p>In Llama 3, θ_base = 500,000 and d = 128 (head_dim), so θ₀ = 1 (fastest rotation) down to θ₆₃ ≈ 1/500,000 (slowest).</p>
-<p>The 2D rotation for pair k at position m:</p>
+<p>在 Llama 3 中，θ_base = 500,000，d = 128（head_dim），所以 θ₀ = 1（转得最快），一直到 θ₆₃ ≈ 1/500,000（转得最慢）。</p>
+<p>第 k 对在位置 m 的 2D 旋转：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>⎛ q&#39;₂ₖ   ⎞   ⎛ cos(m·θₖ)   −sin(m·θₖ) ⎞ ⎛ q₂ₖ   ⎞
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>⎜        ⎟ = ⎜                        ⎟ ⎜       ⎟
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>⎝ q&#39;₂ₖ₊₁ ⎠   ⎝ sin(m·θₖ)    cos(m·θₖ) ⎠ ⎝ q₂ₖ₊₁ ⎠
 </span></code></pre></div>
-<p>The key property that makes RoPE work:</p>
+<p>RoPE 起作用的关键性质：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>⟨ R_m · q ,  R_n · k ⟩   =   ⟨ q ,  R_(n−m) · k ⟩
 </span></code></pre></div>
-<p>Translation: the dot product between a rotated query at position m and a rotated key at position n depends <strong>only on the difference n − m</strong> — not on their absolute positions. That's what "relative position" means here.</p>
-<h4 id="visual-rotating-one-pair">Visual: rotating one pair<a class="headerlink" href="#visual-rotating-one-pair" title="Anchor link to this section">&para;</a></h4>
-<p><img alt="RoPE: rotating one (x, y) pair by position m. Three unit-length vectors at positions m=0, m=1, and m=5 are shown on a 2D plane; only their angle changes with m." src="../../assets/notes/rope_rotation.svg" /></p>
-<p>The vector's <strong>length never changes</strong> — rotation only moves it around the unit circle. What changes is its <em>angle</em>, and that angle encodes position.</p>
-<h4 id="worked-numerical-example">Worked numerical example<a class="headerlink" href="#worked-numerical-example" title="Anchor link to this section">&para;</a></h4>
-<p>Let's use a tiny head_dim d = 4 (just 2 pairs) and θ_base = 10,000 for readability.</p>
-<p>Frequencies:</p>
+<p>翻译：位置 m 的 query 和位置 n 的 key 旋转后再做的点积，<strong>只取决于差值 n − m</strong>，与它们的绝对位置无关。这就是这里"相对位置"的含义。</p>
+<h4 id="_3">示意图：旋转一对<a class="headerlink" href="#_3" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="RoPE：按位置 m 旋转一对 (x, y)。在 2D 平面上画出了 m=0、m=1、m=5 的三个单位长度向量，只有角度随 m 改变。" src="../../../assets/notes/rope_rotation.svg" /></p>
+<p>向量的<strong>长度从不改变</strong> —— 旋转只在单位圆上移动它。变化的是它的<em>角度</em>，而这个角度就编码了位置。</p>
+<h4 id="_4">数值化示例<a class="headerlink" href="#_4" title="Anchor link to this section">&para;</a></h4>
+<p>用一个迷你的 head_dim d = 4（只有 2 对）和 θ_base = 10,000，方便读数。</p>
+<p>频率：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>θ₀ = 10000^(−0/4) = 1
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>θ₁ = 10000^(−2/4) = 10000^(−0.5) = 0.01
 </span></code></pre></div>
-<p>Take a query vector q = [1, 0, 1, 0]. Let's rotate it at <strong>position m = 2</strong>:</p>
+<p>取一个 query 向量 q = [1, 0, 1, 0]，在<strong>位置 m = 2</strong> 旋转：</p>
 <ul>
-<li><strong>Pair 0</strong> (q₀, q₁) = (1, 0). Angle = 2 · 1 = 2 rad.<br />
-New pair = (cos 2, sin 2) = (−0.416, 0.909).</li>
-<li><strong>Pair 1</strong> (q₂, q₃) = (1, 0). Angle = 2 · 0.01 = 0.02 rad.<br />
-New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
+<li><strong>第 0 对</strong> (q₀, q₁) = (1, 0)。角度 = 2 · 1 = 2 弧度。
+  新对 = (cos 2, sin 2) = (−0.416, 0.909)。</li>
+<li><strong>第 1 对</strong> (q₂, q₃) = (1, 0)。角度 = 2 · 0.01 = 0.02 弧度。
+  新对 = (cos 0.02, sin 0.02) = (0.9998, 0.020)。</li>
 </ul>
-<p>So R₂·q ≈ [−0.416, 0.909, 0.9998, 0.020].</p>
-<p>At <strong>position m = 5</strong> the same q becomes:</p>
+<p>所以 R₂·q ≈ [−0.416, 0.909, 0.9998, 0.020]。</p>
+<p>同一个 q 在<strong>位置 m = 5</strong> 会变成：</p>
 <ul>
-<li>Pair 0: angle = 5 rad → (cos 5, sin 5) = (0.284, −0.959)</li>
-<li>Pair 1: angle = 0.05 rad → (0.9988, 0.050)</li>
+<li>第 0 对：角度 = 5 弧度 → (cos 5, sin 5) = (0.284, −0.959)</li>
+<li>第 1 对：角度 = 0.05 弧度 → (0.9988, 0.050)</li>
 </ul>
-<p>So R₅·q ≈ [0.284, −0.959, 0.9988, 0.050].</p>
-<p>Notice:</p>
+<p>所以 R₅·q ≈ [0.284, −0.959, 0.9988, 0.050]。</p>
+<p>注意：</p>
 <ol>
-<li>The <strong>low-frequency pair</strong> (pair 1, small θ₁) barely moves — it barely changes between positions 2 and 5. It tracks "far-scale" position.</li>
-<li>The <strong>high-frequency pair</strong> (pair 0, θ₀ = 1) whipped almost halfway around the circle. It tracks "near-scale" position.</li>
-<li>Different pairs = different clock hands at different speeds. Together they give a unique "position fingerprint" for each m.</li>
+<li><strong>低频对</strong>（第 1 对，θ₁ 很小）几乎没动 —— 位置 2 到 5 之间变化很微弱。它追踪的是"远距离尺度"的位置。</li>
+<li><strong>高频对</strong>（第 0 对，θ₀ = 1）在圆上几乎转了半圈。它追踪的是"近距离尺度"的位置。</li>
+<li>不同的对 = 不同速度的时钟指针。合起来就是每个 m 的一张唯一"位置指纹"。</li>
 </ol>
-<p>Now the punchline. Say a key k = [1, 0, 1, 0] sits at position n = 3 (so n − m = 3 − 2 = 1). You can verify by computing the dot product ⟨R₂·q, R₃·k⟩ that it equals ⟨q, R₁·k⟩ — attention only cares about <strong>relative offset</strong>, not absolute indices.</p>
+<p>现在是点睛之笔。假设一个 key k = [1, 0, 1, 0] 在位置 n = 3（所以 n − m = 3 − 2 = 1）。你可以自行验证点积 ⟨R₂·q, R₃·k⟩ 等于 ⟨q, R₁·k⟩ —— 注意力只在乎<strong>相对偏移</strong>，不在乎绝对下标。</p>
 <blockquote>
-<p>⚠️ <strong>Confusion point:</strong> RoPE is applied only to <strong>Q and K</strong>, never to V. The point is to make ⟨qᵢ, kⱼ⟩ encode i − j. Values don't participate in the positional inner product, so rotating them would just add noise.</p>
+<p>⚠️ <strong>容易搞错的地方：</strong> RoPE 只应用到 <strong>Q 和 K</strong>，<strong>不</strong>应用到 V。它的目的是让 ⟨qᵢ, kⱼ⟩ 编码 i − j。value 不参与位置相关的内积，旋转它们只会添乱。</p>
 </blockquote>
-<h4 id="why-is-this-better-than-the-original-2017-position-encoding">Why is this better than the original (2017) position encoding?<a class="headerlink" href="#why-is-this-better-than-the-original-2017-position-encoding" title="Anchor link to this section">&para;</a></h4>
-<p>The 2017 Transformer used <strong>sinusoidal absolute</strong> position encoding: a fixed (non-learned) vector per position, <em>added</em> to the token embedding at the input layer. GPT-2 used learned absolute embeddings — same idea, but the position vectors are trainable. RoPE beats both on four axes:</p>
-<p><strong>1. Relative by construction, not by accident.</strong> Sinusoidal gives the model two <em>absolute</em> positions (pos_i and pos_j) and trusts attention to figure out "distance = j − i" on its own. RoPE bakes relative position in by identity:</p>
+<h4 id="2017">为什么这比原始（2017）位置编码更好？<a class="headerlink" href="#2017" title="Anchor link to this section">&para;</a></h4>
+<p>2017 年的 Transformer 用的是<strong>正弦绝对位置</strong>编码：每个位置一个固定的（非学习的）向量，在输入层<em>加到</em> token 嵌入上。GPT-2 用的是可学习的绝对嵌入 —— 思路一样，只是位置向量是可训练的。RoPE 在四个方面都比它们强：</p>
+<p><strong>1. 按定义就是相对的，而不是碰运气。</strong> 正弦编码给模型两个<em>绝对</em>位置（pos_i 和 pos_j），指望注意力自己推出来"距离 = j − i"。RoPE 直接以恒等式的形式把相对位置内建了：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>⟨ R_m · q ,  R_n · k ⟩   =   ⟨ q ,  R_(n−m) · k ⟩
 </span></code></pre></div>
-<p>Attention only ever looks at relative offsets, which is what it actually cares about — "how far back is that token?" is almost always more useful than "what's my absolute index?"</p>
-<p><strong>2. Injected at every layer, not just the first.</strong> Sinusoidal/learned-absolute is added <em>once</em> at the input embedding. After 32 blocks of residual adds, norms, and SwiGLU nonlinearities, that position signal gets progressively blurred — late layers are working with a mushy echo of it. RoPE is applied <em>inside attention</em> every single layer, so position info is fresh each time Q meets K.</p>
-<p><strong>3. Doesn't contaminate values.</strong> Sinusoidal mixes position into the entire residual stream, so values V carry a position signal mixed in with their content. RoPE only rotates Q and K. Values stay pure <em>content</em> — the thing that actually gets passed along stays uncoupled from "where it came from."</p>
-<p><strong>4. Extrapolates to longer contexts.</strong> Sinusoidal's theoretical extrapolation to unseen positions is mediocre in practice; learned absolute embeddings don't extrapolate <em>at all</em> (position 8193 has literally no vector). RoPE degrades gracefully past training length, and with cheap tweaks — like Llama 3's jump from θ_base = 10,000 to 500,000, or tricks like YaRN and NTK-aware scaling — context can be extended far beyond the training window with little or no retraining.</p>
-<p><strong>One-sentence version:</strong> sinusoidal says "here is <em>where</em> you are"; RoPE says "here is <em>how far apart</em> you and this other token are" — which is the actual question attention is asking.</p>
-<h4 id="the-code">The code<a class="headerlink" href="#the-code" title="Anchor link to this section">&para;</a></h4>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># llama/model.py:49-54 — precompute complex exponentials once.</span>
+<p>注意力看到的永远是相对偏移，而这恰恰是它真正关心的 —— "那个 token 在我前面多远？"几乎永远比"我的绝对下标是多少？"更有用。</p>
+<p><strong>2. 每一层都注入，不是只注入一次。</strong> 正弦 / 可学习绝对编码只在输入嵌入处加<em>一次</em>。经过 32 层残差加法、归一化、SwiGLU 非线性之后，这个位置信号会越来越糊 —— 后面的层工作在它的一个"糊糊的回声"上。RoPE 在<em>注意力内部</em>每一层都应用一次，所以 Q 遇到 K 时，位置信息总是新鲜的。</p>
+<p><strong>3. 不污染 value。</strong> 正弦编码把位置混进整条残差流，所以 value V 会在内容之外带着位置信号。RoPE 只旋转 Q 和 K。Value 保持纯粹的<em>内容</em> —— 真正被搬运的东西，和"它从哪儿来"解耦。</p>
+<p><strong>4. 向更长上下文外推。</strong> 正弦的理论外推在实践中平平；可学习绝对编码<strong>根本</strong>不外推（位置 8193 根本没有对应的向量）。RoPE 在超过训练长度后还能优雅地退化，再加上便宜的微调 —— 比如 Llama 3 把 θ_base 从 10,000 改成 500,000，或用 YaRN、NTK-aware scaling 之类的方法 —— 上下文可以远远拉伸到训练窗口之外，几乎不需要重新训练。</p>
+<p><strong>一句话版本：</strong> 正弦编码说的是"你在<em>哪里</em>"；RoPE 说的是"你和另一个 token <em>相距多远</em>" —— 而这才是注意力真正在问的问题。</p>
+<h4 id="_5">代码<a class="headerlink" href="#_5" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># llama/model.py:49-54 —— 一次性预计算好复指数。</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">precompute_freqs_cis</span><span class="p">(</span><span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10000.0</span><span class="p">):</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="c1"># freqs[k] = 1 / theta^(2k/dim)  for k = 0, 2, ..., dim-2</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="c1"># freqs[k] = 1 / theta^(2k/dim)  k = 0, 2, ..., dim-2</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">freqs</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">theta</span> <span class="o">**</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[:</span> <span class="p">(</span><span class="n">dim</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)]</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="o">/</span> <span class="n">dim</span><span class="p">))</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">freqs</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>   <span class="c1"># positions 0..end-1</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">freqs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">freqs</span><span class="p">)</span>                        <span class="c1"># (end, dim/2) — angle per (pos, pair)</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="c1"># torch.polar(1, angle) = e^(i·angle) — a pure rotation on the unit circle.</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">freqs</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>   <span class="c1"># 位置 0..end-1</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">freqs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">freqs</span><span class="p">)</span>                        <span class="c1"># (end, dim/2) —— 每个 (位置, 对) 的角度</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="c1"># torch.polar(1, angle) = e^(i·angle) —— 单位圆上的纯旋转。</span>
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">freqs_cis</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">freqs</span><span class="p">),</span> <span class="n">freqs</span><span class="p">)</span>   <span class="c1"># complex64, (end, dim/2)</span>
 </span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="k">return</span> <span class="n">freqs_cis</span>
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># llama/model.py:65-75 — apply rotation to q and k.</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># llama/model.py:65-75 —— 把旋转应用到 q 和 k。</span>
 </span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_rotary_emb</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">):</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="c1"># Reinterpret the last dim as pairs: (..., d) → (..., d/2, 2) → view as complex.</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="c1"># 把最后一维看成对：(..., d) → (..., d/2, 2) → 视为复数。</span>
 </span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="n">xq_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_complex</span><span class="p">(</span><span class="n">xq</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">xq</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    <span class="n">xk_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_complex</span><span class="p">(</span><span class="n">xk</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">*</span><span class="n">xk</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="n">freqs_cis</span> <span class="o">=</span> <span class="n">reshape_for_broadcast</span><span class="p">(</span><span class="n">freqs_cis</span><span class="p">,</span> <span class="n">xq_</span><span class="p">)</span>
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    <span class="c1"># Complex multiply = rotate each pair by its position-dependent angle.</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    <span class="c1"># 复数乘法 = 每一对按它的位置相关角度旋转。</span>
 </span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="n">xq_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_real</span><span class="p">(</span><span class="n">xq_</span> <span class="o">*</span> <span class="n">freqs_cis</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>    <span class="n">xk_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_real</span><span class="p">(</span><span class="n">xk_</span> <span class="o">*</span> <span class="n">freqs_cis</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    <span class="k">return</span> <span class="n">xq_out</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">xq</span><span class="p">),</span> <span class="n">xk_out</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">xk</span><span class="p">)</span>
 </span></code></pre></div>
-<p>The trick is representing each pair as a complex number x + iy, then using complex multiplication — because (x + iy) · e^(iφ) is literally the rotation of (x, y) by angle φ. Elegant.</p>
+<p>巧妙的地方是把每一对表示成复数 x + iy，然后用复数乘法 —— 因为 (x + iy) · e^(iφ) 本来就是 (x, y) 绕原点旋转角度 φ。优雅。</p>
 <hr />
-<h3 id="43-normalization-rmsnorm">4.3 Normalization: RMSNorm<a class="headerlink" href="#43-normalization-rmsnorm" title="Anchor link to this section">&para;</a></h3>
-<p><strong>What it is.</strong> A simpler, cheaper variant of LayerNorm.</p>
-<p><strong>Why it exists.</strong> LayerNorm subtracts the mean, divides by std, and has a learnable bias. Empirically, the mean-subtraction and bias add little; removing them makes the op ~20% faster and doesn't hurt quality.</p>
-<p><strong>The math:</strong></p>
+<h3 id="43-rmsnorm">4.3 归一化：RMSNorm<a class="headerlink" href="#43-rmsnorm" title="Anchor link to this section">&para;</a></h3>
+<p><strong>是什么。</strong> 一种更简单、更省的 LayerNorm 变体。</p>
+<p><strong>为什么需要它。</strong> LayerNorm 减均值、除以标准差、还带一个可学习的偏置。经验上，减均值和偏置贡献很小；去掉它们能让运算快约 20%，质量不掉。</p>
+<p><strong>公式：</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>                     x
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>RMSNorm(x)  =  ────────────────────────  ⊙  γ
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>                √( (1/d) Σᵢ xᵢ²  +  ε )
 </span></code></pre></div>
-<p>Compare with LayerNorm:</p>
+<p>和 LayerNorm 对比：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>                    x − μ
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>LayerNorm(x)  =  ─────────────  ⊙  γ  +  β
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>                  √(σ² + ε)
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>     where   μ  = (1/d) Σᵢ xᵢ
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>     其中    μ  = (1/d) Σᵢ xᵢ
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>             σ² = (1/d) Σᵢ (xᵢ − μ)²
 </span></code></pre></div>
-<p>RMSNorm drops μ (the mean subtraction) and β (the bias). That's the whole difference.</p>
+<p>RMSNorm 去掉了 μ（减均值）和 β（偏置）。这就是全部差别。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># llama/model.py:35-46</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">RMSNorm</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e-6</span><span class="p">):</span>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">eps</span> <span class="o">=</span> <span class="n">eps</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span>   <span class="c1"># learnable per-dim scale γ</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span>   <span class="c1"># 每维可学习放缩 γ</span>
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_norm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="c1"># rsqrt(mean(x²) + ε)  — reciprocal of RMS. No mean subtraction.</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="c1"># rsqrt(mean(x²) + ε)  —— RMS 的倒数。不减均值。</span>
 </span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">rsqrt</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span><span class="p">)</span>
 </span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
 </span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>        <span class="c1"># Upcast to fp32 for numerical stability of the squaring, then back.</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>        <span class="c1"># 把平方那一步上调到 fp32 保证数值稳定，然后转回。</span>
 </span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_norm</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">float</span><span class="p">())</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>        <span class="k">return</span> <span class="n">output</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span>
 </span></code></pre></div>
-<p><strong>Pre-norm vs post-norm.</strong> Llama 3 is <strong>pre-norm</strong>: the norm is applied to the <em>input</em> of each sublayer, not to the residual sum. See <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L246-L247">llama/model.py:246-247</a>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">h</span>   <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attention_norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># normed input → attn → residual add</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ffn_norm</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>           <span class="c1"># normed input → ffn → residual add</span>
+<p><strong>Pre-norm 对比 post-norm。</strong> Llama 3 用的是 <strong>pre-norm</strong>：归一化应用到每个子层的<em>输入</em>，而不是残差相加后的结果。见 <a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L246-L247">llama/model.py:246-247</a>：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">h</span>   <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attention_norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># 归一化后的输入 → 注意力 → 残差相加</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ffn_norm</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>           <span class="c1"># 归一化后的输入 → FFN → 残差相加</span>
 </span></code></pre></div>
-<p>Pre-norm trains more stably at depth — the residual "highway" is never touched by norms, so gradients flow cleanly end-to-end.</p>
+<p>Pre-norm 在深层网络里训练更稳定 —— 残差"高速公路"从不经过归一化，所以梯度能干净地从头流到尾。</p>
 <hr />
-<h3 id="44-attention-grouped-query-attention-gqa-with-kv-cache">4.4 Attention: Grouped-Query Attention (GQA) with KV cache<a class="headerlink" href="#44-attention-grouped-query-attention-gqa-with-kv-cache" title="Anchor link to this section">&para;</a></h3>
-<p><strong>What it is.</strong> The mechanism by which each token mixes information from previous tokens.</p>
-<p><strong>Why it exists.</strong> Each token produces three vectors: a <strong>query</strong> (what am I looking for?), a <strong>key</strong> (what do I offer?), and a <strong>value</strong> (what should be passed along if matched?). The attention output is a weighted average of values, where weights come from query-key similarity.</p>
-<h4 id="the-math_1">The math<a class="headerlink" href="#the-math_1" title="Anchor link to this section">&para;</a></h4>
-<p>Standard scaled dot-product attention:</p>
+<h3 id="44-gqa-kv">4.4 注意力：分组查询注意力 (GQA) 与 KV 缓存<a class="headerlink" href="#44-gqa-kv" title="Anchor link to this section">&para;</a></h3>
+<p><strong>是什么。</strong> 每个 token 用来吸收前面 token 信息的机制。</p>
+<p><strong>为什么需要它。</strong> 每个 token 会产生三个向量：<strong>query</strong>（我在找什么？）、<strong>key</strong>（我能提供什么？）、<strong>value</strong>（如果匹配到了应该传递什么？）。注意力的输出是 value 的加权平均，权重来自 query-key 相似度。</p>
+<h4 id="_6">数学公式<a class="headerlink" href="#_6" title="Anchor link to this section">&para;</a></h4>
+<p>标准的缩放点积注意力：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>                               ⎛  Q · Kᵀ  ⎞
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Attention(Q, K, V)  =  softmax ⎜ ──────── ⎟ · V
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>                               ⎝   √dₖ    ⎠
 </span></code></pre></div>
-<p>Where Q ∈ ℝ^(T × dₖ), K ∈ ℝ^(T × dₖ), V ∈ ℝ^(T × d_v). The √dₖ division keeps the softmax from saturating when dₖ is large (variance of a dot product of dₖ iid terms grows with dₖ).</p>
-<p>For multi-head, this is repeated h times in parallel with different projections, then concatenated. In GQA, the <strong>queries</strong> still have h heads, but the <strong>keys and values</strong> have h_kv &lt; h heads, and each KV head is shared across a group of h / h_kv query heads.</p>
-<h4 id="why-does-gqa-work-doesnt-it-lose-detail">Why does GQA work? Doesn't it lose detail?<a class="headerlink" href="#why-does-gqa-work-doesnt-it-lose-detail" title="Anchor link to this section">&para;</a></h4>
-<p>Good instinct to worry — at first glance, 4 query heads looking at 1 shared key/value locker <em>should</em> be worse than 4 private lockers. The reason it isn't, in practice:</p>
+<p>其中 Q ∈ ℝ^(T × dₖ)，K ∈ ℝ^(T × dₖ)，V ∈ ℝ^(T × d_v)。除以 √dₖ 是为了防止 dₖ 很大时 softmax 饱和（dₖ 个独立同分布项的点积方差与 dₖ 同量级增长）。</p>
+<p>多头情况下就是把这套并行地重复 h 次，每次用不同的投影矩阵，然后拼起来。在 GQA 里，<strong>query</strong> 依然有 h 个头，但 <strong>key 和 value</strong> 只有 h_kv &lt; h 个头，每个 KV 头被一组 h / h_kv 个 query 头共享。</p>
+<h4 id="gqa">GQA 为什么有效？会不会丢细节？<a class="headerlink" href="#gqa" title="Anchor link to this section">&para;</a></h4>
+<p>担心是对的 —— 乍一看，4 个 query 头去读同一对共享的 KV，直觉上<em>应该</em>比各有各的 KV 差。而实际上不会，原因：</p>
 <ol>
-<li><strong>In vanilla MHA, many heads learn redundant K/V patterns.</strong> The GQA paper (Ainslie et al., 2023) showed that when you look at what each K and V head actually learns across a trained transformer, there's substantial duplication. You're paying to store nearly-identical information four times.</li>
-<li><strong>Queries carry the diversity, keys/values carry the content.</strong> The 4 queries in a group still ask 4 <em>different</em> questions. They just reference the same evidence. Think: 4 students reading the same textbook but with different homework prompts. They extract different answers because their questions differ.</li>
-<li><strong>Empirically small quality drop.</strong> Going from MHA → GQA-8 (32 Q, 8 KV) on Llama-sized models costs ~0.1–0.3 perplexity points. Going further to MQA (32 Q, 1 KV) costs ~1 ppl — that's the knee. GQA sits at the knee.</li>
-<li><strong>The savings are huge.</strong> The KV cache is <strong>the dominant memory cost</strong> of long-context inference. 4× reduction = 4× longer contexts, or 4× bigger batches, at (roughly) the same quality.</li>
+<li><strong>在普通 MHA 里，很多头学到的 K/V 模式是冗余的。</strong> GQA 论文（Ainslie et al., 2023）指出：在一个训好的 Transformer 里看每个 K 和 V 头真正学到什么，会发现大量重复。我们是在付费把几乎一样的东西重复存 4 次。</li>
+<li><strong>多样性在 query 里，内容在 key/value 里。</strong> 一组里的 4 个 query 仍然问 4 个<em>不同</em>的问题，它们只是查同一本证据。打个比方：4 个学生读同一本教科书但作业题不同，他们得到不同的答案是因为他们的问题不同。</li>
+<li><strong>经验上质量损失很小。</strong> 在 Llama 规模的模型上从 MHA → GQA-8（32 Q, 8 KV），困惑度只增加约 0.1–0.3 个点。继续到 MQA（32 Q, 1 KV），会掉约 1 个点 —— 那才是拐点。GQA 就坐在拐点上。</li>
+<li><strong>收益巨大。</strong> KV 缓存是<strong>长上下文推理的主要显存消耗</strong>。缩小 4 倍 = 4 倍更长的上下文，或 4 倍更大的 batch，（大致）质量不变。</li>
 </ol>
-<h4 id="gqa-structure-visualized">GQA structure, visualized<a class="headerlink" href="#gqa-structure-visualized" title="Anchor link to this section">&para;</a></h4>
-<p><img alt="GQA structure in Llama 3 8B: 32 query heads arranged in 8 groups of 4, each group sharing one KV head (drawn below)." src="../../assets/notes/gqa_structure.svg" /></p>
-<h4 id="the-kv-cache-how-and-why">The KV cache — how and why<a class="headerlink" href="#the-kv-cache-how-and-why" title="Anchor link to this section">&para;</a></h4>
-<p><strong>The problem it solves.</strong> During autoregressive generation, the model produces one token at a time. Naively, at step t the model runs a full forward pass on tokens [0, 1, …, t]. But the Q/K/V projections for tokens 0 through t−1 were <strong>already computed in the previous step</strong> — they are deterministic functions of those input tokens. Recomputing them is waste.</p>
-<p><strong>The insight.</strong> Store Kⱼ and Vⱼ for all past tokens. At step t, compute only Qₜ, Kₜ, Vₜ for the newest token, append Kₜ and Vₜ to the cache, and do attention between Qₜ and the full cached K[0..t], V[0..t].</p>
-<p><strong>What's NOT cached: queries.</strong> Q at step t is only used once — for computing attention scores at step t — and then discarded. Storing it would just waste memory. (The one exception is the prefill pass, where we compute many tokens at once; their Qs are used once then discarded.)</p>
-<p><strong>Cache size</strong> for Llama 3 8B at max context, in bf16:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cache_bytes  =  2  ×  n_layers  ×  n_kv_heads  ×  d_head  ×  T  ×  bytes_per_elem
+<h4 id="gqa_1">图解 GQA 结构<a class="headerlink" href="#gqa_1" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="Llama 3 8B 中的 GQA 结构：32 个查询头按 8 组每组 4 个排列，每组共享一个 KV 头（下方绘出）。" src="../../../assets/notes/gqa_structure.svg" /></p>
+<h4 id="kv">KV 缓存 —— 如何工作，为何必要<a class="headerlink" href="#kv" title="Anchor link to this section">&para;</a></h4>
+<p><strong>它解决的问题。</strong> 在自回归生成中，模型一次产一个 token。朴素做法是：第 t 步时对 tokens [0, 1, …, t] 跑一次完整前向。但 token 0 到 t−1 的 Q/K/V 投影在<strong>上一步就已经算过了</strong> —— 它们是这些输入 token 的确定性函数，重新算就是浪费。</p>
+<p><strong>核心思路。</strong> 把所有过去 token 的 Kⱼ 和 Vⱼ 存起来。第 t 步只算最新 token 的 Qₜ、Kₜ、Vₜ，把 Kₜ、Vₜ 追加到缓存，然后在 Qₜ 和整个缓存的 K[0..t]、V[0..t] 之间做注意力。</p>
+<p><strong>不缓存的是：query。</strong> 第 t 步的 Q 只用一次 —— 用来算第 t 步的注意力分数 —— 然后就被丢弃。存它纯粹浪费内存。（唯一的例外是 prefill 那一步：我们一次算很多 token，它们的 Q 也是只用一次就扔。）</p>
+<p><strong>缓存大小</strong>（Llama 3 8B 在最大上下文下，bf16）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cache_bytes  =  2  ×  n_layers  ×  n_kv_heads  ×  d_head  ×  T  ×  每元素字节数
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>             =  2  ×    32      ×      8       ×   128    × 8192 ×       2
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>             ≈  1.07 GB per sequence
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>             ≈  每条序列约 1.07 GB
 </span></code></pre></div>
-<p>With MHA (n_kv = 32) that would have been ~4.3 GB. This is the concrete, operational win of GQA.</p>
-<h4 id="visual-cache-evolution-across-three-timesteps">Visual: cache evolution across three timesteps<a class="headerlink" href="#visual-cache-evolution-across-three-timesteps" title="Anchor link to this section">&para;</a></h4>
-<p><img alt="KV cache evolution across three decode steps: filled slots hold cached K,V pairs; each step writes the new token's K,V into the next slot and reads the whole prefix for attention." src="../../assets/notes/kv_cache.svg" /></p>
-<h4 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Anchor link to this section">&para;</a></h4>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># llama/model.py:90-144 — Attention constructor (abbreviated)</span>
+<p>如果是 MHA（n_kv = 32），就变成约 4.3 GB。这才是 GQA 在实际操作上的具体收益。</p>
+<h4 id="_7">图解：三个时间步里缓存的演化<a class="headerlink" href="#_7" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="KV 缓存在三个解码步骤中的演化：填充格子存放已缓存的 K、V 对；每一步把新 token 的 K、V 写入下一个槽位，并读取整个前缀用于注意力。" src="../../../assets/notes/kv_cache.svg" /></p>
+<h4 id="_8">构造函数<a class="headerlink" href="#_8" title="Anchor link to this section">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># llama/model.py:90-144 —— Attention 构造函数（精简版）</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Attention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>   <span class="c1"># 8 for Llama 3 8B</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_local_heads</span>    <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>    <span class="o">//</span> <span class="n">mp_size</span>  <span class="c1"># 32 Q heads</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">//</span> <span class="n">mp_size</span>  <span class="c1"># 8  KV heads</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="ow">or</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>   <span class="c1"># Llama 3 8B 里是 8</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_local_heads</span>    <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>    <span class="o">//</span> <span class="n">mp_size</span>  <span class="c1"># 32 个 Q 头</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">//</span> <span class="n">mp_size</span>  <span class="c1"># 8  个 KV 头</span>
 </span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">n_rep</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_heads</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span>   <span class="c1"># 4</span>
 </span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dim</span> <span class="o">//</span> <span class="n">args</span><span class="o">.</span><span class="n">n_heads</span>                   <span class="c1"># 128</span>
 </span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
@@ -1652,35 +1652,35 @@ New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
 </span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wv</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wo</span> <span class="o">=</span> <span class="n">RowParallelLinear</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">n_heads</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
-</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        <span class="c1"># Pre-allocated static KV cache. Shape: (max_batch, max_seqlen, n_kv_heads, head_dim)</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        <span class="c1"># 预分配的静态 KV 缓存。形状：(max_batch, max_seqlen, n_kv_heads, head_dim)</span>
 </span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">args</span><span class="o">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">max_seq_len</span><span class="p">,</span>
 </span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>                                    <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">))</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 </span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache_v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span><span class="p">)</span>
 </span></code></pre></div>
-<h4 id="forward">Forward<a class="headerlink" href="#forward" title="Anchor link to this section">&para;</a></h4>
+<h4 id="_9">前向传播<a class="headerlink" href="#_9" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># llama/model.py:146-190</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>                  <span class="c1"># x: (B, T_new, 4096) — T_new=1 when decoding</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>                  <span class="c1"># x: (B, T_new, 4096) —— 解码时 T_new=1</span>
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">xq</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">xv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wq</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">wk</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">wv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">xq</span> <span class="o">=</span> <span class="n">xq</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_heads</span><span class="p">,</span>    <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>   <span class="c1"># (B, T_new, 32, 128)</span>
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="n">xk</span> <span class="o">=</span> <span class="n">xk</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>   <span class="c1"># (B, T_new,  8, 128)</span>
 </span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="n">xv</span> <span class="o">=</span> <span class="n">xv</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_local_kv_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>   <span class="c1"># (B, T_new,  8, 128)</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="n">xq</span><span class="p">,</span> <span class="n">xk</span> <span class="o">=</span> <span class="n">apply_rotary_emb</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="o">=</span><span class="n">freqs_cis</span><span class="p">)</span>             <span class="c1"># RoPE on Q and K only</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="n">xq</span><span class="p">,</span> <span class="n">xk</span> <span class="o">=</span> <span class="n">apply_rotary_emb</span><span class="p">(</span><span class="n">xq</span><span class="p">,</span> <span class="n">xk</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="o">=</span><span class="n">freqs_cis</span><span class="p">)</span>             <span class="c1"># RoPE 只作用于 Q 和 K</span>
 </span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="c1"># WRITE: store new K/V into the cache at positions [start_pos, start_pos+seqlen)</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="c1"># 写入：把新的 K/V 存到缓存的 [start_pos, start_pos+seqlen) 位置</span>
 </span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="n">start_pos</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span> <span class="o">=</span> <span class="n">xk</span>
 </span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">cache_v</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="n">start_pos</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span> <span class="o">=</span> <span class="n">xv</span>
 </span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
-</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="c1"># READ: everything from position 0 through the end of the new tokens</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="c1"># 读取：从位置 0 一直到新 token 的末尾</span>
 </span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="n">keys</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_k</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span>   <span class="c1"># (B, T_total, 8, 128)</span>
 </span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>    <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_v</span><span class="p">[:</span><span class="n">bsz</span><span class="p">,</span> <span class="p">:</span> <span class="n">start_pos</span> <span class="o">+</span> <span class="n">seqlen</span><span class="p">]</span>
 </span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
-</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    <span class="c1"># GQA expansion: copy each of 8 KV heads 4 times → 32 heads to align with Q.</span>
-</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>    <span class="c1"># Pure memory view, no new computation.</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>    <span class="c1"># GQA 扩展：把 8 个 KV 头各复制 4 份 → 32 头以对齐 Q。</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>    <span class="c1"># 纯内存视图，不是新计算。</span>
 </span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>    <span class="n">keys</span>   <span class="o">=</span> <span class="n">repeat_kv</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span>   <span class="bp">self</span><span class="o">.</span><span class="n">n_rep</span><span class="p">)</span>   <span class="c1"># (B, T_total, 32, 128)</span>
 </span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>    <span class="n">values</span> <span class="o">=</span> <span class="n">repeat_kv</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_rep</span><span class="p">)</span>
 </span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>
-</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>    <span class="c1"># Standard attention from here on.</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>    <span class="c1"># 以下是标准的注意力。</span>
 </span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>    <span class="n">xq</span>    <span class="o">=</span> <span class="n">xq</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                <span class="c1"># (B, 32, T_new,   128)</span>
 </span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>    <span class="n">keys</span>  <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>              <span class="c1"># (B, 32, T_total, 128)</span>
 </span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>    <span class="n">values</span><span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -1692,264 +1692,264 @@ New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
 </span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wo</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
-<h3 id="45-feed-forward-network-swiglu">4.5 Feed-forward network: SwiGLU<a class="headerlink" href="#45-feed-forward-network-swiglu" title="Anchor link to this section">&para;</a></h3>
-<p><strong>What it is.</strong> A two-layer MLP with a gating mechanism.</p>
-<p><strong>Why it exists.</strong> The classic transformer FFN is <code>Linear → ReLU → Linear</code> — a simple per-token nonlinearity that lets tokens do point-wise computation after mixing via attention. SwiGLU replaces this with a gated variant that empirically gives better loss per parameter.</p>
-<h4 id="the-math_2">The math<a class="headerlink" href="#the-math_2" title="Anchor link to this section">&para;</a></h4>
+<h3 id="45-swiglu">4.5 前馈网络：SwiGLU<a class="headerlink" href="#45-swiglu" title="Anchor link to this section">&para;</a></h3>
+<p><strong>是什么。</strong> 一个带门控机制的两层 MLP。</p>
+<p><strong>为什么需要它。</strong> 经典 Transformer 的 FFN 是 <code>Linear → ReLU → Linear</code> —— 在注意力完成信息混合之后，让 token 逐位做一点非线性运算。SwiGLU 用一个门控变体替换了它，经验上在相同参数量下 loss 更低。</p>
+<h4 id="_10">数学公式<a class="headerlink" href="#_10" title="Anchor link to this section">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>                              x
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>SiLU(x)  =  x · σ(x)  =  ─────────────
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>                          1 + e^(−x)
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>SwiGLU(x)  =  W₂ · (  SiLU(W₁·x)   ⊙   (W₃·x)  )
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>              └down┘  └── gate ──┘       └ up ┘
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>             └降维┘  └── 门 ──┘         └ 升维 ┘
 </span></code></pre></div>
-<p>Three learnable projections, not two: W₁ (the "gate" projection, goes through SiLU), W₃ (the "up" projection, no activation), and W₂ (the "down" projection, back to model dim). The SwiGLU operator is the elementwise product of the first two.</p>
-<h4 id="range-and-extreme-scenarios-a-deeper-look-at-silu">Range and extreme scenarios (a deeper look at SiLU)<a class="headerlink" href="#range-and-extreme-scenarios-a-deeper-look-at-silu" title="Anchor link to this section">&para;</a></h4>
-<p><img alt="SiLU activation plotted from x = −6 to 6, with ReLU and y = x drawn as reference. The curve is smooth everywhere, approaches y = x for large positive x, approaches 0 from below for large negative x, and dips to a global minimum of about −0.278 near x = −1.28." src="../../assets/notes/silu_plot.svg" /></p>
-<p>Three things to read off the plot:</p>
+<p>不是两个投影而是三个：W₁（"门"投影，过 SiLU）、W₃（"升维"投影，无激活）、W₂（"降维"投影，回到 model dim）。SwiGLU 算子就是前两者的逐元素乘积。</p>
+<h4 id="silu">值域与极端情形（深入看 SiLU）<a class="headerlink" href="#silu" title="Anchor link to this section">&para;</a></h4>
+<p><img alt="SiLU 激活函数在 x = −6 到 6 区间的曲线，并画出 ReLU 和 y = x 作参考。曲线处处光滑；x 很大时接近 y = x；x 很负时从下方逼近 0；在约 x = −1.28 处达到全局最小值 −0.278。" src="../../../assets/notes/silu_plot.svg" /></p>
+<p>从图上可以读出三件事：</p>
 <ul>
-<li><strong>Linear on the right</strong>, so for large positive x, SiLU behaves like the identity (compare with the dashed <code>y = x</code>).</li>
-<li><strong>Not bounded below at 0 like ReLU.</strong> SiLU dips slightly negative, with a global minimum at roughly <code>(−1.28, −0.278)</code> marked in red. This is the "negative gate" that SwiGLU can exploit.</li>
-<li><strong>Smoothly approaches 0 on the left</strong>, slowly — at <code>x = −10</code>, SiLU is still about <code>−4.5 × 10⁻⁴</code>. Not zero, just vanishingly small. Crucially, no kink at <code>x = 0</code> (unlike ReLU), which helps gradient flow during optimization.</li>
+<li><strong>右侧是线性的</strong>，所以对较大的正 x，SiLU 行为近似恒等（对比虚线 <code>y = x</code>）。</li>
+<li><strong>不像 ReLU 那样在 0 处截止。</strong> SiLU 会轻微下探到负值，全局最小值大约在 <code>(−1.28, −0.278)</code>（红点标出）。这是 SwiGLU 可以利用的"负门"。</li>
+<li><strong>左侧光滑地接近 0，但速度很慢</strong> —— 在 <code>x = −10</code> 处，SiLU 仍然约为 <code>−4.5 × 10⁻⁴</code>。不是 0，只是极小。关键是在 <code>x = 0</code> 处没有拐点（不像 ReLU），这对优化时的梯度流很有帮助。</li>
 </ul>
-<p><strong>SwiGLU range.</strong> SiLU(W₁·x) ⊙ (W₃·x) is <strong>unbounded in both directions</strong> and not monotonic. Think of W₁·x as the "soft gate" (call it a) and W₃·x as the "signal" (call it b):</p>
+<p><strong>SwiGLU 的值域。</strong> SiLU(W₁·x) ⊙ (W₃·x) 在两个方向上都<strong>无界</strong>，且不是单调的。把 W₁·x 看作"软门"（叫它 a），把 W₃·x 看作"信号"（叫它 b）：</p>
 <table>
 <thead>
 <tr>
-<th>Gate value a = W₁·x</th>
-<th>SiLU(a) behavior</th>
-<th>Net effect on output channel</th>
+<th>门值 a = W₁·x</th>
+<th>SiLU(a) 行为</th>
+<th>对输出通道的净影响</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>a ≫ 0 (large positive)</td>
+<td>a ≫ 0（大正数）</td>
 <td>SiLU ≈ a</td>
-<td>Gate wide open, output ≈ a · b — grows as product</td>
+<td>门大开，输出 ≈ a · b —— 以乘积增长</td>
 </tr>
 <tr>
 <td>a ≈ 0</td>
 <td>SiLU ≈ 0</td>
-<td>Gate nearly closed, output ≈ 0</td>
+<td>门几乎关闭，输出 ≈ 0</td>
 </tr>
 <tr>
-<td>a ≈ −1.28 (SiLU minimum)</td>
+<td>a ≈ −1.28（SiLU 最小处）</td>
 <td>SiLU ≈ −0.28</td>
-<td>Small NEGATIVE gate — unusual, sign-flips the signal with small magnitude</td>
+<td>小的负门 —— 不常见，会让信号反号但幅度小</td>
 </tr>
 <tr>
-<td>a ≪ 0 (large negative)</td>
+<td>a ≪ 0（大负数）</td>
 <td>SiLU → 0</td>
-<td>Gate closed, output ≈ 0</td>
+<td>门关闭，输出 ≈ 0</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Extreme scenario 1 — everything gates off.</strong> If every W₁·x coordinate is deeply negative for some token, SiLU pushes them all toward zero, SwiGLU output ≈ 0, and the FFN is effectively a no-op for that token. It passes through via the residual connection only.</p>
-<p><strong>Extreme scenario 2 — everything gates fully open.</strong> If W₁·x and W₃·x are both huge positive, SwiGLU output ≈ (W₁·x) ⊙ (W₃·x) — which grows <strong>quadratically</strong> in input magnitude. This is why the preceding RMSNorm matters: it keeps input magnitudes bounded so SwiGLU doesn't blow up. In bf16, unchecked growth here would overflow.</p>
-<p><strong>Extreme scenario 3 — the "negative gate" quirk.</strong> Unlike ReLU-based gates, SwiGLU's gate can be mildly negative. This means SwiGLU can actively <em>invert</em> a signal channel, not just pass or block it. Whether this extra expressivity is "useful" or "cute" is debated; empirically it doesn't hurt, and it makes the function smooth, which helps optimization.</p>
-<h4 id="the-code_1">The code<a class="headerlink" href="#the-code_1" title="Anchor link to this section">&para;</a></h4>
+<p><strong>极端情形 1 —— 全部门关闭。</strong> 如果某个 token 的每个 W₁·x 坐标都非常负，SiLU 会把它们全往 0 按，SwiGLU 输出 ≈ 0，FFN 对这个 token 实际上是一个空操作。它只靠残差连接通过。</p>
+<p><strong>极端情形 2 —— 全部门大开。</strong> 如果 W₁·x 和 W₃·x 都是很大的正数，SwiGLU 输出 ≈ (W₁·x) ⊙ (W₃·x) —— 这会随输入幅度<strong>平方增长</strong>。这也是前置 RMSNorm 重要的原因：它把输入幅度限制住，避免 SwiGLU 爆炸。在 bf16 下，这里不受控的增长会溢出。</p>
+<p><strong>极端情形 3 —— "负门"的怪癖。</strong> 和 ReLU 型的门不同，SwiGLU 的门可以轻微为负。这意味着 SwiGLU 能主动<em>反转</em>一个信号通道，而不是只能通过或阻止。这种额外的表达能力到底"有用"还是"好玩"有争议；经验上不会有坏影响，而且它让函数光滑，优化会更顺。</p>
+<h4 id="_11">代码<a class="headerlink" href="#_11" title="Anchor link to this section">&para;</a></h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># llama/model.py:193-219</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">FeedForward</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">multiple_of</span><span class="p">,</span> <span class="n">ffn_dim_multiplier</span><span class="p">):</span>
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>        <span class="c1"># Vanilla transformer would use hidden = 4·dim. SwiGLU has two parallel up-projections,</span>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>        <span class="c1"># so we shrink hidden by 2/3 to keep the total parameter budget the same.</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>        <span class="c1"># 普通 Transformer 用 hidden = 4·dim。SwiGLU 有两个并行的升维投影，</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>        <span class="c1"># 所以我们把 hidden 缩小 2/3，以保持整体参数预算一致。</span>
 </span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>        <span class="n">hidden_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">hidden_dim</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
 </span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>        <span class="k">if</span> <span class="n">ffn_dim_multiplier</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 </span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>            <span class="n">hidden_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ffn_dim_multiplier</span> <span class="o">*</span> <span class="n">hidden_dim</span><span class="p">)</span>   <span class="c1"># Llama 3: ×1.3</span>
 </span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>        <span class="n">hidden_dim</span> <span class="o">=</span> <span class="n">multiple_of</span> <span class="o">*</span> <span class="p">((</span><span class="n">hidden_dim</span> <span class="o">+</span> <span class="n">multiple_of</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">multiple_of</span><span class="p">)</span>
 </span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w1</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># gate projection</span>
-</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w2</span> <span class="o">=</span> <span class="n">RowParallelLinear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>      <span class="c1"># down projection</span>
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w3</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># up projection</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w1</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># 门 (gate) 投影</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w2</span> <span class="o">=</span> <span class="n">RowParallelLinear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>      <span class="c1"># 降维 (down) 投影</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">w3</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>   <span class="c1"># 升维 (up) 投影</span>
 </span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
 </span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>        <span class="c1"># SwiGLU: elementwise product of (SiLU-activated gate) and (up projection).</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>        <span class="c1"># SwiGLU：(SiLU 激活的门) 和 (升维投影) 的逐元素乘积。</span>
 </span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w2</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">silu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">w3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>        <span class="c1">#        └── down ──┘ └── gate ──┘   └── up ──┘</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>        <span class="c1">#        └── 降维 ──┘ └── 门 ──┘   └── 升维 ┘</span>
 </span></code></pre></div>
-<p>Shapes: <code>x: (B, T, 4096)</code> → <code>w1(x), w3(x): (B, T, 14336)</code> → elementwise product: <code>(B, T, 14336)</code> → <code>w2(·): (B, T, 4096)</code>.</p>
+<p>形状：<code>x: (B, T, 4096)</code> → <code>w1(x), w3(x): (B, T, 14336)</code> → 逐元素相乘：<code>(B, T, 14336)</code> → <code>w2(·): (B, T, 4096)</code>。</p>
 <hr />
-<h3 id="46-the-transformerblock">4.6 The TransformerBlock<a class="headerlink" href="#46-the-transformerblock" title="Anchor link to this section">&para;</a></h3>
-<p>Attention + FFN together, with pre-norm residuals:</p>
+<h3 id="46-transformerblock">4.6 TransformerBlock<a class="headerlink" href="#46-transformerblock" title="Anchor link to this section">&para;</a></h3>
+<p>注意力 + FFN 合在一起，pre-norm 残差：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># llama/model.py:239-248</span>
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="c1"># Attention sub-block: norm → attention → add to residual.</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="c1"># 注意力子块：归一化 → 注意力 → 加入残差。</span>
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="n">h</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attention_norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">freqs_cis</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span class="c1"># FFN sub-block: norm → swiglu → add to residual.</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span class="c1"># FFN 子块：归一化 → SwiGLU → 加入残差。</span>
 </span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ffn_norm</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
 </span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="k">return</span> <span class="n">out</span>
 </span></code></pre></div>
-<p>Two sublayers, two residual adds, two RMSNorms. This block is repeated 32 times for Llama 3 8B.</p>
+<p>两个子层，两次残差相加，两个 RMSNorm。Llama 3 8B 把这个 block 重复 32 次。</p>
 <h3 id="47-lm-head">4.7 LM head<a class="headerlink" href="#47-lm-head" title="Anchor link to this section">&para;</a></h3>
-<p><strong>What it is.</strong> A final projection from the 4096-dim residual stream onto the 128,256-dim vocabulary logit space.</p>
+<p><strong>是什么。</strong> 从 4096 维残差流到 128,256 维词表 logit 空间的最终投影。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># llama/model.py:266-269</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="bp">self</span><span class="o">.</span><span class="n">norm</span>   <span class="o">=</span> <span class="n">RMSNorm</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">params</span><span class="o">.</span><span class="n">norm_eps</span><span class="p">)</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">ColumnParallelLinear</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </span></code></pre></div>
 <blockquote>
-<p>⚠️ <strong>No weight tying.</strong> Some transformers share weights between the token embedding and the output projection. Llama 3 does <strong>not</strong> — <code>tok_embeddings</code> and <code>output</code> are two separate tensors. Costs ~525M extra parameters but removes a constraint that can hurt quality on large vocabularies.</p>
+<p>⚠️ <strong>没有权重绑定。</strong> 有些 Transformer 让 token 嵌入和输出投影共享权重。Llama 3 <strong>没有</strong> —— <code>tok_embeddings</code> 和 <code>output</code> 是两个独立的张量。代价是大约多 5.25 亿参数，好处是解除了一个在大词表上可能反伤质量的约束。</p>
 </blockquote>
-<h3 id="48-the-causal-mask">4.8 The causal mask<a class="headerlink" href="#48-the-causal-mask" title="Anchor link to this section">&para;</a></h3>
-<p>Because Llama 3 is a decoder-only autoregressive model, position <em>i</em> must not peek at positions &gt; i. The mask is built in <code>Transformer.forward</code> and added to attention scores before softmax:</p>
+<h3 id="48">4.8 因果掩码<a class="headerlink" href="#48" title="Anchor link to this section">&para;</a></h3>
+<p>因为 Llama 3 是仅解码器的自回归模型，位置 <em>i</em> 必须看不到位置 &gt; i。掩码在 <code>Transformer.forward</code> 中构造，在 softmax 之前加到注意力分数上：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># llama/model.py:284-296</span>
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">if</span> <span class="n">seqlen</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>   <span class="c1"># no mask needed when decoding a single token</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">if</span> <span class="n">seqlen</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>   <span class="c1"># 解码单个 token 时不需要掩码</span>
 </span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">seqlen</span><span class="p">,</span> <span class="n">seqlen</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tokens</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># -inf above the diagonal, 0 on/below</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="c1"># With KV cache, new tokens can see ALL cached tokens; prepend `start_pos` zero columns.</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># 对角线上方填 -inf，对角线及以下填 0</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="c1"># 有了 KV 缓存后，新 token 可以看到所有已缓存 token；在左侧前置 `start_pos` 列零。</span>
 </span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
 </span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>        <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">seqlen</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tokens</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">mask</span><span class="p">]</span>
 </span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    <span class="p">)</span><span class="o">.</span><span class="n">type_as</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 </span></code></pre></div>
 <hr />
-<h2 id="5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model">5. A concrete forward pass: feeding "The cat sat on" into the model<a class="headerlink" href="#5-a-concrete-forward-pass-feeding-the-cat-sat-on-into-the-model" title="Anchor link to this section">&para;</a></h2>
-<p>The previous section explained the components. This one takes a real, small sentence and traces what happens to its vectors, step by step. Tokens, shapes, and semantic descriptions — everything grounded.</p>
-<p><strong>Input:</strong> <code>"The cat sat on"</code> (an incomplete sentence; we want the model to predict what comes next).</p>
-<h3 id="step-1-tokenize">Step 1 — Tokenize<a class="headerlink" href="#step-1-tokenize" title="Anchor link to this section">&para;</a></h3>
-<p>Using the Llama 3 tiktoken BPE (approximate IDs; exact values vary):</p>
+<h2 id="5-the-cat-sat-on">5. 一个具体的前向传播：把 "The cat sat on" 喂给模型<a class="headerlink" href="#5-the-cat-sat-on" title="Anchor link to this section">&para;</a></h2>
+<p>上一节解释了各个零件。这一节拿一个真实的小句子，一步一步追踪它的向量发生了什么。token、形状、语义描述 —— 每一步都落到实处。</p>
+<p><strong>输入：</strong><code>"The cat sat on"</code>（一个不完整的句子；我们想让模型预测接下来会出现什么）。</p>
+<h3 id="1_1">第 1 步 —— 分词<a class="headerlink" href="#1_1" title="Anchor link to this section">&para;</a></h3>
+<p>用 Llama 3 的 tiktoken BPE（ID 是近似值，可能有出入）：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>&quot;The cat sat on&quot;
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>  ↓  BOS is always prepended.
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>  ↓  总是在最前面加 BOS。
 </span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>[&lt;|begin_of_text|&gt;, &quot;The&quot;, &quot; cat&quot;, &quot; sat&quot;, &quot; on&quot;]
 </span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>[    128000      ,  791 ,  8415 ,  7731 ,  389 ]
 </span></code></pre></div>
-<p>Sequence length T = 5. Shape so far: <code>(1, 5)</code> — one batch, five token IDs.</p>
-<h3 id="step-2-embed">Step 2 — Embed<a class="headerlink" href="#step-2-embed" title="Anchor link to this section">&para;</a></h3>
-<p><code>h = tok_embeddings(tokens)</code> → shape <code>(1, 5, 4096)</code>.</p>
-<p>Each ID indexes one row of a (128256, 4096) lookup table. At this point, the vector for " cat" is a <strong>generic, context-free "cat" vector</strong> — it looks the same regardless of whether the sentence is about a pet, a costume, or the Unix command.</p>
-<h3 id="step-3-the-journey-through-32-blocks-illustrated">Step 3 — The journey through 32 blocks (illustrated)<a class="headerlink" href="#step-3-the-journey-through-32-blocks-illustrated" title="Anchor link to this section">&para;</a></h3>
-<p>At each block, every token's 4096-dim vector gets (a) updated with information about <em>other</em> tokens in the sentence via attention, and (b) refined by a per-token FFN. Here's a schematic of how the <strong>contextual content</strong> of each token's vector evolves across key layers:</p>
-<p><img alt="Journey of &quot;The cat sat on&quot; through the model: each row shows the semantic content of each token's 4096-dim vector after embedding, early, middle, and late layers; the final &quot; on&quot; vector feeds the LM head and emits a probability distribution over the next token." src="../../assets/notes/sentence_journey.svg" /></p>
-<p><em>The colored boxes are the same 5 token positions. The content written in each row is a cartoon of "what semantic content the vector at that layer encodes." Shapes never change — always</em> <code>(1, 5, 4096)</code><em>.</em></p>
-<p><strong>What's happening underneath (one block):</strong></p>
+<p>序列长度 T = 5。当前形状：<code>(1, 5)</code> —— 一个 batch，五个 token ID。</p>
+<h3 id="2">第 2 步 —— 嵌入<a class="headerlink" href="#2" title="Anchor link to this section">&para;</a></h3>
+<p><code>h = tok_embeddings(tokens)</code> → 形状 <code>(1, 5, 4096)</code>。</p>
+<p>每个 ID 取 (128256, 4096) 查找表里的一行。此时 " cat" 对应的向量是一个<strong>通用的、无上下文的"cat"向量</strong> —— 不管这句话说的是宠物、服装还是 Unix 命令，长得都一样。</p>
+<h3 id="3-32-block">第 3 步 —— 穿过 32 个 block（图示）<a class="headerlink" href="#3-32-block" title="Anchor link to this section">&para;</a></h3>
+<p>在每个 block 里，每个 token 的 4096 维向量 (a) 通过注意力吸收来自句子中<em>其他</em> token 的信息，(b) 通过逐 token 的 FFN 被进一步加工。下面这张图画的是，每个 token 的向量的<strong>上下文化内容</strong>在关键层上如何演化：</p>
+<p><img alt="句子 &quot;The cat sat on&quot; 穿过模型的旅程：每一行展示每个 token 的 4096 维向量在嵌入、早期层、中间层、后期层的语义内容；最后的 &quot; on&quot; 向量喂给 LM head，产出下一个 token 的概率分布。" src="../../../assets/notes/sentence_journey.svg" /></p>
+<p><em>彩色方框是同一个 5 个 token 位置。每一行里写的内容是"该层上向量编码着什么语义"的卡通版本。形状始终不变 —— 永远是</em> <code>(1, 5, 4096)</code><em>。</em></p>
+<p><strong>底层实际发生了什么（一个 block 内部）：</strong></p>
 <table>
 <thead>
 <tr>
-<th>Stage</th>
-<th>On " cat" (position 2)</th>
-<th>Shape</th>
+<th>阶段</th>
+<th>对 " cat"（位置 2）</th>
+<th>形状</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>attention_norm</code></td>
-<td>Rescale vector to unit RMS</td>
+<td>把向量按 RMS 重新归一化</td>
 <td><code>(1, 5, 4096)</code></td>
 </tr>
 <tr>
 <td><code>wq, wk, wv</code></td>
-<td>Project into 32 Q heads, 8 K heads, 8 V heads</td>
+<td>投影到 32 个 Q 头、8 个 K 头、8 个 V 头</td>
 <td>Q: <code>(1, 5, 32, 128)</code>, K/V: <code>(1, 5, 8, 128)</code></td>
 </tr>
 <tr>
-<td>RoPE on Q, K</td>
-<td>Rotate pair-by-pair using angles for position 2</td>
-<td>same shapes</td>
+<td>RoPE 应用到 Q, K</td>
+<td>按位置 2 的角度逐对旋转</td>
+<td>形状不变</td>
 </tr>
 <tr>
-<td>Cache write</td>
-<td><code>cache_k[0, 2] = xk[:, 2]</code>; same for V</td>
+<td>写入缓存</td>
+<td><code>cache_k[0, 2] = xk[:, 2]</code>；V 同理</td>
 <td>—</td>
 </tr>
 <tr>
-<td>Attention</td>
-<td>"cat" (pos 2) can only see positions 0-2 (causal mask) → attention scores highest on BOS, "The", itself</td>
+<td>注意力</td>
+<td>" cat"（位置 2）因果掩码下只能看到位置 0-2 → 注意力分数在 BOS、"The"、自己身上最高</td>
 <td><code>scores: (1, 32, 5, 5)</code></td>
 </tr>
 <tr>
-<td><code>wo</code> + residual</td>
-<td>Project back to 4096, add to input</td>
+<td><code>wo</code> + 残差</td>
+<td>投影回 4096，加到输入上</td>
 <td><code>(1, 5, 4096)</code></td>
 </tr>
 <tr>
-<td><code>ffn_norm</code> + SwiGLU + residual</td>
-<td>Per-token nonlinear refinement</td>
+<td><code>ffn_norm</code> + SwiGLU + 残差</td>
+<td>逐 token 的非线性加工</td>
 <td><code>(1, 5, 4096)</code></td>
 </tr>
 </tbody>
 </table>
-<p>Repeat 32 times. Each time, more context gets mixed in, and more abstract features get built. By the last layers, each token's vector is mostly about "what token do I predict comes next after me?"</p>
-<h3 id="step-4-final-norm-lm-head">Step 4 — Final norm + LM head<a class="headerlink" href="#step-4-final-norm-lm-head" title="Anchor link to this section">&para;</a></h3>
-<p>Take the final hidden state for the LAST token (" on" at position 4):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">h_last</span> <span class="o">=</span> <span class="n">h</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>          <span class="c1"># (1, 4096) — the &quot; on&quot; token&#39;s final vector</span>
+<p>重复 32 次。每一次，都有更多上下文被混入，更多抽象特征被构建。到最后几层，每个 token 的向量主要在表达"我之后最可能接哪个 token？"。</p>
+<h3 id="4-lm-head">第 4 步 —— 最后的归一化 + LM head<a class="headerlink" href="#4-lm-head" title="Anchor link to this section">&para;</a></h3>
+<p>取最后一个 token（位置 4 的 " on"）的最终隐藏状态：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">h_last</span> <span class="o">=</span> <span class="n">h</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>          <span class="c1"># (1, 4096) —— &quot; on&quot; token 的最终向量</span>
 </span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">h_last</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">h_last</span><span class="p">)</span>    <span class="c1"># RMSNorm</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">h_last</span><span class="p">)</span>  <span class="c1"># (1, 128256) — one score per vocab token</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">h_last</span><span class="p">)</span>  <span class="c1"># (1, 128256) —— 词表里每个 token 一个分数</span>
 </span></code></pre></div>
-<p>For our sentence, the highest-probability next tokens are plausibly something like:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>&quot; the&quot;  → logit ~12.1    (very likely — &quot;on the ___&quot;)
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>&quot; a&quot;    → logit ~10.8
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>&quot; my&quot;   →  8.4
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>&quot; his&quot;  →  7.9
+<p>对这个句子来说，概率最高的下一个 token 大致是：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>&quot; the&quot;  → logit 约 12.1    （非常可能 —— &quot;on the ___&quot;）
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>&quot; a&quot;    → logit 约 10.8
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>&quot; my&quot;   →   8.4
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>&quot; his&quot;  →   7.9
 </span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>...
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>&quot; ceiling&quot; → 2.1        (nonsense here — low score)
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>&quot; ceiling&quot; → 2.1        （这里没意义 —— 分数低）
 </span></code></pre></div>
-<h3 id="step-5-sample">Step 5 — Sample<a class="headerlink" href="#step-5-sample" title="Anchor link to this section">&para;</a></h3>
-<p>With <code>temperature = 0.6</code> and <code>top_p = 0.9</code>, we divide logits by 0.6 (sharpens the distribution), softmax to get probabilities, keep the smallest set whose cumulative mass exceeds 0.9, and sample. We probably get <code>" the"</code>.</p>
-<h3 id="step-6-next-token-kv-cache-in-action">Step 6 — Next token (KV cache in action)<a class="headerlink" href="#step-6-next-token-kv-cache-in-action" title="Anchor link to this section">&para;</a></h3>
-<p>Now we have <code>"The cat sat on the"</code> and want token 6. We do <strong>not</strong> reprocess the whole sentence. Instead:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>tokens = [&quot; the&quot;]           # just the new token
+<h3 id="5">第 5 步 —— 采样<a class="headerlink" href="#5" title="Anchor link to this section">&para;</a></h3>
+<p><code>temperature = 0.6</code>、<code>top_p = 0.9</code>，我们把 logits 除以 0.6（让分布更尖锐），softmax 得到概率，保留累计质量刚好越过 0.9 的最小集合，采样。大概率会得到 <code>" the"</code>。</p>
+<h3 id="6-tokenkv">第 6 步 —— 下一个 token（KV 缓存登场）<a class="headerlink" href="#6-tokenkv" title="Anchor link to this section">&para;</a></h3>
+<p>现在我们有 <code>"The cat sat on the"</code>，想生成第 6 个 token。我们<strong>不</strong>会重新处理整个句子。而是：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>tokens = [&quot; the&quot;]           # 只是那个新 token
 </span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>start_pos = 5
 </span></code></pre></div>
-<p>For each layer:</p>
+<p>每一层：</p>
 <ul>
-<li>compute Q₅, K₅, V₅ <strong>just for position 5</strong> — one forward pass of size <code>(1, 1, 4096)</code></li>
-<li>write K₅, V₅ into the cache at slot 5</li>
-<li>attention: Q₅ dotted against cached K₀ through K₅ (all six), weighted, summed with V₀ through V₅</li>
-<li>result flows through FFN, residual, next layer</li>
+<li>只为位置 5 计算 Q₅、K₅、V₅ —— 一次 <code>(1, 1, 4096)</code> 大小的前向</li>
+<li>把 K₅、V₅ 写入缓存的第 5 槽</li>
+<li>注意力：Q₅ 与缓存中的 K₀ 到 K₅（全部 6 个）做点积，加权之后与 V₀ 到 V₅ 求和</li>
+<li>结果穿过 FFN、残差，进入下一层</li>
 </ul>
-<p>Predicted next token: probably <code>" mat"</code> (completing the classic children's-book sentence).</p>
-<p>Total work for this step: one forward pass on a 1-token input plus cache reads. The quadratic cost of re-attending over the full prefix every step is avoided — only the newest K and V are computed fresh.</p>
+<p>预测出来的下一个 token：大概是 <code>" mat"</code>（把那个经典的儿童绘本句子补完）。</p>
+<p>这一步的总工作量：对一个 1-token 输入的一次前向，加上缓存读取。每步都对整个前缀重新做注意力的二次方代价被避开了 —— 只有最新的 K 和 V 是新计算出来的。</p>
 <hr />
-<h2 id="6-training-vs-inference-differences">6. Training vs inference differences<a class="headerlink" href="#6-training-vs-inference-differences" title="Anchor link to this section">&para;</a></h2>
-<p>The reference code in this repo is <strong>inference-only</strong> — there is no training loop. Still, worth calling out where the code paths would differ:</p>
+<h2 id="6">6. 训练与推理的差异<a class="headerlink" href="#6" title="Anchor link to this section">&para;</a></h2>
+<p>本仓库的参考代码是<strong>仅推理</strong>的 —— 没有训练循环。尽管如此，还是值得点出两边代码路径的差别：</p>
 <table>
 <thead>
 <tr>
-<th>Aspect</th>
-<th>Training (conceptual)</th>
-<th>Inference (this repo)</th>
+<th>方面</th>
+<th>训练（概念上）</th>
+<th>推理（本仓库）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Forward pass</td>
-<td>Full sequence at once, T = max_seq_len.</td>
-<td>First "prefill" pass on the prompt, then 1 token at a time.</td>
+<td>前向</td>
+<td>整个序列一次跑完，T = max_seq_len。</td>
+<td>先对 prompt 做一次 "prefill"，之后每次一个 token。</td>
 </tr>
 <tr>
-<td>KV cache</td>
-<td>Not used — everything recomputed.</td>
-<td>Static pre-allocated cache, written/read each step.</td>
+<td>KV 缓存</td>
+<td>不用 —— 所有东西都重算。</td>
+<td>静态预分配的缓存，每步读写。</td>
 </tr>
 <tr>
-<td>Mask</td>
-<td>Single <code>(T, T)</code> causal triangle.</td>
-<td><code>(T_new, start_pos + T_new)</code> — zeros on left for cached tokens, triangle on right.</td>
+<td>掩码</td>
+<td>单个 <code>(T, T)</code> 的因果三角。</td>
+<td><code>(T_new, start_pos + T_new)</code> —— 左侧对已缓存 token 全 0，右侧是三角。</td>
 </tr>
 <tr>
-<td>Decorator</td>
-<td>(training loop)</td>
-<td><code>@torch.inference_mode()</code> — disables autograd, faster and lower memory.</td>
+<td>装饰器</td>
+<td>（训练循环）</td>
+<td><code>@torch.inference_mode()</code> —— 关闭 autograd，更快、更省内存。</td>
 </tr>
 <tr>
-<td>Sampling</td>
-<td>No sampling — cross-entropy loss vs. ground truth.</td>
-<td>Top-p (nucleus) sampling at <code>temperature &gt; 0</code>, or argmax at <code>temperature == 0</code>.</td>
+<td>采样</td>
+<td>不采样 —— 用和真值的交叉熵 loss。</td>
+<td><code>temperature &gt; 0</code> 时用 top-p（核）采样，<code>temperature == 0</code> 时用 argmax。</td>
 </tr>
 <tr>
-<td>Stop condition</td>
-<td>Full sequence always.</td>
-<td>Stop on `&lt;</td>
+<td>停止条件</td>
+<td>永远是整个序列。</td>
+<td>碰到 <code>&lt;|end_of_text|&gt;</code> 或 <code>&lt;|eot_id|&gt;</code> 停止，或 <code>max_gen_len</code> 到了停止。</td>
 </tr>
 </tbody>
 </table>
-<p>Top-p sampling:</p>
+<p>Top-p 采样：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># llama/generation.py:343-365</span>
 </span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
 </span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    <span class="n">probs_sort</span><span class="p">,</span> <span class="n">probs_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="n">probs_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">probs_sort</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="c1"># Keep the smallest set whose cumulative mass first exceeds p.</span>
-</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="c1"># (probs_sum - probs_sort) = mass strictly before this token; if that&#39;s already &gt; p, drop it.</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="c1"># 保留累计质量第一次越过 p 的最小集合。</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="c1"># (probs_sum - probs_sort) = 这个 token 之前的质量；如果已经 &gt; p，就把这个 token 丢掉。</span>
 </span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>    <span class="n">mask</span> <span class="o">=</span> <span class="n">probs_sum</span> <span class="o">-</span> <span class="n">probs_sort</span> <span class="o">&gt;</span> <span class="n">p</span>
 </span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    <span class="n">probs_sort</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
 </span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>    <span class="n">probs_sort</span><span class="o">.</span><span class="n">div_</span><span class="p">(</span><span class="n">probs_sort</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
@@ -1958,110 +1958,110 @@ New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
 </span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>    <span class="k">return</span> <span class="n">next_token</span>
 </span></code></pre></div>
 <hr />
-<h2 id="7-zoom-out-how-this-compares">7. Zoom-out: how this compares<a class="headerlink" href="#7-zoom-out-how-this-compares" title="Anchor link to this section">&para;</a></h2>
-<h3 id="vs-the-original-transformer-vaswani-et-al-2017">vs. the original Transformer (Vaswani et al., 2017)<a class="headerlink" href="#vs-the-original-transformer-vaswani-et-al-2017" title="Anchor link to this section">&para;</a></h3>
+<h2 id="7">7. 拉远看：对比<a class="headerlink" href="#7" title="Anchor link to this section">&para;</a></h2>
+<h3 id="transformervaswani-et-al-2017">对比原始 Transformer（Vaswani et al., 2017）<a class="headerlink" href="#transformervaswani-et-al-2017" title="Anchor link to this section">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>组件</th>
 <th>2017 Transformer</th>
 <th>Llama 3</th>
-<th>Why the change</th>
+<th>为什么变</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Encoder + Decoder</td>
-<td>Both</td>
-<td>Decoder-only</td>
-<td>LM doesn't need a separate encoder.</td>
+<td>都有</td>
+<td>仅 decoder</td>
+<td>语言模型不需要独立的 encoder。</td>
 </tr>
 <tr>
-<td>Positional encoding</td>
-<td>Sinusoidal absolute, added to embeddings</td>
-<td>RoPE, applied inside attention</td>
-<td>Better relative-position semantics and long-context behavior.</td>
+<td>位置编码</td>
+<td>正弦绝对编码，加到嵌入上</td>
+<td>RoPE，注意力内部应用</td>
+<td>相对位置语义更好，长上下文行为更好。</td>
 </tr>
 <tr>
-<td>Normalization</td>
+<td>归一化</td>
 <td>LayerNorm, post-norm</td>
 <td>RMSNorm, pre-norm</td>
-<td>Cheaper; more stable at depth.</td>
+<td>更省；深层更稳定。</td>
 </tr>
 <tr>
-<td>Attention</td>
+<td>注意力</td>
 <td>MHA</td>
-<td>GQA (fewer KV heads)</td>
-<td>Shrinks the KV cache.</td>
+<td>GQA（更少的 KV 头）</td>
+<td>压缩 KV 缓存。</td>
 </tr>
 <tr>
-<td>FFN activation</td>
+<td>FFN 激活</td>
 <td>ReLU</td>
 <td>SwiGLU</td>
-<td>Small consistent quality gain.</td>
+<td>持续的小幅质量提升。</td>
 </tr>
 <tr>
-<td>Biases</td>
-<td>Yes</td>
-<td>No</td>
-<td>Biases add params, don't help quality.</td>
+<td>偏置</td>
+<td>有</td>
+<td>无</td>
+<td>偏置加参数，不帮质量。</td>
 </tr>
 <tr>
 <td>Dropout</td>
-<td>Yes</td>
-<td>None</td>
-<td>Huge training data makes dropout unnecessary.</td>
+<td>有</td>
+<td>无</td>
+<td>训练数据巨大，不需要 Dropout。</td>
 </tr>
 </tbody>
 </table>
-<h3 id="vs-llama-2">vs. Llama 2<a class="headerlink" href="#vs-llama-2" title="Anchor link to this section">&para;</a></h3>
-<p>Architecturally nearly identical. The deltas:</p>
+<h3 id="llama-2">对比 Llama 2<a class="headerlink" href="#llama-2" title="Anchor link to this section">&para;</a></h3>
+<p>架构上几乎一模一样。差异如下：</p>
 <table>
 <thead>
 <tr>
-<th>Thing</th>
+<th>项目</th>
 <th>Llama 2 7B</th>
 <th>Llama 3 8B</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Vocabulary</td>
-<td>32,000 (SentencePiece)</td>
-<td>128,256 (tiktoken BPE)</td>
+<td>词表</td>
+<td>32,000（SentencePiece）</td>
+<td>128,256（tiktoken BPE）</td>
 </tr>
 <tr>
-<td>Context length</td>
+<td>上下文长度</td>
 <td>4,096</td>
 <td>8,192</td>
 </tr>
 <tr>
-<td>RoPE base θ</td>
+<td>RoPE 基频 θ</td>
 <td>10,000</td>
 <td>500,000</td>
 </tr>
 <tr>
-<td>GQA at this size</td>
-<td>No (MHA)</td>
-<td>Yes (n_kv = 8, ratio 4)</td>
+<td>该规模下是否 GQA</td>
+<td>否（MHA）</td>
+<td>是（n_kv = 8，比例 4）</td>
 </tr>
 <tr>
-<td>Training tokens</td>
+<td>训练 token</td>
 <td>2T</td>
-<td>~15T</td>
+<td>约 15T</td>
 </tr>
 <tr>
-<td>Chat format</td>
+<td>聊天格式</td>
 <td><code>[INST] ... [/INST]</code></td>
-<td>Structured headers with `&lt;</td>
+<td>带 <code>&lt;|start_header_id|&gt;</code> / <code>&lt;|eot_id|&gt;</code> 的结构化头部</td>
 </tr>
 </tbody>
 </table>
-<h3 id="vs-contemporaries">vs. contemporaries<a class="headerlink" href="#vs-contemporaries" title="Anchor link to this section">&para;</a></h3>
+<h3 id="_12">对比同时代模型<a class="headerlink" href="#_12" title="Anchor link to this section">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th>特性</th>
 <th>Llama 3 8B</th>
 <th>Mistral 7B</th>
 <th>DeepSeek-V2</th>
@@ -2069,76 +2069,76 @@ New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
 </thead>
 <tbody>
 <tr>
-<td>Attention</td>
+<td>注意力</td>
 <td>GQA</td>
-<td>GQA + <strong>sliding-window</strong> (local window of 4096)</td>
-<td><strong>MLA</strong> (low-rank latent KV compression)</td>
+<td>GQA + <strong>滑动窗口</strong>（局部窗口 4096）</td>
+<td><strong>MLA</strong>（低秩隐变量 KV 压缩）</td>
 </tr>
 <tr>
 <td>FFN</td>
 <td>Dense SwiGLU</td>
 <td>Dense SwiGLU</td>
-<td><strong>MoE</strong> (many experts, top-k routing)</td>
+<td><strong>MoE</strong>（多专家，top-k 路由）</td>
 </tr>
 <tr>
-<td>Context</td>
+<td>上下文</td>
 <td>8K</td>
-<td>8K effective</td>
+<td>实际 8K</td>
 <td>128K</td>
 </tr>
 </tbody>
 </table>
-<p>All three are pre-norm / RMSNorm / RoPE / SwiGLU decoder-only transformers. They differ in how they make attention or FFN cheaper at scale.</p>
+<p>这三者都是 pre-norm / RMSNorm / RoPE / SwiGLU 的仅解码器 Transformer。区别在于它们如何在规模放大时让注意力或 FFN 变便宜。</p>
 <hr />
-<h2 id="8-the-spotlight-whats-actually-novel-here">8. The spotlight: what's actually novel here<a class="headerlink" href="#8-the-spotlight-whats-actually-novel-here" title="Anchor link to this section">&para;</a></h2>
-<p>Architecturally, Llama 3 doesn't invent anything new. It is a scaled-up, well-tuned, decoder-only transformer using exclusively 2019–2022-era techniques (RoPE, RMSNorm, SwiGLU, GQA). The honest answer to "what's the one innovation?" is: <strong>there isn't one</strong> — what matters is Meta's execution at scale. The 15T-token training corpus, the 128K tiktoken vocabulary, the bumped-up RoPE base for longer contexts, and the extensive post-training (SFT + RLHF + DPO) are what moved the numbers. The model is an engineering monument to "just keep everything else the same and scale it properly."</p>
+<h2 id="8">8. 关注点：这个模型究竟有什么新东西<a class="headerlink" href="#8" title="Anchor link to this section">&para;</a></h2>
+<p>从架构上讲，Llama 3 没有发明任何新东西。它是一个规模加大、调教良好、仅解码器的 Transformer，用的完全是 2019–2022 年的技巧（RoPE、RMSNorm、SwiGLU、GQA）。对于"它到底创新在哪？"这个问题，诚实的回答是：<strong>没有创新</strong> —— 真正重要的是 Meta 在规模上的执行力。15T token 的训练语料、128K 的 tiktoken 词表、为更长上下文调大的 RoPE 基频、以及大量的后训练（SFT + RLHF + DPO），才是真正推动了数字的东西。这个模型是一座工程纪念碑，刻着"把别的东西都保持不变，只把规模做对"。</p>
 <hr />
-<h2 id="9-glossary">9. Glossary<a class="headerlink" href="#9-glossary" title="Anchor link to this section">&para;</a></h2>
+<h2 id="9">9. 术语表<a class="headerlink" href="#9" title="Anchor link to this section">&para;</a></h2>
 <ul>
-<li><strong>ALiBi</strong> — Attention with Linear Biases. A positional scheme (not used in Llama 3).</li>
-<li><strong>Autoregressive</strong> — Predicts the next token from all previous tokens, one at a time.</li>
-<li><strong>BOS / EOS</strong> — Beginning / End of Sequence special tokens.</li>
-<li><strong>BPE</strong> — Byte Pair Encoding. Builds a subword vocabulary by iteratively merging the most frequent byte/char pair.</li>
-<li><strong>Causal mask</strong> — Prevents a token at position i from attending to positions &gt; i.</li>
-<li><strong>Decoder-only</strong> — A transformer with only the decoder stack (no separate encoder). All modern LLMs are decoder-only.</li>
-<li><strong>FFN / MLP</strong> — Feed-Forward Network. Per-token two-layer network inside each transformer block.</li>
-<li><strong>GQA</strong> — Grouped-Query Attention. Multiple query heads share one K/V head.</li>
-<li><strong>KV cache</strong> — Stored K and V tensors from past tokens so attention at step t doesn't recompute them.</li>
-<li><strong>LayerNorm</strong> — Standard normalization: (x − μ)/σ · γ + β.</li>
-<li><strong>LM head</strong> — Final linear layer that projects hidden states onto vocabulary logits.</li>
-<li><strong>Logits</strong> — Unnormalized scores over the vocabulary.</li>
-<li><strong>MHA</strong> — Multi-Head Attention. Vanilla attention with separate Q/K/V per head.</li>
-<li><strong>MLA</strong> — Multi-head Latent Attention. DeepSeek's low-rank KV compression.</li>
-<li><strong>MoE</strong> — Mixture of Experts. Many small FFNs; each token is routed to top-k.</li>
-<li><strong>Nucleus (top-p) sampling</strong> — Sample from the smallest set of top tokens whose cumulative probability exceeds p.</li>
-<li><strong>Pre-norm / Post-norm</strong> — Whether the norm sits inside the residual branch (pre) or on the residual sum (post).</li>
-<li><strong>RLHF</strong> — Reinforcement Learning from Human Feedback.</li>
-<li><strong>RMSNorm</strong> — Root-Mean-Square normalization. LayerNorm without mean subtraction or bias.</li>
-<li><strong>RoPE</strong> — Rotary Position Embedding. Encodes position by rotating Q and K in 2D subspaces.</li>
-<li><strong>SFT</strong> — Supervised Fine-Tuning on instruction/response data.</li>
-<li><strong>SiLU</strong> — x · σ(x). Also called Swish.</li>
-<li><strong>SwiGLU</strong> — Swish-Gated Linear Unit. FFN of the form W₂( SiLU(W₁·x) ⊙ (W₃·x) ).</li>
-<li><strong>Temperature</strong> — Softmax temperature. Lower ⇒ sharper, more deterministic.</li>
-<li><strong>Tiktoken</strong> — OpenAI's BPE tokenizer library; Llama 3 reuses it with a 128K vocab.</li>
-<li><strong>Weight tying</strong> — Sharing weights between input embedding and LM head. Llama 3 does <strong>not</strong>.</li>
+<li><strong>ALiBi</strong> —— Attention with Linear Biases。一种位置编码方案（Llama 3 未使用）。</li>
+<li><strong>Autoregressive（自回归）</strong> —— 从所有前面的 token 一次一个地预测下一个 token。</li>
+<li><strong>BOS / EOS</strong> —— 序列起始 / 终止的特殊 token。</li>
+<li><strong>BPE</strong> —— Byte Pair Encoding。通过反复合并最频繁的字节 / 字符对来构建子词词表。</li>
+<li><strong>因果掩码 (Causal mask)</strong> —— 防止位置 i 的 token 关注位置 &gt; i。</li>
+<li><strong>Decoder-only（仅解码器）</strong> —— 只有解码器堆栈的 Transformer（没有独立的 encoder）。所有现代 LLM 都是仅解码器的。</li>
+<li><strong>FFN / MLP</strong> —— Feed-Forward Network，前馈网络。Transformer block 内的逐 token 两层网络。</li>
+<li><strong>GQA</strong> —— Grouped-Query Attention，分组查询注意力。多个 query 头共享一个 KV 头。</li>
+<li><strong>KV 缓存</strong> —— 存下来的过去 token 的 K 和 V 张量，这样第 t 步的注意力就不用重算它们。</li>
+<li><strong>LayerNorm</strong> —— 标准归一化：(x − μ)/σ · γ + β。</li>
+<li><strong>LM head</strong> —— 把隐藏状态投影到词表 logits 的最终线性层。</li>
+<li><strong>Logits</strong> —— 词表上未归一化的分数。</li>
+<li><strong>MHA</strong> —— Multi-Head Attention，多头注意力。每个头各有自己的 Q/K/V 的普通注意力。</li>
+<li><strong>MLA</strong> —— Multi-head Latent Attention。DeepSeek 的低秩 KV 压缩。</li>
+<li><strong>MoE</strong> —— Mixture of Experts，专家混合。很多小 FFN；每个 token 被路由到 top-k 个。</li>
+<li><strong>核采样 (Nucleus / top-p sampling)</strong> —— 从累计概率刚好越过 p 的最小 top token 集合中采样。</li>
+<li><strong>Pre-norm / Post-norm</strong> —— 归一化是在残差分支内（pre）还是在残差相加后（post）。</li>
+<li><strong>RLHF</strong> —— Reinforcement Learning from Human Feedback，基于人类反馈的强化学习。</li>
+<li><strong>RMSNorm</strong> —— Root-Mean-Square 归一化。不减均值、无偏置的 LayerNorm。</li>
+<li><strong>RoPE</strong> —— Rotary Position Embedding，旋转位置编码。通过在 2D 子空间旋转 Q 和 K 来编码位置。</li>
+<li><strong>SFT</strong> —— Supervised Fine-Tuning，在指令 / 回复数据上做的监督微调。</li>
+<li><strong>SiLU</strong> —— x · σ(x)，也叫 Swish。</li>
+<li><strong>SwiGLU</strong> —— Swish-Gated Linear Unit，Swish 门控线性单元。形式为 W₂( SiLU(W₁·x) ⊙ (W₃·x) ) 的 FFN。</li>
+<li><strong>温度 (Temperature)</strong> —— softmax 温度。越低 ⇒ 越尖锐、越确定。</li>
+<li><strong>Tiktoken</strong> —— OpenAI 的 BPE 分词库；Llama 3 复用它并配了一张 128K 词表。</li>
+<li><strong>权重绑定 (Weight tying)</strong> —— 让输入嵌入和 LM head 共享权重。Llama 3 <strong>没有</strong>这么做。</li>
 </ul>
 <hr />
-<h2 id="10-where-to-go-next">10. Where to go next<a class="headerlink" href="#10-where-to-go-next" title="Anchor link to this section">&para;</a></h2>
-<p><strong>In this repo:</strong></p>
+<h2 id="10">10. 接下来读什么<a class="headerlink" href="#10" title="Anchor link to this section">&para;</a></h2>
+<p><strong>在这个仓库里：</strong></p>
 <ul>
-<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L49-L75">llama/model.py:49-75</a> — <code>precompute_freqs_cis</code> and <code>apply_rotary_emb</code>. Re-read this with a pencil; RoPE is the trickiest single piece.</li>
-<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L146-L190">llama/model.py:146-190</a> — <code>Attention.forward</code> with the KV cache. Understanding the shape dance here is understanding transformer inference.</li>
-<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/generation.py#L179-L205">llama/generation.py:179-205</a> — the batched generation loop with the <code>input_text_mask</code> trick.</li>
-<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py#L202-L229">llama/tokenizer.py:202-229</a> — <code>ChatFormat.encode_dialog_prompt</code>. Shows exactly what tokens go into the model for a chat turn.</li>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L49-L75">llama/model.py:49-75</a> —— <code>precompute_freqs_cis</code> 和 <code>apply_rotary_emb</code>。建议拿支笔再读一遍；RoPE 是最绕的一块。</li>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py#L146-L190">llama/model.py:146-190</a> —— 带 KV 缓存的 <code>Attention.forward</code>。搞懂这里形状变换的节奏，就等于搞懂了 Transformer 推理。</li>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/generation.py#L179-L205">llama/generation.py:179-205</a> —— 用 <code>input_text_mask</code> 小技巧实现的批量生成循环。</li>
+<li><a href="https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py#L202-L229">llama/tokenizer.py:202-229</a> —— <code>ChatFormat.encode_dialog_prompt</code>。展示了一轮聊天到底会变成哪些 token 送进模型。</li>
 </ul>
-<p><strong>Papers:</strong></p>
+<p><strong>论文：</strong></p>
 <ul>
-<li>Su et al. 2021, <em>RoFormer: Enhanced Transformer with Rotary Position Embedding</em> — the RoPE paper.</li>
-<li>Ainslie et al. 2023, <em>GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints</em>.</li>
-<li>Shazeer 2020, <em>GLU Variants Improve Transformer</em>. Two pages. Read it.</li>
-<li>The Llama 3 technical report (arXiv 2407.21783) for training details and context extension to 128K.</li>
+<li>Su et al. 2021, <em>RoFormer: Enhanced Transformer with Rotary Position Embedding</em> —— 提出 RoPE 的论文。</li>
+<li>Ainslie et al. 2023, <em>GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints</em>。</li>
+<li>Shazeer 2020, <em>GLU Variants Improve Transformer</em>。两页。去读。</li>
+<li>Llama 3 的技术报告（arXiv 2407.21783），里面有训练细节以及把上下文扩展到 128K 的过程。</li>
 </ul>
-<p><strong>Suggested exercise.</strong> Change <code>rope_theta</code> from 500,000 to 10,000 (Llama 2's value) in <code>ModelArgs</code> and feed the model a prompt longer than ~4K tokens. Predict first: you should expect degraded long-range coherence, because the slowest RoPE frequencies will have completed enough rotations to alias near-distant and far-distant positions. Then compare perplexity or just eyeball the generations. This is the clearest hands-on demo of why the RoPE base frequency matters for context length.</p>
+<p><strong>推荐练习。</strong> 把 <code>ModelArgs</code> 里的 <code>rope_theta</code> 从 500,000 改成 10,000（Llama 2 的值），然后喂一段超过约 4K token 的 prompt。先预测：你应该预期长程连贯性变差，因为最慢的 RoPE 频率在这个长度上已经转够多圈，会让"近距"和"远距"位置发生混叠。然后去比较困惑度，或者肉眼看看生成结果。这是把 RoPE 基频为什么对上下文长度重要解释清楚的最直接的实操演示。</p>
 
 
 
@@ -2164,7 +2164,7 @@ New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
+  回到页面顶部
 </button>
         
       </main>
@@ -2173,33 +2173,33 @@ New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Notes">
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 笔记">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Previous
+                上一页
               </span>
               <div class="md-ellipsis">
-                Notes
+                笔记
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../blog/" class="md-footer__link md-footer__link--next" aria-label="Next: Blog">
+          <a href="../../blog/" class="md-footer__link md-footer__link--next" aria-label="下一页: 博客">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                Next
+                下一页
               </span>
               <div class="md-ellipsis">
-                Blog
+                博客
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2252,10 +2252,10 @@ New pair = (cos 0.02, sin 0.02) = (0.9998, 0.020).</li>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
