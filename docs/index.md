@@ -4,6 +4,10 @@ hide:
   - toc
 ---
 
+<figure markdown>
+  ![](assets/site/enso.svg){ width="260" }
+</figure>
+
 # johnny is confused
 
 *and writes down what he's trying to figure out.*
