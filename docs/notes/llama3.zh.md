@@ -10,6 +10,13 @@
 
 Llama 3 是 Meta 于 2024 年发布的开源权重大语言模型 —— 一个**仅解码器 (decoder-only) 的 Transformer**：接收一串文本 token，一次预测一个后续 token。它提供 8B 和 70B 两种参数规模，支持 8,192 token 的上下文窗口。从架构上讲，它与 GPT、Llama 2 同属一个家族：层层堆叠的 Transformer block，每个 block 都包含自注意力和前馈网络。它之所以值得关注，不是因为某个新的架构创新，而是一组针对 2017 年原始 Transformer 的"现代化改造"都调得很到位：用 **RMSNorm** 替换 LayerNorm（更省，无偏置），用 **RoPE** 替换可学习的位置嵌入（更擅长外推到更长序列），用 **SwiGLU** 替换 ReLU MLP（同样 FLOP 下质量更好），用**分组查询注意力 (Grouped-Query Attention, GQA)** 让推理时的 KV 缓存保持小规模。和 Llama 2 相比架构几乎没变 —— 真正的跃进是词表扩大了 4 倍（128K，基于 tiktoken）、上下文加长 2 倍（8K vs 4K）、RoPE 基频大得多（500,000 vs 10,000）以避免长上下文下的频率混叠，以及大幅增加了训练数据（约 15T token）。
 
+### 一张图看完整个架构
+
+<figure markdown>
+  ![Llama 3 8B 架构：自底向上的前向传播。token 从底部进入，经过嵌入层进入 32 个堆叠的 Transformer block（block 1 展开以展示 pre-norm 残差结构，内含自注意力 + SwiGLU FFN 两个子块），再经过最终 RMSNorm、LM head，最后输出 128,256 维的 logits。](../assets/notes/llama3_architecture.svg){ width="480" }
+  <figcaption>Llama 3 8B，论文风格示意图。展开的是 block 1；block 2–32 完全相同。每条线上都标了张量形状。</figcaption>
+</figure>
+
 ---
 
 ## 2. 30 秒理解全貌

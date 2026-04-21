@@ -10,6 +10,13 @@
 
 Llama 3 is Meta's 2024 open-weights large language model — a **decoder-only transformer** that reads a sequence of text tokens and predicts the next token, one at a time. It comes in 8B and 70B parameter sizes and has a context window of 8,192 tokens. Architecturally it is the same family as GPT and Llama 2: stacked transformer blocks, each with self-attention and a feed-forward network. What makes it notable is not a new architectural idea but a collection of well-tuned "modernizations" over the 2017 Transformer: **RMSNorm** instead of LayerNorm (cheaper, no bias), **RoPE** instead of learned positional embeddings (better at extrapolating to longer sequences), **SwiGLU** instead of ReLU MLPs (better quality per FLOP), and **Grouped-Query Attention (GQA)** so the key/value cache stays small during inference. Compared to Llama 2 the architecture is almost identical — the real jumps are a 4× bigger vocabulary (128K, tiktoken-based), a 2× longer context (8K vs 4K), a much larger RoPE base frequency (500,000 vs 10,000) so long contexts don't alias, and dramatically more training data (~15T tokens).
 
+### The whole architecture, in one picture
+
+<figure markdown>
+  ![Llama 3 8B architecture: bottom-up forward pass. Tokens enter at the bottom, flow through an embedding layer into 32 stacked Transformer blocks (block 1 expanded to show pre-norm residual structure with Self-Attention + SwiGLU FFN sub-blocks), then a final RMSNorm, LM head, and out as logits over 128,256 tokens.](../assets/notes/llama3_architecture.svg){ width="480" }
+  <figcaption>Llama 3 8B, paper-style. Block 1 is drawn out; blocks 2–32 are identical. Tensor shapes annotated on the wires.</figcaption>
+</figure>
+
 ---
 
 ## 2. The 30-second mental model
