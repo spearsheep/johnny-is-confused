@@ -38,8 +38,9 @@ theme:
     edit: material/pencil
     view: material/eye
   features:
-    - navigation.instant
-    - navigation.instant.progress
+    # navigation.instant is intentionally disabled — it breaks contextual
+    # language switching (clicking 中文 from /notes/llama3/ should go to
+    # /zh/notes/llama3/, not the landing page).
     - navigation.tracking
     - navigation.tabs
     - navigation.sections
@@ -105,6 +106,21 @@ markdown_extensions:
 
 plugins:
   - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: 中文
+          build: true
+          nav_translations:
+            Home: 主页
+            Notes: 笔记
+            Blog: 博客
+            "Llama 3 (Meta, 2024)": "Llama 3（Meta 出品，2024）"
 
 extra:
   social:
