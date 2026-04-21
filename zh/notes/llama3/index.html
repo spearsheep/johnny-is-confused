@@ -1334,11 +1334,6 @@
 
 
 <h1 id="llama-3">Llama 3 —— 学习指南<a class="headerlink" href="#llama-3" title="Anchor link to this section">&para;</a></h1>
-<blockquote>
-<p>本文基于参考实现生成的笔记：<a href="https://github.com/meta-llama/llama3/blob/main/llama/model.py">llama/model.py</a>、<a href="https://github.com/meta-llama/llama3/blob/main/llama/generation.py">llama/generation.py</a> 和 <a href="https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py">llama/tokenizer.py</a>。</p>
-<p><strong>关于渲染：</strong> 所有公式都写在代码块里，用 Unicode 符号表示 —— 这样在任何 Markdown 阅读器里都能正常显示（VS Code 内置预览、GitHub、Typora、Obsidian 等），不需要额外的 KaTeX 插件。示意图都以 SVG 文件引入，同样在所有环境下都能稳定渲染。</p>
-</blockquote>
-<hr />
 <h2 id="1">1. 一句话总结（俯视视角，一段话）<a class="headerlink" href="#1" title="Anchor link to this section">&para;</a></h2>
 <p>Llama 3 是 Meta 于 2024 年发布的开源权重大语言模型 —— 一个<strong>仅解码器 (decoder-only) 的 Transformer</strong>：接收一串文本 token，一次预测一个后续 token。它提供 8B 和 70B 两种参数规模，支持 8,192 token 的上下文窗口。从架构上讲，它与 GPT、Llama 2 同属一个家族：层层堆叠的 Transformer block，每个 block 都包含自注意力和前馈网络。它之所以值得关注，不是因为某个新的架构创新，而是一组针对 2017 年原始 Transformer 的"现代化改造"都调得很到位：用 <strong>RMSNorm</strong> 替换 LayerNorm（更省，无偏置），用 <strong>RoPE</strong> 替换可学习的位置嵌入（更擅长外推到更长序列），用 <strong>SwiGLU</strong> 替换 ReLU MLP（同样 FLOP 下质量更好），用<strong>分组查询注意力 (Grouped-Query Attention, GQA)</strong> 让推理时的 KV 缓存保持小规模。和 Llama 2 相比架构几乎没变 —— 真正的跃进是词表扩大了 4 倍（128K，基于 tiktoken）、上下文加长 2 倍（8K vs 4K）、RoPE 基频大得多（500,000 vs 10,000）以避免长上下文下的频率混叠，以及大幅增加了训练数据（约 15T token）。</p>
 <h3 id="_1">一张图看完整个架构<a class="headerlink" href="#_1" title="Anchor link to this section">&para;</a></h3>
